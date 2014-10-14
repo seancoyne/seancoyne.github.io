@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coldfusion | n42 Designs]]></title>
   <link href="http://blog.n42designs.com/blog/categories/coldfusion/atom.xml" rel="self"/>
   <link href="http://blog.n42designs.com/"/>
-  <updated>2014-10-14T10:44:31-04:00</updated>
+  <updated>2014-10-14T10:49:45-04:00</updated>
   <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/"/>
     <updated>2014-10-13T19:30:00-04:00</updated>
     <id>http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24</id>
-    <content type="html"><![CDATA[<p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/sjq662etey3rruy/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
+    <content type="html"><![CDATA[<p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/oxffau75ps9q1zv/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
 
 <p>So:</p>
 

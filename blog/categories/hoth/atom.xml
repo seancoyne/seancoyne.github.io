@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hoth | n42 Designs]]></title>
   <link href="http://blog.n42designs.com/blog/categories/hoth/atom.xml" rel="self"/>
   <link href="http://blog.n42designs.com/"/>
-  <updated>2014-10-14T10:44:31-04:00</updated>
+  <updated>2014-10-14T10:49:45-04:00</updated>
   <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
@@ -18,8 +18,7 @@
     <link href="http://blog.n42designs.com/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/"/>
     <updated>2011-02-17T14:04:00-05:00</updated>
     <id>http://blog.n42designs.com/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking</id>
-    <content type="html"><![CDATA[<p>Just a quick note to mention that I have released a FarCry plugin for the Hoth exception tracking framework. If you are interested take a look at the code on <a href="https://github.com/seancoyne/farcryhoth">GitHub</a> and let me know what you think.
-I have also included a zip file of the code attached to this entry.</p>
+    <content type="html"><![CDATA[<p>Just a quick note to mention that I have released a FarCry plugin for the Hoth exception tracking framework. If you are interested take a look at the code on <a href="https://github.com/seancoyne/farcryhoth">GitHub</a> and let me know what you think.</p>
 ]]></content>
   </entry>
   

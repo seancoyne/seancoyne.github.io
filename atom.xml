@@ -4,7 +4,7 @@
   <title><![CDATA[n42 Designs]]></title>
   <link href="http://blog.n42designs.com/atom.xml" rel="self"/>
   <link href="http://blog.n42designs.com/"/>
-  <updated>2014-10-14T10:44:31-04:00</updated>
+  <updated>2014-10-14T10:49:45-04:00</updated>
   <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/"/>
     <updated>2014-10-13T19:30:00-04:00</updated>
     <id>http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24</id>
-    <content type="html"><![CDATA[<p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/sjq662etey3rruy/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
+    <content type="html"><![CDATA[<p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/oxffau75ps9q1zv/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
 
 <p>So:</p>
 
@@ -387,10 +387,13 @@ If you want to limit the height of large Gists you can use the following CSS to 
     <link href="http://blog.n42designs.com/blog/2011/06/14/farcry-poll-plugin/"/>
     <updated>2011-06-14T11:20:00-04:00</updated>
     <id>http://blog.n42designs.com/blog/2011/06/14/farcry-poll-plugin</id>
-    <content type="html"><![CDATA[<p>I have released a plugin I have had for a while.  I&rsquo;m not sure why I never got around to releasing it.  Its a very simple FarCry plugin that gives you the ability to create a one question poll and display it on the site.  It uses a couple content types and a rule.
-To install, copy the files to <code>/farcry/plugins/spcPoll</code> and add <code>spcPoll</code> to your <code>this.plugins</code> setting in your FarCry constructor.  Deploy the content types in the COAPI manager and restart the application.  You can now create a question, assign answers to it, and deploy that question using the &ldquo;Poll: Display Poll&rdquo; rule.
-You can grab the code on <a href="http://www.binpress.com/app/farcry-polls-plugin/474">Binpress</a> or <a href="https://github.com/seancoyne/FarCry-Polling-Plugin">Github</a>.  Its also attached to this entry via the download link below.
-Let me know what you think!</p>
+    <content type="html"><![CDATA[<p>I have released a plugin I have had for a while.  I&rsquo;m not sure why I never got around to releasing it.  Its a very simple FarCry plugin that gives you the ability to create a one question poll and display it on the site.  It uses a couple content types and a rule.</p>
+
+<p>To install, copy the files to <code>/farcry/plugins/spcPoll</code> and add <code>spcPoll</code> to your <code>this.plugins</code> setting in your FarCry constructor.  Deploy the content types in the COAPI manager and restart the application.  You can now create a question, assign answers to it, and deploy that question using the &ldquo;Poll: Display Poll&rdquo; rule.</p>
+
+<p>You can grab the code on <a href="http://www.binpress.com/app/farcry-polls-plugin/474">Binpress</a> or <a href="https://github.com/seancoyne/FarCry-Polling-Plugin">Github</a>.</p>
+
+<p>Let me know what you think!</p>
 ]]></content>
   </entry>
   
@@ -399,8 +402,7 @@ Let me know what you think!</p>
     <link href="http://blog.n42designs.com/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/"/>
     <updated>2011-02-17T14:04:00-05:00</updated>
     <id>http://blog.n42designs.com/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking</id>
-    <content type="html"><![CDATA[<p>Just a quick note to mention that I have released a FarCry plugin for the Hoth exception tracking framework. If you are interested take a look at the code on <a href="https://github.com/seancoyne/farcryhoth">GitHub</a> and let me know what you think.
-I have also included a zip file of the code attached to this entry.</p>
+    <content type="html"><![CDATA[<p>Just a quick note to mention that I have released a FarCry plugin for the Hoth exception tracking framework. If you are interested take a look at the code on <a href="https://github.com/seancoyne/farcryhoth">GitHub</a> and let me know what you think.</p>
 ]]></content>
   </entry>
   
@@ -509,7 +511,7 @@ CauchoStatus yes
 
 <p>This is useful if you prefer more control when showing informative messages to the user.</p>
 
-<p>The zip file is attached to this entry as well as at <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+<p>The zip file is at <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
 ]]></content>
   </entry>
   
@@ -527,7 +529,7 @@ CauchoStatus yes
     <link href="http://blog.n42designs.com/blog/2009/05/28/quick-note/"/>
     <updated>2009-05-28T10:35:00-04:00</updated>
     <id>http://blog.n42designs.com/blog/2009/05/28/quick-note</id>
-    <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up. I also attached it to this post. Use the download link below.</p>
+    <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up.</p>
 ]]></content>
   </entry>
   
@@ -545,7 +547,7 @@ CauchoStatus yes
     <link href="http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc/"/>
     <updated>2009-02-28T08:53:00-05:00</updated>
     <id>http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc</id>
-    <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file using the download link on this entry, or from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+    <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
 ]]></content>
   </entry>
   

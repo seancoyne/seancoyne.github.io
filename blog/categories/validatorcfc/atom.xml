@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Validatorcfc | n42 Designs]]></title>
   <link href="http://blog.n42designs.com/blog/categories/validatorcfc/atom.xml" rel="self"/>
   <link href="http://blog.n42designs.com/"/>
-  <updated>2014-10-14T10:44:31-04:00</updated>
+  <updated>2014-10-14T10:49:45-04:00</updated>
   <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
@@ -24,7 +24,7 @@
 
 <p>This is useful if you prefer more control when showing informative messages to the user.</p>
 
-<p>The zip file is attached to this entry as well as at <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+<p>The zip file is at <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
 ]]></content>
   </entry>
   
@@ -33,7 +33,7 @@
     <link href="http://blog.n42designs.com/blog/2009/05/28/quick-note/"/>
     <updated>2009-05-28T10:35:00-04:00</updated>
     <id>http://blog.n42designs.com/blog/2009/05/28/quick-note</id>
-    <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up. I also attached it to this post. Use the download link below.</p>
+    <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up.</p>
 ]]></content>
   </entry>
   
@@ -42,7 +42,7 @@
     <link href="http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc/"/>
     <updated>2009-02-28T08:53:00-05:00</updated>
     <id>http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc</id>
-    <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file using the download link on this entry, or from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+    <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
 ]]></content>
   </entry>
   
@@ -55,7 +55,7 @@
 
 <p>I just uploaded version 0.1.000.  It is very much a work in progress and I welcome feedback.</p>
 
-<p>Take a look and let me know what you think.  You can find it at <a href="http://validatorcfc.riaforge.org">http://validatorCFC.riaforge.org</a> or at the download link below.</p>
+<p>Take a look and let me know what you think.  You can find it at <a href="http://validatorcfc.riaforge.org">http://validatorCFC.riaforge.org</a>.</p>
 
 <p>Here is a rundown of an example usage:</p>
 
