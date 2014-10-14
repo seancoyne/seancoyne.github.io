@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coldfusion | n42 Designs]]></title>
   <link href="http://blog.n42designs.com/blog/categories/coldfusion/atom.xml" rel="self"/>
   <link href="http://blog.n42designs.com/"/>
-  <updated>2014-10-14T12:17:45-04:00</updated>
+  <updated>2014-10-14T12:18:42-04:00</updated>
   <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
@@ -53,7 +53,7 @@ First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had 
 
 <p>Once I made these changes ColdFusion started fine.</p>
 
-<p>The next issue is with the Connector.  Adobe created a customized version of mod_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod_jk is not going to work. <del>We&rsquo;ll have to wait for an updated version from Adobe.</del> (<strong>EDIT:</strong> See Mike&rsquo;s comment <a href="#c1BCFBE61-BADC-4171-8532B7B3B8544650">below</a> for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.</p>
+<p>The next issue is with the Connector.  Adobe created a customized version of mod_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod_jk is not going to work. <del>We&rsquo;ll have to wait for an updated version from Adobe.</del> (<strong>EDIT:</strong> See Mike&rsquo;s comment <a href="#comment-1635209099">below</a> for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.</p>
 
 <p>I followed the recommendations in this blog post: <a href="http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137">http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137</a> to configure MAMP PRO.</p>
 ]]></content>
