@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Web Development | n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/blog/categories/web-development/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/blog/categories/web-development/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Filtering a CFGrid]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid/"/>
+    <link href="http://blog.n42designs.com/blog/2009/08/12/filtering-a-cfgrid/"/>
     <updated>2009-08-12T09:23:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid</id>
+    <id>http://blog.n42designs.com/blog/2009/08/12/filtering-a-cfgrid</id>
     <content type="html"><![CDATA[<p>So you want to filter a CFGrid huh? ColdFusion makes this easy! First you need a CFC method that will return the query used to populate the grid. This method should take the cfgrid parameters and the value you want to filter on.</p>
 
 <p><div><script src='https://gist.github.com/8810170.js'></script>
@@ -76,9 +76,9 @@
   
   <entry>
     <title type="html"><![CDATA[Webservices Change in CF 8.0.1]]></title>
-    <link href="http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801/"/>
+    <link href="http://blog.n42designs.com/blog/2008/04/17/webservices-change-in-cf-801/"/>
     <updated>2008-04-17T04:50:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801</id>
+    <id>http://blog.n42designs.com/blog/2008/04/17/webservices-change-in-cf-801</id>
     <content type="html"><![CDATA[<p>It seems with the change to 8.0.1 there is a difference in the
 way CF generates the stubs for a CFC called as a web service.  I had a
 CFC called webservices.cfc and on 8.0 it was working fine calling the
@@ -93,9 +93,9 @@ remember correctly <code>/Applications/ColdFusion8/stubs/</code> on Mac OS X.</p
   
   <entry>
     <title type="html"><![CDATA[Issue W/ Eclipse Resource Bundle Editor Plugin and Leopard]]></title>
-    <link href="http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/"/>
+    <link href="http://blog.n42designs.com/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/"/>
     <updated>2008-01-17T15:18:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard</id>
+    <id>http://blog.n42designs.com/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard</id>
     <content type="html"><![CDATA[<p>There seems to be an issue with the <a href="http://sourceforge.net/projects/eclipse-rbe/">Resource Bundle Editor Plugin for Eclipse</a>.</p>
 
 <p>I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK and was unable to open a resource file.  I would get the following error:</p>

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://seancoyne.github.io/sitemap.xml 
+Sitemap: http://blog.n42designs.com/sitemap.xml 

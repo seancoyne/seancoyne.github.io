@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Model-glue | n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/blog/categories/model-glue/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/blog/categories/model-glue/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Integrate a Model-Glue Application Into FarCry]]></title>
-    <link href="http://seancoyne.github.io/blog/2007/07/20/integrate-a-modelglue-application-into-farcry/"/>
+    <link href="http://blog.n42designs.com/blog/2007/07/20/integrate-a-modelglue-application-into-farcry/"/>
     <updated>2007-07-20T13:04:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2007/07/20/integrate-a-modelglue-application-into-farcry</id>
+    <id>http://blog.n42designs.com/blog/2007/07/20/integrate-a-modelglue-application-into-farcry</id>
     <content type="html"><![CDATA[<p>I&rsquo;m sure there are other ways to do this but this is how I was able to integrate an existing Model-Glue application into a FarCry site.  I am using ModelGlue 2.0, the latest ColdSpring BER as of this posting, and the latest beta of reactor.</p>
 
 <p>My MG app in question is a events calendar.  Its a pretty simple application using MG, Reactor, and ColdSpring.</p>

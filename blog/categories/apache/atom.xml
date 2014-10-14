@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Apache | n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/blog/categories/apache/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/blog/categories/apache/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4]]></title>
-    <link href="http://seancoyne.github.io/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/"/>
+    <link href="http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/"/>
     <updated>2014-10-13T19:30:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24</id>
+    <id>http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24</id>
     <content type="html"><![CDATA[<p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/sjq662etey3rruy/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
 
 <p>So:</p>
@@ -34,9 +34,9 @@
   
   <entry>
     <title type="html"><![CDATA[Running ColdFusion 10 on OS X Mavericks]]></title>
-    <link href="http://seancoyne.github.io/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/"/>
+    <link href="http://blog.n42designs.com/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/"/>
     <updated>2013-10-23T12:03:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks</id>
+    <id>http://blog.n42designs.com/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks</id>
     <content type="html"><![CDATA[<p>Running ColdFusion 10 on OS X Mavericks is possible, but not straightforward.  Unfortunately, it seems the web server connector does not work with Apache 2.2.24 which ships with Mavericks.  A bug has been logged for this here: <a href="https://bugbase.adobe.com/index.cfm?event=bug&amp;amp;id=3653076">https://bugbase.adobe.com/index.cfm?event=bug&amp;id=3653076</a>.  Please vote for it.
 There are a couple of issues I had with Mavericks and ColdFusion 10 (CF 9 works fine for me for what it is worth).
 First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had to update 3 files to fix this:</p>
@@ -61,9 +61,9 @@ First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had 
   
   <entry>
     <title type="html"><![CDATA[SVN, Apache, and Mod_caucho, Oh My]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
+    <link href="http://blog.n42designs.com/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
     <updated>2009-11-30T10:01:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
+    <id>http://blog.n42designs.com/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
     <content type="html"><![CDATA[<p>I recently set up a new <a href="http://www.viviotech.net/?rid=n42designs">Viviotech</a> VPS and ran into an issue that was easy to fix once I realized what was happening, but difficult to debug.</p>
 
 <p>I set up Railo running on the Resin server using Apache as a front end with mod_caucho. In my <code>httpd.conf</code> file I had the following lines:</p>

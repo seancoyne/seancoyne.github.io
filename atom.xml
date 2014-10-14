@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4]]></title>
-    <link href="http://seancoyne.github.io/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/"/>
+    <link href="http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/"/>
     <updated>2014-10-13T19:30:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24</id>
+    <id>http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24</id>
     <content type="html"><![CDATA[<p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/sjq662etey3rruy/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
 
 <p>So:</p>
@@ -34,9 +34,9 @@
   
   <entry>
     <title type="html"><![CDATA[Running ColdFusion 10 on OS X Mavericks]]></title>
-    <link href="http://seancoyne.github.io/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/"/>
+    <link href="http://blog.n42designs.com/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/"/>
     <updated>2013-10-23T12:03:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks</id>
+    <id>http://blog.n42designs.com/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks</id>
     <content type="html"><![CDATA[<p>Running ColdFusion 10 on OS X Mavericks is possible, but not straightforward.  Unfortunately, it seems the web server connector does not work with Apache 2.2.24 which ships with Mavericks.  A bug has been logged for this here: <a href="https://bugbase.adobe.com/index.cfm?event=bug&amp;amp;id=3653076">https://bugbase.adobe.com/index.cfm?event=bug&amp;id=3653076</a>.  Please vote for it.
 There are a couple of issues I had with Mavericks and ColdFusion 10 (CF 9 works fine for me for what it is worth).
 First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had to update 3 files to fix this:</p>
@@ -61,9 +61,9 @@ First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had 
   
   <entry>
     <title type="html"><![CDATA[FarCry LESS Plugin]]></title>
-    <link href="http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin/"/>
+    <link href="http://blog.n42designs.com/blog/2012/04/10/farcry-less-plugin/"/>
     <updated>2012-04-10T11:26:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin</id>
+    <id>http://blog.n42designs.com/blog/2012/04/10/farcry-less-plugin</id>
     <content type="html"><![CDATA[<p>Today I released a <a href="https://github.com/seancoyne/farcryless">plugin for FarCry</a> that will automatically compile your <a href="http://lesscss.org/">LESS</a> files into CSS. No more need to compile on your development machine before you push to production, and no more need to punish your users by compiling on the client side with <a href="https://github.com/cloudhead/less.js">Less.js</a>. While those solutions are perfectly acceptable, this plugin will let you simply code in LESS, then let FarCry do the work of serving compiled, minified CSS to your users.</p>
 
 <p>The plugin uses a similar syntax to FarCry&rsquo;s built in skin:loadCSS tag so it should be instantly familiar.  Be sure to read the installation instructions to avoid a couple of potential &ldquo;gotchas&rdquo;.</p>
@@ -74,18 +74,18 @@ First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had 
   
   <entry>
     <title type="html"><![CDATA[FarCry Solr Pro]]></title>
-    <link href="http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro/"/>
+    <link href="http://blog.n42designs.com/blog/2012/04/05/farcry-solr-pro/"/>
     <updated>2012-04-05T17:30:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro</id>
+    <id>http://blog.n42designs.com/blog/2012/04/05/farcry-solr-pro</id>
     <content type="html"><![CDATA[<p><a href="http://jeffcoughlin.com/blog">Jeff Coughin</a> and I just launched a new FarCry plugin to enhance the search capabilities of your FarCry website. Check out <a href="http://jeffcoughlin.com/blog/index.cfm/2012/4/5/FarCry-Solr-Pro-Plugin">his announcement</a> or the <a href="http://jeffcoughlin.github.io/farcrysolrpro">plugin website</a> for more information.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Github Gist Renderer for BlogCFC]]></title>
-    <link href="http://seancoyne.github.io/blog/2012/02/12/github-gist-renderer-for-blogcfc/"/>
+    <link href="http://blog.n42designs.com/blog/2012/02/12/github-gist-renderer-for-blogcfc/"/>
     <updated>2012-02-12T13:47:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2012/02/12/github-gist-renderer-for-blogcfc</id>
+    <id>http://blog.n42designs.com/blog/2012/02/12/github-gist-renderer-for-blogcfc</id>
     <content type="html"><![CDATA[<p>I created a quick renderer for Github Gists for use within <a href="http://www.blogcfc.com/">BlogCFC</a> entries. You can see it in action right here. If interested just grab the code from the gist below and save it to <code>/org/camden/blog/render/gist.cfc</code>. You can then use</p>
 
 <div><script src='https://gist.github.com/8810495.js'></script>
@@ -143,9 +143,9 @@ If you want to limit the height of large Gists you can use the following CSS to 
   
   <entry>
     <title type="html"><![CDATA[FarCry Slider Formtool]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool/"/>
+    <link href="http://blog.n42designs.com/blog/2011/09/20/farcry-slider-formtool/"/>
     <updated>2011-09-20T21:37:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool</id>
+    <id>http://blog.n42designs.com/blog/2011/09/20/farcry-slider-formtool</id>
     <content type="html"><![CDATA[<p>I posted this on the <a href="https://groups.google.com/group/farcry-dev">farcry-dev</a> mailing list but thought I would post it here as well to help future googlers in need.</p>
 
 <p>I have created a slider formtool for a client and thought it could be useful to others in the community. You can find the source for it here: <a href="https://gist.github.com/1230366">https://gist.github.com/1230366</a></p>
@@ -315,9 +315,9 @@ If you want to limit the height of large Gists you can use the following CSS to 
   
   <entry>
     <title type="html"><![CDATA[FarCry YouTube Plugin]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin/"/>
+    <link href="http://blog.n42designs.com/blog/2011/08/08/farcry-youtube-plugin/"/>
     <updated>2011-08-08T17:22:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin</id>
+    <id>http://blog.n42designs.com/blog/2011/08/08/farcry-youtube-plugin</id>
     <content type="html"><![CDATA[<p>One of our clients asked for better integration of their YouTube hosted videos on their FarCry website.  They had been linking to the youtube.com URLs directly, leading traffic away from their website.  Obviously, they would have preferred to keep those visitors on their site and engaged.</p>
 
 <p>As some other clients have also expressed a desire to display YouTube videos on their sites, I decided to build the functionality as a FarCry plugin.  This would allow me to move this feature set to any FarCry site.</p>
@@ -336,9 +336,9 @@ If you want to limit the height of large Gists you can use the following CSS to 
   
   <entry>
     <title type="html"><![CDATA[How I Got Started in ColdFusion]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/08/01/how-i-got-started-in-coldfusion/"/>
+    <link href="http://blog.n42designs.com/blog/2011/08/01/how-i-got-started-in-coldfusion/"/>
     <updated>2011-08-01T09:06:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/08/01/how-i-got-started-in-coldfusion</id>
+    <id>http://blog.n42designs.com/blog/2011/08/01/how-i-got-started-in-coldfusion</id>
     <content type="html"><![CDATA[<p>Steve Bryant <a href="http://www.bryantwebconsulting.com/blog/index.cfm/2011/7/20/August-1-2011-is-How-I-Started-ColdFusion-Day">suggested</a> that Aug 1, 2011 be &ldquo;How I Got Started in ColdFusion&rdquo; day. I think that is a great idea, and would like to share my story.</p>
 
 <!-- more -->
@@ -384,9 +384,9 @@ If you want to limit the height of large Gists you can use the following CSS to 
   
   <entry>
     <title type="html"><![CDATA[FarCry Poll Plugin]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin/"/>
+    <link href="http://blog.n42designs.com/blog/2011/06/14/farcry-poll-plugin/"/>
     <updated>2011-06-14T11:20:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin</id>
+    <id>http://blog.n42designs.com/blog/2011/06/14/farcry-poll-plugin</id>
     <content type="html"><![CDATA[<p>I have released a plugin I have had for a while.  I&rsquo;m not sure why I never got around to releasing it.  Its a very simple FarCry plugin that gives you the ability to create a one question poll and display it on the site.  It uses a couple content types and a rule.
 To install, copy the files to <code>/farcry/plugins/spcPoll</code> and add <code>spcPoll</code> to your <code>this.plugins</code> setting in your FarCry constructor.  Deploy the content types in the COAPI manager and restart the application.  You can now create a question, assign answers to it, and deploy that question using the &ldquo;Poll: Display Poll&rdquo; rule.
 You can grab the code on <a href="http://www.binpress.com/app/farcry-polls-plugin/474">Binpress</a> or <a href="https://github.com/seancoyne/FarCry-Polling-Plugin">Github</a>.  Its also attached to this entry via the download link below.
@@ -396,9 +396,9 @@ Let me know what you think!</p>
   
   <entry>
     <title type="html"><![CDATA[A FarCry Plugin for Hoth: ColdFusion Exception Tracking]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/"/>
+    <link href="http://blog.n42designs.com/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/"/>
     <updated>2011-02-17T14:04:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking</id>
+    <id>http://blog.n42designs.com/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking</id>
     <content type="html"><![CDATA[<p>Just a quick note to mention that I have released a FarCry plugin for the Hoth exception tracking framework. If you are interested take a look at the code on <a href="https://github.com/seancoyne/farcryhoth">GitHub</a> and let me know what you think.
 I have also included a zip file of the code attached to this entry.</p>
 ]]></content>
@@ -406,9 +406,9 @@ I have also included a zip file of the code attached to this entry.</p>
   
   <entry>
     <title type="html"><![CDATA[SVN, Apache, and Mod_caucho, Oh My]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
+    <link href="http://blog.n42designs.com/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
     <updated>2009-11-30T10:01:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
+    <id>http://blog.n42designs.com/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
     <content type="html"><![CDATA[<p>I recently set up a new <a href="http://www.viviotech.net/?rid=n42designs">Viviotech</a> VPS and ran into an issue that was easy to fix once I realized what was happening, but difficult to debug.</p>
 
 <p>I set up Railo running on the Resin server using Apache as a front end with mod_caucho. In my <code>httpd.conf</code> file I had the following lines:</p>
@@ -439,9 +439,9 @@ CauchoStatus yes
   
   <entry>
     <title type="html"><![CDATA[Filtering a CFGrid]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid/"/>
+    <link href="http://blog.n42designs.com/blog/2009/08/12/filtering-a-cfgrid/"/>
     <updated>2009-08-12T09:23:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid</id>
+    <id>http://blog.n42designs.com/blog/2009/08/12/filtering-a-cfgrid</id>
     <content type="html"><![CDATA[<p>So you want to filter a CFGrid huh? ColdFusion makes this easy! First you need a CFC method that will return the query used to populate the grid. This method should take the cfgrid parameters and the value you want to filter on.</p>
 
 <div><script src='https://gist.github.com/8810170.js'></script>
@@ -500,9 +500,9 @@ CauchoStatus yes
   
   <entry>
     <title type="html"><![CDATA[ValidatorCFC Update]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update/"/>
+    <link href="http://blog.n42designs.com/blog/2009/08/03/validatorcfc-update/"/>
     <updated>2009-08-03T11:56:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update</id>
+    <id>http://blog.n42designs.com/blog/2009/08/03/validatorcfc-update</id>
     <content type="html"><![CDATA[<p>Just a quick note, thanks again to <a href="http://www.aarongreenlee.com/">Aaron Greenlee</a> I have some small modifications to <a href="http://validatorcfc.riaforge.org/">ValidatorCFC</a>.</p>
 
 <p>The modifications allow you to return a struct where the key is the name of the field in your object, and the value is true/false indicating if it passed validation.</p>
@@ -515,45 +515,45 @@ CauchoStatus yes
   
   <entry>
     <title type="html"><![CDATA[Adobe Releases Hotfix for FCKEditor Issue]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue/"/>
+    <link href="http://blog.n42designs.com/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue/"/>
     <updated>2009-07-08T15:02:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue</id>
+    <id>http://blog.n42designs.com/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue</id>
     <content type="html"><![CDATA[<p>Adobe has released a hotfix for the FCKeditor issue.  You can find it <a href="http://www.adobe.com/support/security/bulletins/apsb09-09.html">here</a>.  Take notice that it says to first stop the CF service and then access the CF administrator.  This is impossible.  Simple open the administrator first and apply the hot fix on the system info screen. Also, Mac (linux too??) users should know that if you unzip the cfide.zip file to the cfide folder it will replace the folder not merge the files like on windows. You will be left without a working CFIDE folder. You should manually merge the files.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Quick Note]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/05/28/quick-note/"/>
+    <link href="http://blog.n42designs.com/blog/2009/05/28/quick-note/"/>
     <updated>2009-05-28T10:35:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/05/28/quick-note</id>
+    <id>http://blog.n42designs.com/blog/2009/05/28/quick-note</id>
     <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up. I also attached it to this post. Use the download link below.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Follow Me on Twitter]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/04/22/follow-me-on-twitter/"/>
+    <link href="http://blog.n42designs.com/blog/2009/04/22/follow-me-on-twitter/"/>
     <updated>2009-04-22T14:48:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/04/22/follow-me-on-twitter</id>
+    <id>http://blog.n42designs.com/blog/2009/04/22/follow-me-on-twitter</id>
     <content type="html"><![CDATA[<p><a href="http://twitter.com/nickel4242">http://twitter.com/nickel4242</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Update to ValidatorCFC]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc/"/>
+    <link href="http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc/"/>
     <updated>2009-02-28T08:53:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc</id>
+    <id>http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc</id>
     <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file using the download link on this entry, or from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Transfer Error When Using Ntext or Text and a ManyToMany Relationship]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/"/>
+    <link href="http://blog.n42designs.com/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/"/>
     <updated>2009-02-17T07:43:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship</id>
+    <id>http://blog.n42designs.com/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship</id>
     <content type="html"><![CDATA[<p>When you set Transfer to use a table that has an ntext or text column on SQL Server 2000 (and perhaps later versions) and also a many to many relationship you may receive the following error when you attempt to retreive the collection for the many to many:</p>
 
 <div><script src='https://gist.github.com/8810319.js'></script>
@@ -693,9 +693,9 @@ column in the sql statement pointed at the view.</p>
   
   <entry>
     <title type="html"><![CDATA[Webservices Change in CF 8.0.1]]></title>
-    <link href="http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801/"/>
+    <link href="http://blog.n42designs.com/blog/2008/04/17/webservices-change-in-cf-801/"/>
     <updated>2008-04-17T04:50:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801</id>
+    <id>http://blog.n42designs.com/blog/2008/04/17/webservices-change-in-cf-801</id>
     <content type="html"><![CDATA[<p>It seems with the change to 8.0.1 there is a difference in the
 way CF generates the stubs for a CFC called as a web service.  I had a
 CFC called webservices.cfc and on 8.0 it was working fine calling the
@@ -710,9 +710,9 @@ remember correctly <code>/Applications/ColdFusion8/stubs/</code> on Mac OS X.</p
   
   <entry>
     <title type="html"><![CDATA[Issue W/ Eclipse Resource Bundle Editor Plugin and Leopard]]></title>
-    <link href="http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/"/>
+    <link href="http://blog.n42designs.com/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/"/>
     <updated>2008-01-17T15:18:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard</id>
+    <id>http://blog.n42designs.com/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard</id>
     <content type="html"><![CDATA[<p>There seems to be an issue with the <a href="http://sourceforge.net/projects/eclipse-rbe/">Resource Bundle Editor Plugin for Eclipse</a>.</p>
 
 <p>I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK and was unable to open a resource file.  I would get the following error:</p>

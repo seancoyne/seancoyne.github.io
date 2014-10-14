@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Subversion | n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/blog/categories/subversion/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/blog/categories/subversion/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[SVN, Apache, and Mod_caucho, Oh My]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
+    <link href="http://blog.n42designs.com/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
     <updated>2009-11-30T10:01:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
+    <id>http://blog.n42designs.com/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
     <content type="html"><![CDATA[<p>I recently set up a new <a href="http://www.viviotech.net/?rid=n42designs">Viviotech</a> VPS and ran into an issue that was easy to fix once I realized what was happening, but difficult to debug.</p>
 
 <p>I set up Railo running on the Resin server using Apache as a front end with mod_caucho. In my <code>httpd.conf</code> file I had the following lines:</p>

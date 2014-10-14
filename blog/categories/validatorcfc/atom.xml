@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Validatorcfc | n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/blog/categories/validatorcfc/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/blog/categories/validatorcfc/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ValidatorCFC Update]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update/"/>
+    <link href="http://blog.n42designs.com/blog/2009/08/03/validatorcfc-update/"/>
     <updated>2009-08-03T11:56:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update</id>
+    <id>http://blog.n42designs.com/blog/2009/08/03/validatorcfc-update</id>
     <content type="html"><![CDATA[<p>Just a quick note, thanks again to <a href="http://www.aarongreenlee.com/">Aaron Greenlee</a> I have some small modifications to <a href="http://validatorcfc.riaforge.org/">ValidatorCFC</a>.</p>
 
 <p>The modifications allow you to return a struct where the key is the name of the field in your object, and the value is true/false indicating if it passed validation.</p>
@@ -30,27 +30,27 @@
   
   <entry>
     <title type="html"><![CDATA[Quick Note]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/05/28/quick-note/"/>
+    <link href="http://blog.n42designs.com/blog/2009/05/28/quick-note/"/>
     <updated>2009-05-28T10:35:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/05/28/quick-note</id>
+    <id>http://blog.n42designs.com/blog/2009/05/28/quick-note</id>
     <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up. I also attached it to this post. Use the download link below.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Update to ValidatorCFC]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc/"/>
+    <link href="http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc/"/>
     <updated>2009-02-28T08:53:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc</id>
+    <id>http://blog.n42designs.com/blog/2009/02/28/update-to-validatorcfc</id>
     <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file using the download link on this entry, or from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[ValidatorCFC]]></title>
-    <link href="http://seancoyne.github.io/blog/2007/07/20/validatorcfc/"/>
+    <link href="http://blog.n42designs.com/blog/2007/07/20/validatorcfc/"/>
     <updated>2007-07-20T23:30:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2007/07/20/validatorcfc</id>
+    <id>http://blog.n42designs.com/blog/2007/07/20/validatorcfc</id>
     <content type="html"><![CDATA[<p>This component validates the data in an object according to custom rules you set up.  It is especially created to determine data validity for a data store (DBMS, etc) rather than for business rules, but you can set up your own complex rules.  Some may be out of its scope, however.</p>
 
 <p>I just uploaded version 0.1.000.  It is very much a work in progress and I welcome feedback.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Transfer | n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/blog/categories/transfer/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/blog/categories/transfer/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Transfer Error When Using Ntext or Text and a ManyToMany Relationship]]></title>
-    <link href="http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/"/>
+    <link href="http://blog.n42designs.com/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/"/>
     <updated>2009-02-17T07:43:00-05:00</updated>
-    <id>http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship</id>
+    <id>http://blog.n42designs.com/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship</id>
     <content type="html"><![CDATA[<p>When you set Transfer to use a table that has an ntext or text column on SQL Server 2000 (and perhaps later versions) and also a many to many relationship you may receive the following error when you attempt to retreive the collection for the many to many:</p>
 
 <p><div><script src='https://gist.github.com/8810319.js'></script>

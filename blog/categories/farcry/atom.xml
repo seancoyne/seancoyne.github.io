@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Farcry | n42 Designs]]></title>
-  <link href="http://seancoyne.github.io/blog/categories/farcry/atom.xml" rel="self"/>
-  <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T10:41:30-04:00</updated>
-  <id>http://seancoyne.github.io/</id>
+  <link href="http://blog.n42designs.com/blog/categories/farcry/atom.xml" rel="self"/>
+  <link href="http://blog.n42designs.com/"/>
+  <updated>2014-10-14T10:44:31-04:00</updated>
+  <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[FarCry LESS Plugin]]></title>
-    <link href="http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin/"/>
+    <link href="http://blog.n42designs.com/blog/2012/04/10/farcry-less-plugin/"/>
     <updated>2012-04-10T11:26:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin</id>
+    <id>http://blog.n42designs.com/blog/2012/04/10/farcry-less-plugin</id>
     <content type="html"><![CDATA[<p>Today I released a <a href="https://github.com/seancoyne/farcryless">plugin for FarCry</a> that will automatically compile your <a href="http://lesscss.org/">LESS</a> files into CSS. No more need to compile on your development machine before you push to production, and no more need to punish your users by compiling on the client side with <a href="https://github.com/cloudhead/less.js">Less.js</a>. While those solutions are perfectly acceptable, this plugin will let you simply code in LESS, then let FarCry do the work of serving compiled, minified CSS to your users.</p>
 
 <p>The plugin uses a similar syntax to FarCry&rsquo;s built in skin:loadCSS tag so it should be instantly familiar.  Be sure to read the installation instructions to avoid a couple of potential &ldquo;gotchas&rdquo;.</p>
@@ -28,18 +28,18 @@
   
   <entry>
     <title type="html"><![CDATA[FarCry Solr Pro]]></title>
-    <link href="http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro/"/>
+    <link href="http://blog.n42designs.com/blog/2012/04/05/farcry-solr-pro/"/>
     <updated>2012-04-05T17:30:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro</id>
+    <id>http://blog.n42designs.com/blog/2012/04/05/farcry-solr-pro</id>
     <content type="html"><![CDATA[<p><a href="http://jeffcoughlin.com/blog">Jeff Coughin</a> and I just launched a new FarCry plugin to enhance the search capabilities of your FarCry website. Check out <a href="http://jeffcoughlin.com/blog/index.cfm/2012/4/5/FarCry-Solr-Pro-Plugin">his announcement</a> or the <a href="http://jeffcoughlin.github.io/farcrysolrpro">plugin website</a> for more information.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[FarCry Slider Formtool]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool/"/>
+    <link href="http://blog.n42designs.com/blog/2011/09/20/farcry-slider-formtool/"/>
     <updated>2011-09-20T21:37:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool</id>
+    <id>http://blog.n42designs.com/blog/2011/09/20/farcry-slider-formtool</id>
     <content type="html"><![CDATA[<p>I posted this on the <a href="https://groups.google.com/group/farcry-dev">farcry-dev</a> mailing list but thought I would post it here as well to help future googlers in need.</p>
 
 <p>I have created a slider formtool for a client and thought it could be useful to others in the community. You can find the source for it here: <a href="https://gist.github.com/1230366">https://gist.github.com/1230366</a></p>
@@ -207,9 +207,9 @@
   
   <entry>
     <title type="html"><![CDATA[FarCry YouTube Plugin]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin/"/>
+    <link href="http://blog.n42designs.com/blog/2011/08/08/farcry-youtube-plugin/"/>
     <updated>2011-08-08T17:22:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin</id>
+    <id>http://blog.n42designs.com/blog/2011/08/08/farcry-youtube-plugin</id>
     <content type="html"><![CDATA[<p>One of our clients asked for better integration of their YouTube hosted videos on their FarCry website.  They had been linking to the youtube.com URLs directly, leading traffic away from their website.  Obviously, they would have preferred to keep those visitors on their site and engaged.</p>
 
 <p>As some other clients have also expressed a desire to display YouTube videos on their sites, I decided to build the functionality as a FarCry plugin.  This would allow me to move this feature set to any FarCry site.</p>
@@ -228,9 +228,9 @@
   
   <entry>
     <title type="html"><![CDATA[FarCry Poll Plugin]]></title>
-    <link href="http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin/"/>
+    <link href="http://blog.n42designs.com/blog/2011/06/14/farcry-poll-plugin/"/>
     <updated>2011-06-14T11:20:00-04:00</updated>
-    <id>http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin</id>
+    <id>http://blog.n42designs.com/blog/2011/06/14/farcry-poll-plugin</id>
     <content type="html"><![CDATA[<p>I have released a plugin I have had for a while.  I&rsquo;m not sure why I never got around to releasing it.  Its a very simple FarCry plugin that gives you the ability to create a one question poll and display it on the site.  It uses a couple content types and a rule.
 To install, copy the files to <code>/farcry/plugins/spcPoll</code> and add <code>spcPoll</code> to your <code>this.plugins</code> setting in your FarCry constructor.  Deploy the content types in the COAPI manager and restart the application.  You can now create a question, assign answers to it, and deploy that question using the &ldquo;Poll: Display Poll&rdquo; rule.
 You can grab the code on <a href="http://www.binpress.com/app/farcry-polls-plugin/474">Binpress</a> or <a href="https://github.com/seancoyne/FarCry-Polling-Plugin">Github</a>.  Its also attached to this entry via the download link below.
