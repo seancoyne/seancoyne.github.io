@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://seancoyne.github.io/sitemap.xml 
