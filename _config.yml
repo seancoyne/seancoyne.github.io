@@ -6,7 +6,8 @@ url: http://blog.n42designs.com
 title: n42 Designs
 subtitle: Custom Web Development
 author: Sean Coyne
-simple_search: https://www.google.com/search
+# simple_search: https://www.google.com/search
+simple_search: /search
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
