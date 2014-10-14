@@ -13,4 +13,4 @@ The modifications allow you to return a struct where the key is the name of the 
 
 This is useful if you prefer more control when showing informative messages to the user.
 
-The zip file is attached to this entry as well as at [RIAForge](http://validatorcfc.riaforge.org/).
+The zip file is at [RIAForge](http://validatorcfc.riaforge.org/).

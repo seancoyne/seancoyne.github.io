@@ -11,7 +11,7 @@ This component validates the data in an object according to custom rules you set
 
 I just uploaded version 0.1.000.  It is very much a work in progress and I welcome feedback.
 
-Take a look and let me know what you think.  You can find it at [http://validatorCFC.riaforge.org](http://validatorcfc.riaforge.org) or at the download link below.
+Take a look and let me know what you think.  You can find it at [http://validatorCFC.riaforge.org](http://validatorcfc.riaforge.org).
 
 Here is a rundown of an example usage:
 
