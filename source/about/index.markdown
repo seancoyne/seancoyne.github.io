@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "About n42 Designs"
-date: 2014-10-14 10:52
 comments: false
 sharing: true
 footer: true
