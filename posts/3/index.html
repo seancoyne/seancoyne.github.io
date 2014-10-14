@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>n42 Designs</title>
+  <meta name="author" content="Sean Coyne">
+
+  
+  <meta name="description" content="Since I have transitioned from a world of
+spaghetti code through the land of the uber-cfc, and finally onto some
+OO concepts, I have tried to figure &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://seancoyne.github.io/posts/3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="n42 Designs" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-298339-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">n42 Designs</a></h1>
+  
+    <h2>Custom Web Development</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:seancoyne.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/14/coldfusion-orm-developing-the-business-objects-first/">ColdFusion ORM - Developing the Business Objects First</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2007-09-14T07:12:00-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2007</span></span> <span class='time'>7:12 am</span></time>
+        
+           | <a href="/blog/2007/09/14/coldfusion-orm-developing-the-business-objects-first/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2007/09/14/coldfusion-orm-developing-the-business-objects-first/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Since I have transitioned from a world of
+spaghetti code through the land of the uber-cfc, and finally onto some
+OO concepts, I have tried to figure out what the best way to create the
+business objects and persist them to the database.  For nearly ever
+application I have developed, I have created the database first, since,
+in my mind, understanding the data is the first step to understanding
+the way the application will function.</p>
+
+<p>However, in the OO world,
+the primary step is to design the business objects.  In my latest
+project I decided to take one step deeper into the OO world and develop
+all my business objects forgetting all about how the database would be
+laid out.  I had no problems with this, authoring complex objects
+containing arrays or instances of other objects without
+issue.</p>
+
+<p>Then I needed to figure out how to persist them.  In the
+past, each of my business objects directly mapped to a table in my
+database.  This made it easy to build a code generator, read in the DB
+metadata and, in the words of John Madden, &ldquo;Boom&rdquo;, I had my beans, DAOs,
+and Gateways.</p>
+
+<p>Now, I see what Sean Corfield refers to as the &ldquo;5:1
+Syndrome&rdquo;.  I have a dumb bean object, a DAO, a Gateway, a Service and,
+if using Model-Glue, a Controller for nearly every object, and in turn
+every table in the database. This always seemed like code bloat to me,
+so I was very happy to see other, like Sean, refer to it as such.  There
+must be a better way!</p>
+
+<p>Trying to avoid this I decided, OK I&rsquo;ll
+use Reactor.  Active Record, generated code, sounds good.  Then I
+realized that I have to create the database first.  Back to square
+one.</p>
+
+<p>Should business objects reflect the organization of the
+database?  They can, but if it doesn&rsquo;t fit the way the business object
+is used in the application, then no, it shouldn&rsquo;t.  Also, from the
+other way, the best way to organized the business objects is probably
+not the best way to organize the database.  The database should be in
+3NF, avoid duplication whereever possible, etc, etc.</p>
+
+<p>Not wanting
+to trash all the BOs I created already, I decided I would write all the
+persistance stuff myself.  So now that I have some beans, I created a
+service for each and wired them up in ColdSpring.  I put all the methods
+that would normally go in my DAO (save, new, and CRUD) in my service as
+well as some getAll() calls.</p>
+
+<p>As a side note, I don&rsquo;t return
+query objects since, even though they are faster than creating an array
+of objects, I cant call a complex getter, such as a calculated value
+easily, and this allows me to use the same calls to get the data for one
+instance of an object as I do for a collection.</p>
+
+<p>Now I have a BO
+and a service that is completely separate from the DB.  Persisting
+complex objects is a bit more complicated than using the 1:1 BO to DB
+mapping, but it works.  The only issue is, I don&rsquo;t want to have to
+maintain all this manually.  I wish we had a mapping tool to handle
+persistance from BO to DB without requiring that the DB reflect the BO
+or vice versa.</p>
+
+<p>Java has <a href="http://www.hibernate.org/">Hibernate</a> to handle this issue.  With CF8 <a href="http://www.firemoss.com/blog/index.cfm?mode=entry&amp;amp;entry=E3BB2C56-3048-55C9-439841683FDAA4D3">we can now use Hibernate</a> with a Java model, but what if we want to
+model using CFCs?  <a href="http://www.mattwoodward.com/blog/index.cfm?event=showEntry&amp;amp;entryID=0192EC2E-A75D-7689-3A0C5ABFB71258AC">cfHibernate</a>
+attempted to do this and seems to have run into some issues.  Can we use
+Hibernate to map CF objects to the DB?  I am going to attempt to find an
+answer for this in the next few weeks for my current project.  Hopefully
+I can find a solution.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/30/coldfusion-8-released/">ColdFusion 8 Released!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2007-07-30T05:13:00-04:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2007</span></span> <span class='time'>5:13 am</span></time>
+        
+           | <a href="/blog/2007/07/30/coldfusion-8-released/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2007/07/30/coldfusion-8-released/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just a quick note that CF8 has been <a href="http://www.adobe.com/products/coldfusion/">released</a> by Adobe.  If you haven&rsquo;t seen the new features, download a copy and see for yourself.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/20/validatorcfc/">ValidatorCFC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2007-07-20T23:30:00-04:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2007</span></span> <span class='time'>11:30 pm</span></time>
+        
+           | <a href="/blog/2007/07/20/validatorcfc/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2007/07/20/validatorcfc/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This component validates the data in an object according to custom rules you set up.  It is especially created to determine data validity for a data store (DBMS, etc) rather than for business rules, but you can set up your own complex rules.  Some may be out of its scope, however.</p>
+
+<p>I just uploaded version 0.1.000.  It is very much a work in progress and I welcome feedback.</p>
+
+<p>Take a look and let me know what you think.  You can find it at <a href="http://validatorcfc.riaforge.org">http://validatorCFC.riaforge.org</a> or at the download link below.</p>
+
+<p>Here is a rundown of an example usage:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/07/20/validatorcfc/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/20/technorati/">Technorati</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2007-07-20T23:19:00-04:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2007</span></span> <span class='time'>11:19 pm</span></time>
+        
+           | <a href="/blog/2007/07/20/technorati/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2007/07/20/technorati/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Look for me on <a href="http://technorati.com/claim/nb5epizsnt">Technorati</a>!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/20/integrate-a-modelglue-application-into-farcry/">Integrate a Model-Glue Application Into FarCry</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2007-07-20T13:04:00-04:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2007</span></span> <span class='time'>1:04 pm</span></time>
+        
+           | <a href="/blog/2007/07/20/integrate-a-modelglue-application-into-farcry/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2007/07/20/integrate-a-modelglue-application-into-farcry/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m sure there are other ways to do this but this is how I was able to integrate an existing Model-Glue application into a FarCry site.  I am using ModelGlue 2.0, the latest ColdSpring BER as of this posting, and the latest beta of reactor.</p>
+
+<p>My MG app in question is a events calendar.  Its a pretty simple application using MG, Reactor, and ColdSpring.</p>
+
+<p>Because I don&rsquo;t want to use ColdFusion mappings (and its running on CF7 so no per application mappings) I copied modelglue, reactor, and coldspring into <code>{farcry_root}/projects/{site_name}/www</code> as <code>www/modelglue</code>, <code>www/reactor</code>, and <code>www/coldspring</code>.</p>
+
+<p>If you are using mappings you can skip that step.</p>
+
+<p>Next, I created a simple include file called _mgCal.cfm in <code>{farcry_root}/projects/{site_name}/includedObj</code>.</p>
+
+<p>The code for this is as follows:</p>
+
+<div><script src='https://gist.github.com/8810571.js'></script>
+<noscript><pre><code>&lt;!--- @@displayname: Calendar ---&gt;
+
+&lt;cfsetting enablecfoutputonly=&quot;no&quot;&gt;
+
+&lt;cfinclude template=&quot;/mg/mgCal/index.cfm&quot; /&gt;
+
+&lt;cfsetting enablecfoutputonly=&quot;no&quot;&gt;</code></pre></noscript></div>
+
+
+<p>Now, in the FarCry webtop, under the site tab, navigate to the root node, and under utility, create a new navigation node called &ldquo;Calendar&rdquo; and under that, a new include called &ldquo;Calendar&rdquo;.</p>
+
+<p>Publish both.  The friendly URL should be <code>/go/calendar</code>, but it can be whatever you like.</p>
+
+<p>Now we have to copy our MG application into the site tree.  Create a new folder called <code>mg</code> under the <code>www</code> folder.  This is where all my MG apps will live.  So I copy my <code>mgCal</code> folder from my test site into the <code>mg</code> folder I just created giving me a directory structure like so:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/www/mg/mgCal/
+</span><span class='line'>/www/mg/mgCal/config
+</span><span class='line'>/www/mg/mgCal/controller
+</span><span class='line'>/www/mg/mgCal/model
+</span><span class='line'>/www/mg/mgCal/views
+</span><span class='line'>/www/mg/mgCal/Application.cfm
+</span><span class='line'>/www/mg/mgCal/index.cfm
+</span><span class='line'>etc</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we have a few modifications to make to the MG app to get it to run from this location.  Depending on how you first created the MG app, your settings may be different.</p>
+
+<p>In your MG App&rsquo;s index.cfm file add the following line above the <code>&lt;cfinclude&gt;</code> that calls Model-Glue.</p>
+
+<div><script src='https://gist.github.com/8810594.js'></script>
+<noscript><pre><code>&lt;cfset ModelGlue_LOCAL_COLDSPRING_PATH = getDirectoryFromPath(getCurrentTemplatePath()) &amp; &quot;/config/ColdSpring.xml&quot; /&gt;</code></pre></noscript></div>
+
+
+<p>Now MG can find your ColdSpring configuration file.</p>
+
+<p>In your ColdSpring configuration file edit the following properties:</p>
+
+<p>In your modelGlueConfiguration bean:</p>
+
+<p>The paths should be straight forward, but your <code>defaultTemplate</code> property must be set to the FriendlyURL of your include.</p>
+
+<div><script src='https://gist.github.com/8810609.js'></script>
+<noscript><pre><code>&lt;property name=&quot;viewMappings&quot;&gt;&lt;value&gt;/mg/mgCal/views&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;generatedViewMapping&quot;&gt;&lt;value&gt;/mg/mgCal/views/generated&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;configurationPath&quot;&gt;&lt;value&gt;/mg/mgCal/config/ModelGlue.xml&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;scaffoldPath&quot;&gt;&lt;value&gt;/mg/mgCal/config/scaffolds/Scaffolds.xml&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;defaultTemplate&quot;&gt;&lt;value&gt;/go/calendar&lt;/value&gt;&lt;/property&gt;</code></pre></noscript></div>
+
+
+<p>In your reactorConfiguration bean:</p>
+
+<div><script src='https://gist.github.com/8810621.js'></script>
+<noscript><pre><code>&lt;constructor-arg name=&quot;pathToConfigXml&quot;&gt;&lt;value&gt;/mg/mgCal/config/reactor/Reactor.xml&lt;/value&gt;&lt;/constructor-arg&gt;
+&lt;property name=&quot;mapping&quot;&gt;&lt;value&gt;/mg/mgCal/model/data/reactor&lt;/value&gt;&lt;/property&gt;</code></pre></noscript></div>
+
+
+<p>You will want the paths to match those you set up in the previous steps.</p>
+
+<p>Now for the tedious part.  This was easy for me since I only have a few views, but a complex app with a large number of views will probably be a bit more work.</p>
+
+<p>In each view that calls <code>#viewState.getValue('myself')#</code> you will have to, prior to any of those calls run the following statement:</p>
+
+<div><script src='https://gist.github.com/8810632.js'></script>
+<noscript><pre><code>&lt;cfset viewState.setValue(&#39;myself&#39;,replace(viewState.getValue(&#39;myself&#39;),&#39;?&#39;,&#39;&amp;amp;&#39;,&#39;ALL&#39;)) /&gt;</code></pre></noscript></div>
+
+
+<p>This is to prevent a url like <code>/go/calendar?event=some.mgEvent</code> from happening.  The friendlyURL is hiding some other FarCry URL variables.  So there is already a <code>?</code> in the URL.  This will replace the <code>?</code> that MG creates with an ampersand so you can attach the MG url variables easily.</p>
+
+<p>Thats all it took to get my simple calendar MG app running under FarCry.  A more complex app may need more to get running, but at least this will get you started.</p>
+
+<p>If any one has any suggestions on a better way to handle this, I am all ears.  I tried to find another instance of someone doing this in both the <a href="http://groups.google.com/group/farcry-dev">FarCry</a> and <a href="http://groups.google.com/group/Model-Glue">Model-Glue</a> lists to no avail.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/2">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/">ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/">Running ColdFusion 10 on OS X Mavericks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/10/farcry-less-plugin/">FarCry LESS Plugin</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/05/farcry-solr-pro/">FarCry Solr Pro</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/12/github-gist-renderer-for-blogcfc/">Github Gist Renderer for BlogCFC</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/seancoyne">@seancoyne</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'seancoyne',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+SeanCoyne?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Sean Coyne -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'n42designs';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

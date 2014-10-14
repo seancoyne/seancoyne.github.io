@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Transfer | n42 Designs]]></title>
+  <link href="http://seancoyne.github.io/blog/categories/transfer/atom.xml" rel="self"/>
+  <link href="http://seancoyne.github.io/"/>
+  <updated>2014-10-14T10:41:30-04:00</updated>
+  <id>http://seancoyne.github.io/</id>
+  <author>
+    <name><![CDATA[Sean Coyne]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Transfer Error When Using Ntext or Text and a ManyToMany Relationship]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/"/>
+    <updated>2009-02-17T07:43:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship</id>
+    <content type="html"><![CDATA[<p>When you set Transfer to use a table that has an ntext or text column on SQL Server 2000 (and perhaps later versions) and also a many to many relationship you may receive the following error when you attempt to retreive the collection for the many to many:</p>
+
+<p><div><script src='https://gist.github.com/8810319.js'></script>
+<noscript><pre><code>[Macromedia][SQLServer JDBC Driver][SQLServer]Only 
+text pointers are
+allowed in work tables, never text, ntext, or image 
+columns. The query
+processor produced a query plan that required a 
+text, ntext, or image
+column in a work table.</code></pre></noscript></div>
+</p>
+
+<p>For example I have the following tables set up</p>
+
+<p><div><script src='https://gist.github.com/8810330.js'></script>
+<noscript><pre><code>Table Name: 
+Table1
+id		      char(35)	primary key
+title	      varchar(255)	
+description	ntext
+
+Table Name: Table2
+id		      char(35)	primary key
+description	varchar(255)
+
+Table Name: Table1_Table2
+table1_id	  char(35)	composite key
+table2_id	  char(35)	composite key</code></pre></noscript></div>
+</p>
+
+<p>And the following transfer configuration:</p>
+
+<p><div><script src='https://gist.github.com/8810367.js'></script>
+<noscript><pre><code>&lt;transfer&gt;
+	&lt;objectDefinitions&gt;
+		&lt;object name=&quot;Table1&quot; table=&quot;table1&quot;&gt;
+			&lt;id name=&quot;id&quot; type=&quot;UUID&quot; generate=&quot;true&quot; /&gt;
+			&lt;property name=&quot;title&quot; type=&quot;string&quot; nullable=&quot;false&quot; /&gt;
+			&lt;property name=&quot;description&quot; type=&quot;string&quot; nullable=&quot;true&quot; /&gt;
+			&lt;manytomany name=&quot;Relation&quot; table=&quot;Table1_Table2&quot; lazy=&quot;true&quot;&gt;
+				&lt;link to=&quot;Table1&quot; column=&quot;table1_id&quot; /&gt;
+				&lt;link to=&quot;Table2&quot; column=&quot;table2_id&quot; /&gt;
+				&lt;collection type=&quot;array&quot;&gt;
+					&lt;order property=&quot;description&quot; order=&quot;asc&quot; /&gt;
+				&lt;/collection&gt;
+			&lt;/manytomany&gt;
+		&lt;/object&gt;
+		&lt;object name=&quot;Table2&quot; table=&quot;Table2&quot;&gt;
+			&lt;id name=&quot;id&quot; type=&quot;UUID&quot; generate=&quot;true&quot; /&gt;
+			&lt;property name=&quot;description&quot; type=&quot;string&quot; nullable=&quot;false&quot; /&gt;
+		&lt;/object&gt;
+	&lt;/objectDefinitions&gt;
+&lt;/transfer&gt;</code></pre></noscript></div>
+</p>
+
+<p>So when you call <code>getRelationArray()</code> on a Table1 object.  You will receive the error.  To correct this I took the following steps:</p>
+
+<p>Create a for table 1 with the ntext column casted to varchar:</p>
+
+<pre><code class="sql">select id,title,cast(description as varchar(8000)) as description from table1
+</code></pre>
+
+<p>Save this as <code>vwTable1</code>.</p>
+
+<p>Change your transfer config to point to the view instead of table one so</p>
+
+<p><div><script src='https://gist.github.com/8810384.js'></script>
+<noscript><pre><code>&lt;object name=&quot;Table1&quot; table=&quot;table1&quot;&gt;</code></pre></noscript></div>
+</p>
+
+<p>becomes</p>
+
+<p><div><script src='https://gist.github.com/8810393.js'></script>
+<noscript><pre><code>&lt;object name=&quot;Table1&quot; table=&quot;vwTable1&quot;&gt;</code></pre></noscript></div>
+</p>
+
+<p>Now, you wont be able to run it yet because the view is not updatable since you used the casted field.  To overcome this we are going to use an <code>INSTEAD OF</code> trigger.</p>
+
+<p>You need to create 2 triggers.  One will be called whenever <code>UPDATE</code> is called on the <code>vwTable1</code> and the other will be called when <code>INSERT INTO</code> is called on <code>vwTable1</code></p>
+
+<p>You can create the triggers as follows, obviously change it to suit your table&rsquo;s needs:</p>
+
+<p><div><script src='https://gist.github.com/8810433.js'></script>
+<noscript><pre><code>CREATE trigger io_trigger_insert_vwTable1 on vwTable1
+instead of insert as 
+begin
+	set nocount on
+	if (not exists (select t.[id] from table1 t, inserted i where t.[id] = i.[id]))
+		insert into table1 
+		select
+			[id],
+			[title],
+			[description]
+		from
+			inserted
+end;
+
+create trigger io_trigger_update_vwAd on vwAd
+instead of update as 
+begin
+	set nocount on
+	if (exists (select t.[id] from table1 t, inserted i where t.[id] = i.[id]))
+	update 
+		table1 
+	set
+		title = i.title,
+		[description] = i.[description]
+	from 
+		table1 t, inserted i
+	where 
+		t.[id] = i.[id]
+end</code></pre></noscript></div>
+</p>
+
+<p>Once you have created these triggers you should be able to use Transfer as you normally would.  Using the casted column in the view will allow you to call the <code>getRelationArray()</code>.  The SQL that Transfer creates will no longer be invalid.</p>
+
+<p>You may run into a couple of other items though.  First, your ntext field is now
+limited to 8000 characters since you are casting it to varchar.  You may
+be able to increase this, but I haven&rsquo;t tried.  Your mileage may vary,
+but be sure before the value is passed to transfer that it is validated
+as less than 8000 characters (perhaps in your decorator).  Next, if you
+have any non-null, defaulted columns in your base table (a created date
+perhaps) you HAVE to provide a value when you call insert into <code>vwTable1</code>.
+Since Transfer is creating this SQL you have to ensure that Transfer
+includes that column.  This means that you cannot use the
+<code>ignore-insert="true"</code> option in the transfer configuration.  SQL Server
+will still respect your default value, as long as you provide that
+column in the sql statement pointed at the view.</p>
+
+<p>You can find more information about <a href="http://msdn.microsoft.com/en-us/library/aa214478(SQL.80).aspx">INSTEAD OF INSERT</a> and <a href="http://msdn.microsoft.com/en-us/library/aa214430(SQL.80).aspx">INSTEAD OF UPDATE</a> triggers on the MSDN site.</p>
+
+<p>I have only used this in a simple application with two base tables and one relationship table, so if your setup is more complex it may not work out for you.</p>
+]]></content>
+  </entry>
+  
+</feed>

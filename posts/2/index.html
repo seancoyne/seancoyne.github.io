@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>n42 Designs</title>
+  <meta name="author" content="Sean Coyne">
+
+  
+  <meta name="description" content="I recently set up a new Viviotech VPS and ran into an issue that was easy to fix once I realized what was happening, but difficult to debug. I set up &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://seancoyne.github.io/posts/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="n42 Designs" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-298339-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">n42 Designs</a></h1>
+  
+    <h2>Custom Web Development</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:seancoyne.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/">SVN, Apache, and Mod_caucho, Oh My</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-11-30T10:01:00-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>10:01 am</span></time>
+        
+           | <a href="/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently set up a new <a href="http://www.viviotech.net/?rid=n42designs">Viviotech</a> VPS and ran into an issue that was easy to fix once I realized what was happening, but difficult to debug.</p>
+
+<p>I set up Railo running on the Resin server using Apache as a front end with mod_caucho. In my <code>httpd.conf</code> file I had the following lines:</p>
+
+<div><script src='https://gist.github.com/8810530.js'></script>
+<noscript><pre><code>LoadModule caucho_module /usr/lib/httpd/modules/mod_caucho.so
+ResinConfigServer localhost 6800
+CauchoConfigCacheDirectory /tmp
+CauchoStatus yes</code></pre></noscript></div>
+
+
+<p>This causes Resin to handle all requests from apache. The resin configuration files tell resin which URLs to handle. I also had an SVN server set up so I had a configuration file in <code>/etc/httpd/conf.d/</code> to set up subversion. All my SVN repositories are under the location <code>/svn</code>. Reading SVN repositories worked fine, but I kept getting &ldquo;path not found&rdquo; errors when committing new files. After debugging this for quite a while using Fiddler, and other means, I finally realized that Resin was actually handling the PUT http request and, finding no file, returned a 404.</p>
+
+<p>So to fix this, and simply have Apache handle any request to <code>/svn/</code> I modifed my <code>httpd.conf</code> file as follows:</p>
+
+<div><script src='https://gist.github.com/8810539.js'></script>
+<noscript><pre><code>LoadModule caucho_module /usr/lib/httpd/modules/mod_caucho.so
+&lt;LocationMatch ^((?!/svn/).)*$&gt;
+ResinConfigServer localhost 6800
+CauchoConfigCacheDirectory /tmp
+CauchoStatus yes
+&lt;/LocationMatch&gt;</code></pre></noscript></div>
+
+
+<p>then restarted Apache.  Now apache handles any requests to <code>/svn/*</code> and Resin handles all other requests. Hopefully this helps future Googlers in need.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/08/12/filtering-a-cfgrid/">Filtering a CFGrid</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-08-12T09:23:00-04:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>9:23 am</span></time>
+        
+           | <a href="/blog/2009/08/12/filtering-a-cfgrid/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So you want to filter a CFGrid huh? ColdFusion makes this easy! First you need a CFC method that will return the query used to populate the grid. This method should take the cfgrid parameters and the value you want to filter on.</p>
+
+<div><script src='https://gist.github.com/8810170.js'></script>
+<noscript><pre><code>&lt;cfcomponent&gt;
+    &lt;cffunction name=&quot;getdata&quot; access=&quot;remote&quot; output=&quot;false&quot;returntype=&quot;Any&quot;&gt;
+        &lt;cfargument name=&quot;page&quot; required=&quot;false&quot; default=&quot;1&quot; type=&quot;Numeric&quot; /&gt;
+        &lt;cfargument name=&quot;pagesize&quot; required=&quot;false&quot; default=&quot;10&quot; type=&quot;Numeric&quot; /&gt;
+        &lt;cfargument name=&quot;sortcolumn&quot; required=&quot;false&quot; default=&quot;&quot; type=&quot;string&quot; /&gt;
+        &lt;cfargument name=&quot;sortdir&quot; required=&quot;false&quot; default=&quot;ASC&quot; type=&quot;string&quot; /&gt;
+        &lt;cfargument name=&quot;filter&quot; required=&quot;false&quot; default=&quot;&quot; type=&quot;String&quot; /&gt;
+        &lt;cfset q = queryNew(&#39;id,name&#39;,&#39;integer,varchar&#39;) /&gt;
+        &lt;cfset queryaddrow(q,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;id&#39;,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;name&#39;,&#39;sean&#39;) /&gt;
+        &lt;cfset queryaddrow(q,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;id&#39;,2) /&gt;
+        &lt;cfset querysetcell(q,&#39;name&#39;,&#39;phillip&#39;) /&gt;
+        &lt;cfset queryaddrow(q,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;id&#39;,3) /&gt;
+        &lt;cfset querysetcell(q,&#39;name&#39;,&#39;steve&#39;) /&gt;
+        &lt;cfquery name=&quot;q&quot; dbtype=&quot;query&quot;&gt;
+            select * from q
+            &lt;cfif len(trim(arguments.filter))&gt;
+            where name like &lt;cfqueryparam cfsqltype=&quot;cf_sql_varchar&quot;value=&quot;%#arguments.filter#%&quot; /&gt;
+            &lt;/cfif&gt;
+            &lt;cfif len(trim(arguments.sortcolumn)) or len(trim(arguments.sortdir))&gt;
+            order by #arguments.sortcolumn# #arguments.sortdir#
+            &lt;/cfif&gt;
+        &lt;/cfquery&gt;
+        &lt;cfreturn queryConvertForGrid(q,arguments.page,arguments.pageSize) /&gt;
+    &lt;/cffunction&gt;
+&lt;/cfcomponent&gt;</code></pre></noscript></div>
+
+
+<p>You can see here that I am just hard coding the query in, you would replace this with your cfquery call to your database or a call to your service layer, etc. Once you have your query results, you want to use the <code>queryConvertForGrid</code> function to format the result to a value that CFGrid can work with.</p>
+
+<p>You then need a cfgrid! The trick here is how to get the grid to refresh as the user types a value in the filter box. ColdFusion Ajax UI tools have bind expressions that let us bind one control to another, and to react to events.</p>
+
+<div><script src='https://gist.github.com/8810199.js'></script>
+<noscript><pre><code>&lt;cfform&gt;
+    &lt;p&gt;&lt;label for=&quot;filter&quot;&gt;&lt;cfinput type=&quot;text&quot; name=&quot;filter&quot; id=&quot;filter&quot; /&gt;&lt;/p&gt;
+    &lt;cfgrid format=&quot;html&quot; bind=&quot;cfc:data.getData({cfgridpage},{cfgridpagesize},{cfgridsortcolumn},{cfgridsortdirection},{filter@keyup})&quot; name=&quot;grd&quot; bindonload=&quot;true&quot;&gt;
+        &lt;cfgridcolumn name=&quot;id&quot; /&gt;
+        &lt;cfgridcolumn name=&quot;name&quot; /&gt;
+    &lt;/cfgrid&gt;
+&lt;/cfform&gt;</code></pre></noscript></div>
+
+
+<p>You can see my bind expression in the cf grid. It will call the getData method of my data.cfc and pass in the value from the &ldquo;filter&rdquo; input box whenever the key is released. ColdFusion provides other events you can react to as well, check the docs for details.</p>
+
+<p>So now if you run index.cfm you will see a simple form with a text input and a grid. the grid will load when the page is run (<code>bindonload="true"</code>) and as you type in the text box, the results are filtered.</p>
+
+<p>EDIT: removed the example link as I have moved this blog to <a href="http://www.getrailo.org/">Railo</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/08/03/validatorcfc-update/">ValidatorCFC Update</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-08-03T11:56:00-04:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2009</span></span> <span class='time'>11:56 am</span></time>
+        
+           | <a href="/blog/2009/08/03/validatorcfc-update/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just a quick note, thanks again to <a href="http://www.aarongreenlee.com/">Aaron Greenlee</a> I have some small modifications to <a href="http://validatorcfc.riaforge.org/">ValidatorCFC</a>.</p>
+
+<p>The modifications allow you to return a struct where the key is the name of the field in your object, and the value is true/false indicating if it passed validation.</p>
+
+<p>This is useful if you prefer more control when showing informative messages to the user.</p>
+
+<p>The zip file is attached to this entry as well as at <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue/">Adobe Releases Hotfix for FCKEditor Issue</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-07-08T15:02:00-04:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>3:02 pm</span></time>
+        
+           | <a href="/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Adobe has released a hotfix for the FCKeditor issue.  You can find it <a href="http://www.adobe.com/support/security/bulletins/apsb09-09.html">here</a>.  Take notice that it says to first stop the CF service and then access the CF administrator.  This is impossible.  Simple open the administrator first and apply the hot fix on the system info screen. Also, Mac (linux too??) users should know that if you unzip the cfide.zip file to the cfide folder it will replace the folder not merge the files like on windows. You will be left without a working CFIDE folder. You should manually merge the files.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/28/quick-note/">Quick Note</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-05-28T10:35:00-04:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>10:35 am</span></time>
+        
+           | <a href="/blog/2009/05/28/quick-note/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/05/28/quick-note/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up. I also attached it to this post. Use the download link below.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/22/follow-me-on-twitter/">Follow Me on Twitter</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-04-22T14:48:00-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2009</span></span> <span class='time'>2:48 pm</span></time>
+        
+           | <a href="/blog/2009/04/22/follow-me-on-twitter/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/04/22/follow-me-on-twitter/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://twitter.com/nickel4242">http://twitter.com/nickel4242</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/28/update-to-validatorcfc/">Update to ValidatorCFC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-02-28T08:53:00-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>8:53 am</span></time>
+        
+           | <a href="/blog/2009/02/28/update-to-validatorcfc/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file using the download link on this entry, or from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/">Transfer Error When Using Ntext or Text and a ManyToMany Relationship</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-02-17T07:43:00-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>7:43 am</span></time>
+        
+           | <a href="/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When you set Transfer to use a table that has an ntext or text column on SQL Server 2000 (and perhaps later versions) and also a many to many relationship you may receive the following error when you attempt to retreive the collection for the many to many:</p>
+
+<div><script src='https://gist.github.com/8810319.js'></script>
+<noscript><pre><code>[Macromedia][SQLServer JDBC Driver][SQLServer]Only 
+text pointers are
+allowed in work tables, never text, ntext, or image 
+columns. The query
+processor produced a query plan that required a 
+text, ntext, or image
+column in a work table.</code></pre></noscript></div>
+
+
+<p>For example I have the following tables set up</p>
+
+<div><script src='https://gist.github.com/8810330.js'></script>
+<noscript><pre><code>Table Name: 
+Table1
+id            char(35)  primary key
+title         varchar(255)  
+description ntext
+
+Table Name: Table2
+id            char(35)  primary key
+description varchar(255)
+
+Table Name: Table1_Table2
+table1_id     char(35)  composite key
+table2_id     char(35)  composite key</code></pre></noscript></div>
+
+
+<p>And the following transfer configuration:</p>
+
+<div><script src='https://gist.github.com/8810367.js'></script>
+<noscript><pre><code>&lt;transfer&gt;
+    &lt;objectDefinitions&gt;
+        &lt;object name=&quot;Table1&quot; table=&quot;table1&quot;&gt;
+            &lt;id name=&quot;id&quot; type=&quot;UUID&quot; generate=&quot;true&quot; /&gt;
+            &lt;property name=&quot;title&quot; type=&quot;string&quot; nullable=&quot;false&quot; /&gt;
+            &lt;property name=&quot;description&quot; type=&quot;string&quot; nullable=&quot;true&quot; /&gt;
+            &lt;manytomany name=&quot;Relation&quot; table=&quot;Table1_Table2&quot; lazy=&quot;true&quot;&gt;
+                &lt;link to=&quot;Table1&quot; column=&quot;table1_id&quot; /&gt;
+                &lt;link to=&quot;Table2&quot; column=&quot;table2_id&quot; /&gt;
+                &lt;collection type=&quot;array&quot;&gt;
+                    &lt;order property=&quot;description&quot; order=&quot;asc&quot; /&gt;
+                &lt;/collection&gt;
+            &lt;/manytomany&gt;
+        &lt;/object&gt;
+        &lt;object name=&quot;Table2&quot; table=&quot;Table2&quot;&gt;
+            &lt;id name=&quot;id&quot; type=&quot;UUID&quot; generate=&quot;true&quot; /&gt;
+            &lt;property name=&quot;description&quot; type=&quot;string&quot; nullable=&quot;false&quot; /&gt;
+        &lt;/object&gt;
+    &lt;/objectDefinitions&gt;
+&lt;/transfer&gt;</code></pre></noscript></div>
+
+
+<p>So when you call <code>getRelationArray()</code> on a Table1 object.  You will receive the error.  To correct this I took the following steps:</p>
+
+<p>Create a for table 1 with the ntext column casted to varchar:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="k">cast</span><span class="p">(</span><span class="n">description</span> <span class="k">as</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8000</span><span class="p">))</span> <span class="k">as</span> <span class="n">description</span> <span class="k">from</span> <span class="n">table1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Save this as <code>vwTable1</code>.</p>
+
+<p>Change your transfer config to point to the view instead of table one so</p>
+
+<div><script src='https://gist.github.com/8810384.js'></script>
+<noscript><pre><code>&lt;object name=&quot;Table1&quot; table=&quot;table1&quot;&gt;</code></pre></noscript></div>
+
+
+<p>becomes</p>
+
+<div><script src='https://gist.github.com/8810393.js'></script>
+<noscript><pre><code>&lt;object name=&quot;Table1&quot; table=&quot;vwTable1&quot;&gt;</code></pre></noscript></div>
+
+
+<p>Now, you wont be able to run it yet because the view is not updatable since you used the casted field.  To overcome this we are going to use an <code>INSTEAD OF</code> trigger.</p>
+
+<p>You need to create 2 triggers.  One will be called whenever <code>UPDATE</code> is called on the <code>vwTable1</code> and the other will be called when <code>INSERT INTO</code> is called on <code>vwTable1</code></p>
+
+<p>You can create the triggers as follows, obviously change it to suit your table&rsquo;s needs:</p>
+
+<div><script src='https://gist.github.com/8810433.js'></script>
+<noscript><pre><code>CREATE trigger io_trigger_insert_vwTable1 on vwTable1
+instead of insert as 
+begin
+    set nocount on
+    if (not exists (select t.[id] from table1 t, inserted i where t.[id] = i.[id]))
+        insert into table1 
+        select
+            [id],
+            [title],
+            [description]
+        from
+            inserted
+end;
+
+create trigger io_trigger_update_vwAd on vwAd
+instead of update as 
+begin
+    set nocount on
+    if (exists (select t.[id] from table1 t, inserted i where t.[id] = i.[id]))
+    update 
+        table1 
+    set
+        title = i.title,
+        [description] = i.[description]
+    from 
+        table1 t, inserted i
+    where 
+        t.[id] = i.[id]
+end</code></pre></noscript></div>
+
+
+<p>Once you have created these triggers you should be able to use Transfer as you normally would.  Using the casted column in the view will allow you to call the <code>getRelationArray()</code>.  The SQL that Transfer creates will no longer be invalid.</p>
+
+<p>You may run into a couple of other items though.  First, your ntext field is now
+limited to 8000 characters since you are casting it to varchar.  You may
+be able to increase this, but I haven&rsquo;t tried.  Your mileage may vary,
+but be sure before the value is passed to transfer that it is validated
+as less than 8000 characters (perhaps in your decorator).  Next, if you
+have any non-null, defaulted columns in your base table (a created date
+perhaps) you HAVE to provide a value when you call insert into <code>vwTable1</code>.
+Since Transfer is creating this SQL you have to ensure that Transfer
+includes that column.  This means that you cannot use the
+<code>ignore-insert="true"</code> option in the transfer configuration.  SQL Server
+will still respect your default value, as long as you provide that
+column in the sql statement pointed at the view.</p>
+
+<p>You can find more information about <a href="http://msdn.microsoft.com/en-us/library/aa214478(SQL.80).aspx">INSTEAD OF INSERT</a> and <a href="http://msdn.microsoft.com/en-us/library/aa214430(SQL.80).aspx">INSTEAD OF UPDATE</a> triggers on the MSDN site.</p>
+
+<p>I have only used this in a simple application with two base tables and one relationship table, so if your setup is more complex it may not work out for you.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/17/webservices-change-in-cf-801/">Webservices Change in CF 8.0.1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-04-17T04:50:00-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>4:50 am</span></time>
+        
+           | <a href="/blog/2008/04/17/webservices-change-in-cf-801/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It seems with the change to 8.0.1 there is a difference in the
+way CF generates the stubs for a CFC called as a web service.  I had a
+CFC called webservices.cfc and on 8.0 it was working fine calling the
+methods, but with the 8.0.1 it started throwing a &ldquo;duplicate file name&rdquo;
+error.  This seems to be because CF creates its own stub file
+<code>Webservices.java</code> and also a <code>[cfcname].java</code> file.  CF couldn&rsquo;t create
+both so it threw an error.  The solution was to rename my CFC.  The
+stubs can be found in <code>C:\ColdFusion8\stubs\</code> on Windows, and if I
+remember correctly <code>/Applications/ColdFusion8/stubs/</code> on Mac OS X.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/">Issue W/ Eclipse Resource Bundle Editor Plugin and Leopard</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-01-17T15:18:00-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>3:18 pm</span></time>
+        
+           | <a href="/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There seems to be an issue with the <a href="http://sourceforge.net/projects/eclipse-rbe/">Resource Bundle Editor Plugin for Eclipse</a>.</p>
+
+<p>I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK and was unable to open a resource file.  I would get the following error:</p>
+
+<blockquote><p>Can&#8217;t start the AWT because Java was started on the first thread.  Make sure StartOnFirstThread is not specified in your application&#8217;s Info.plist or on the command line</p></blockquote>
+
+
+<p>To fix it I edited the <code>eclipse.ini</code> file (<code>/Applications/eclipse/Eclipse.app/Contents/MacOS/eclipse.ini</code> by default) to add the following line:</p>
+
+<p><code>-Djava.awt.headless=true</code></p>
+
+<p>Once I did that it was fine and I was able to edit the resource bundles.</p>
+
+<p>Hope this helps someone searching for the issue!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/index.html">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/">ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/">Running ColdFusion 10 on OS X Mavericks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/10/farcry-less-plugin/">FarCry LESS Plugin</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/05/farcry-solr-pro/">FarCry Solr Pro</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/12/github-gist-renderer-for-blogcfc/">Github Gist Renderer for BlogCFC</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/seancoyne">@seancoyne</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'seancoyne',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+SeanCoyne?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Sean Coyne -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'n42designs';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

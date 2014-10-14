@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Model-glue | n42 Designs]]></title>
+  <link href="http://seancoyne.github.io/blog/categories/model-glue/atom.xml" rel="self"/>
+  <link href="http://seancoyne.github.io/"/>
+  <updated>2014-10-14T10:41:30-04:00</updated>
+  <id>http://seancoyne.github.io/</id>
+  <author>
+    <name><![CDATA[Sean Coyne]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Integrate a Model-Glue Application Into FarCry]]></title>
+    <link href="http://seancoyne.github.io/blog/2007/07/20/integrate-a-modelglue-application-into-farcry/"/>
+    <updated>2007-07-20T13:04:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2007/07/20/integrate-a-modelglue-application-into-farcry</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m sure there are other ways to do this but this is how I was able to integrate an existing Model-Glue application into a FarCry site.  I am using ModelGlue 2.0, the latest ColdSpring BER as of this posting, and the latest beta of reactor.</p>
+
+<p>My MG app in question is a events calendar.  Its a pretty simple application using MG, Reactor, and ColdSpring.</p>
+
+<p>Because I don&rsquo;t want to use ColdFusion mappings (and its running on CF7 so no per application mappings) I copied modelglue, reactor, and coldspring into <code>{farcry_root}/projects/{site_name}/www</code> as <code>www/modelglue</code>, <code>www/reactor</code>, and <code>www/coldspring</code>.</p>
+
+<p>If you are using mappings you can skip that step.</p>
+
+<p>Next, I created a simple include file called _mgCal.cfm in <code>{farcry_root}/projects/{site_name}/includedObj</code>.</p>
+
+<p>The code for this is as follows:</p>
+
+<p><div><script src='https://gist.github.com/8810571.js'></script>
+<noscript><pre><code>&lt;!--- @@displayname: Calendar ---&gt;
+
+&lt;cfsetting enablecfoutputonly=&quot;no&quot;&gt;
+
+&lt;cfinclude template=&quot;/mg/mgCal/index.cfm&quot; /&gt;
+
+&lt;cfsetting enablecfoutputonly=&quot;no&quot;&gt;</code></pre></noscript></div>
+</p>
+
+<p>Now, in the FarCry webtop, under the site tab, navigate to the root node, and under utility, create a new navigation node called &ldquo;Calendar&rdquo; and under that, a new include called &ldquo;Calendar&rdquo;.</p>
+
+<p>Publish both.  The friendly URL should be <code>/go/calendar</code>, but it can be whatever you like.</p>
+
+<p>Now we have to copy our MG application into the site tree.  Create a new folder called <code>mg</code> under the <code>www</code> folder.  This is where all my MG apps will live.  So I copy my <code>mgCal</code> folder from my test site into the <code>mg</code> folder I just created giving me a directory structure like so:</p>
+
+<pre><code>/www/mg/mgCal/
+/www/mg/mgCal/config
+/www/mg/mgCal/controller
+/www/mg/mgCal/model
+/www/mg/mgCal/views
+/www/mg/mgCal/Application.cfm
+/www/mg/mgCal/index.cfm
+etc
+</code></pre>
+
+<p>Now we have a few modifications to make to the MG app to get it to run from this location.  Depending on how you first created the MG app, your settings may be different.</p>
+
+<p>In your MG App&rsquo;s index.cfm file add the following line above the <code>&lt;cfinclude&gt;</code> that calls Model-Glue.</p>
+
+<p><div><script src='https://gist.github.com/8810594.js'></script>
+<noscript><pre><code>&lt;cfset ModelGlue_LOCAL_COLDSPRING_PATH = getDirectoryFromPath(getCurrentTemplatePath()) &amp; &quot;/config/ColdSpring.xml&quot; /&gt;</code></pre></noscript></div>
+</p>
+
+<p>Now MG can find your ColdSpring configuration file.</p>
+
+<p>In your ColdSpring configuration file edit the following properties:</p>
+
+<p>In your modelGlueConfiguration bean:</p>
+
+<p>The paths should be straight forward, but your <code>defaultTemplate</code> property must be set to the FriendlyURL of your include.</p>
+
+<p><div><script src='https://gist.github.com/8810609.js'></script>
+<noscript><pre><code>&lt;property name=&quot;viewMappings&quot;&gt;&lt;value&gt;/mg/mgCal/views&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;generatedViewMapping&quot;&gt;&lt;value&gt;/mg/mgCal/views/generated&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;configurationPath&quot;&gt;&lt;value&gt;/mg/mgCal/config/ModelGlue.xml&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;scaffoldPath&quot;&gt;&lt;value&gt;/mg/mgCal/config/scaffolds/Scaffolds.xml&lt;/value&gt;&lt;/property&gt;
+&lt;property name=&quot;defaultTemplate&quot;&gt;&lt;value&gt;/go/calendar&lt;/value&gt;&lt;/property&gt;</code></pre></noscript></div>
+</p>
+
+<p>In your reactorConfiguration bean:</p>
+
+<p><div><script src='https://gist.github.com/8810621.js'></script>
+<noscript><pre><code>&lt;constructor-arg name=&quot;pathToConfigXml&quot;&gt;&lt;value&gt;/mg/mgCal/config/reactor/Reactor.xml&lt;/value&gt;&lt;/constructor-arg&gt;
+&lt;property name=&quot;mapping&quot;&gt;&lt;value&gt;/mg/mgCal/model/data/reactor&lt;/value&gt;&lt;/property&gt;</code></pre></noscript></div>
+</p>
+
+<p>You will want the paths to match those you set up in the previous steps.</p>
+
+<p>Now for the tedious part.  This was easy for me since I only have a few views, but a complex app with a large number of views will probably be a bit more work.</p>
+
+<p>In each view that calls <code>#viewState.getValue('myself')#</code> you will have to, prior to any of those calls run the following statement:</p>
+
+<p><div><script src='https://gist.github.com/8810632.js'></script>
+<noscript><pre><code>&lt;cfset viewState.setValue(&#39;myself&#39;,replace(viewState.getValue(&#39;myself&#39;),&#39;?&#39;,&#39;&amp;amp;&#39;,&#39;ALL&#39;)) /&gt;</code></pre></noscript></div>
+</p>
+
+<p>This is to prevent a url like <code>/go/calendar?event=some.mgEvent</code> from happening.  The friendlyURL is hiding some other FarCry URL variables.  So there is already a <code>?</code> in the URL.  This will replace the <code>?</code> that MG creates with an ampersand so you can attach the MG url variables easily.</p>
+
+<p>Thats all it took to get my simple calendar MG app running under FarCry.  A more complex app may need more to get running, but at least this will get you started.</p>
+
+<p>If any one has any suggestions on a better way to handle this, I am all ears.  I tried to find another instance of someone doing this in both the <a href="http://groups.google.com/group/farcry-dev">FarCry</a> and <a href="http://groups.google.com/group/Model-Glue">Model-Glue</a> lists to no avail.</p>
+]]></content>
+  </entry>
+  
+</feed>

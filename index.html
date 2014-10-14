@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>n42 Designs</title>
+  <meta name="author" content="Sean Coyne">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +21,7 @@
   <link rel="canonical" href="http://seancoyne.github.io">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="n42 Designs" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -31,14 +31,26 @@
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-298339-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">n42 Designs</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>Custom Web Development</h2>
   
 </hgroup>
 
@@ -66,7 +78,440 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/">ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-13T19:30:00-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:30 pm</span></time>
+        
+           | <a href="/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/sjq662etey3rruy/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
+
+<p>So:</p>
+
+<p><code>LoadModule jrun_module /Applications/JRun4/lib/wsconfig/1/mod_jrun22.so</code></p>
+
+<p>becomes</p>
+
+<p><code>LoadModule jrun_module /Applications/JRun4/lib/wsconfig/1/mod_jrun24.so</code></p>
+
+<p>You may find you need to update other Apache configuration settings. You can find additional information on upgrading from Apache 2.2 to 2.4 in the <a href="http://httpd.apache.org/docs/2.4/upgrading.html">Apache HTTP Server Documentation</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/">Running ColdFusion 10 on OS X Mavericks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-23T12:03:00-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:03 pm</span></time>
+        
+           | <a href="/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Running ColdFusion 10 on OS X Mavericks is possible, but not straightforward.  Unfortunately, it seems the web server connector does not work with Apache 2.2.24 which ships with Mavericks.  A bug has been logged for this here: <a href="https://bugbase.adobe.com/index.cfm?event=bug&amp;amp;id=3653076">https://bugbase.adobe.com/index.cfm?event=bug&amp;id=3653076</a>.  Please vote for it.
+There are a couple of issues I had with Mavericks and ColdFusion 10 (CF 9 works fine for me for what it is worth).
+First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had to update 3 files to fix this:</p>
+
+<p><code>/Applications/ColdFusion10/cfusion/bin/jvm.config</code>
+<code>/Applications/ColdFusion10/cfusion/bin/coldfusion</code>
+<code>/Applications/ColdFusion10/cfusion/runtime/bin/wsconfig_jvm.config</code></p>
+
+<p>In each of these, there was a setting to set the Java home path.  It was set to the old location for Java 6.  I updated these to point to Java 7.  For me this was:</p>
+
+<p><code>/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home</code></p>
+
+<p>This was after installing the <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">latest Updater 45 JDK from Oracle&rsquo;s website</a>.</p>
+
+<p>Once I made these changes ColdFusion started fine.</p>
+
+<p>The next issue is with the Connector.  Adobe created a customized version of mod_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod_jk is not going to work. <del>We&rsquo;ll have to wait for an updated version from Adobe.</del> (<strong>EDIT:</strong> See Mike&rsquo;s comment <a href="#c1BCFBE61-BADC-4171-8532B7B3B8544650">below</a> for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.</p>
+
+<p>I followed the recommendations in this blog post: <a href="http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137">http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137</a> to configure MAMP PRO.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/10/farcry-less-plugin/">FarCry LESS Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-04-10T11:26:00-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>11:26 am</span></time>
+        
+           | <a href="/blog/2012/04/10/farcry-less-plugin/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Today I released a <a href="https://github.com/seancoyne/farcryless">plugin for FarCry</a> that will automatically compile your <a href="http://lesscss.org/">LESS</a> files into CSS. No more need to compile on your development machine before you push to production, and no more need to punish your users by compiling on the client side with <a href="https://github.com/cloudhead/less.js">Less.js</a>. While those solutions are perfectly acceptable, this plugin will let you simply code in LESS, then let FarCry do the work of serving compiled, minified CSS to your users.</p>
+
+<p>The plugin uses a similar syntax to FarCry&rsquo;s built in skin:loadCSS tag so it should be instantly familiar.  Be sure to read the installation instructions to avoid a couple of potential &ldquo;gotchas&rdquo;.</p>
+
+<p><a href="https://github.com/seancoyne/farcryless">Check it out on Github</a>, and let me know if its useful for you, or if you would like to see any additional features.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/05/farcry-solr-pro/">FarCry Solr Pro</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-04-05T17:30:00-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>5:30 pm</span></time>
+        
+           | <a href="/blog/2012/04/05/farcry-solr-pro/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://jeffcoughlin.com/blog">Jeff Coughin</a> and I just launched a new FarCry plugin to enhance the search capabilities of your FarCry website. Check out <a href="http://jeffcoughlin.com/blog/index.cfm/2012/4/5/FarCry-Solr-Pro-Plugin">his announcement</a> or the <a href="http://jeffcoughlin.github.io/farcrysolrpro">plugin website</a> for more information.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/12/github-gist-renderer-for-blogcfc/">Github Gist Renderer for BlogCFC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-12T13:47:00-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>1:47 pm</span></time>
+        
+           | <a href="/blog/2012/02/12/github-gist-renderer-for-blogcfc/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2012/02/12/github-gist-renderer-for-blogcfc/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I created a quick renderer for Github Gists for use within <a href="http://www.blogcfc.com/">BlogCFC</a> entries. You can see it in action right here. If interested just grab the code from the gist below and save it to <code>/org/camden/blog/render/gist.cfc</code>. You can then use</p>
+
+<div><script src='https://gist.github.com/8810495.js'></script>
+<noscript><pre><code>&lt;gist id=&quot;[gist id]&quot;&gt;</code></pre></noscript></div>
+
+
+<p>to include the gist in your entry. If you want to constrain the height you can use CSS like:</p>
+
+<div><script src='https://gist.github.com/8810484.js'></script>
+<noscript><pre><code>.gist .gist-file .gist-data {
+    max-height: 250px;
+}</code></pre></noscript></div>
+
+
+<p>Here is an example of what the output looks like, using the Gist I created to hold the code for the renderer.  Feel free to grab it for your own BlogCFC install.</p>
+
+<div><script src='https://gist.github.com/1810183.js'></script>
+<noscript><pre><code>&lt;!---
+
+Save this file as /org/camden/blog/render/gist.cfc
+
+In your entries you can then include a Github gist using the following syntax:
+
+&lt;gist id=&quot;[gist id]&quot;&gt;
+
+Example: &lt;gist id=&quot;1810183&quot;&gt; would embed this gist into a blog entry.
+
+If you want to limit the height of large Gists you can use the following CSS to set a max height:
+
+.gist .gist-file .gist-data {
+  max-height: 250px;
+}
+
+---&gt;
+&lt;cfcomponent extends=&quot;render&quot; output=&quot;false&quot;&gt;
+    
+    &lt;cffunction name=&quot;display&quot; output=&quot;false&quot; returntype=&quot;string&quot; access=&quot;public&quot;&gt;
+        &lt;cfargument name=&quot;id&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;
+        &lt;cfset var html = &quot;&quot; /&gt;
+        
+        &lt;cfsavecontent variable=&quot;html&quot;&gt;
+        &lt;cfoutput&gt;
+        &lt;script src=&quot;https://gist.github.com/#arguments.id#.js&quot;&gt;&lt;/script&gt;
+        &lt;/cfoutput&gt;
+        &lt;/cfsavecontent&gt;
+        
+        &lt;cfreturn trim(html) /&gt;
+        
+    &lt;/cffunction&gt;
+    
+&lt;/cfcomponent&gt;</code></pre></noscript></div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/20/farcry-slider-formtool/">FarCry Slider Formtool</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-20T21:37:00-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>9:37 pm</span></time>
+        
+           | <a href="/blog/2011/09/20/farcry-slider-formtool/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I posted this on the <a href="https://groups.google.com/group/farcry-dev">farcry-dev</a> mailing list but thought I would post it here as well to help future googlers in need.</p>
+
+<p>I have created a slider formtool for a client and thought it could be useful to others in the community. You can find the source for it here: <a href="https://gist.github.com/1230366">https://gist.github.com/1230366</a></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/09/20/farcry-slider-formtool/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/08/farcry-youtube-plugin/">FarCry YouTube Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-08-08T17:22:00-04:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>5:22 pm</span></time>
+        
+           | <a href="/blog/2011/08/08/farcry-youtube-plugin/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of our clients asked for better integration of their YouTube hosted videos on their FarCry website.  They had been linking to the youtube.com URLs directly, leading traffic away from their website.  Obviously, they would have preferred to keep those visitors on their site and engaged.</p>
+
+<p>As some other clients have also expressed a desire to display YouTube videos on their sites, I decided to build the functionality as a FarCry plugin.  This would allow me to move this feature set to any FarCry site.</p>
+
+<p>At its foundation, the plugin works via two custom types and a scheduled task.  The scheduled task runs and uses the YouTube API to grab the playlists and videos on the specified account (configurable via a FarCry config).  If it finds those objects already in FarCry, it updates them with the latest data from YouTube, if its new, it adds it to the FarCry database.  Any items found in FarCry that aren&rsquo;t returned by the API are deleted.  The plugin gives you the ability to reorder the videos on a playlist via the FarCry webtop.  All data is managed on the YouTube side.  I may consider adding the ability to completely manage the videos and playlists on the webtop, but that will greatly increase the complexity of the plugin, and I don&rsquo;t see a great benefit to doing so.  To me, it makes more sense to go straight to the source to upload new videos, manage your videos, etc rather than try to stuff all that functionality into a FarCry form.  No need to reinvent the wheel, in my opinion.</p>
+
+<p>The plugin also includes two rules.  One lists videos based on selected playlists or videos, the other displays an embedded video.</p>
+
+<p>To interact with the YouTube API, I made use of <a href="http://www.coldfusionjedi.com/">Raymond Camden</a>&rsquo;s awesome <a href="http://youtubecfc.riaforge.org/">YouTube CFC</a>.</p>
+
+<p>I am happy to say that I have also posted this code on Github for the entire community to use.  Give it a try!  If you have any ideas for improvement please open a ticket, or better yet, fork the project and send me a pull request.</p>
+
+<p>You can find the project on <a href="http://farcryyoutube.riaforge.org/">RIAForge</a> and <a href="https://github.com/seancoyne/FarCry-YouTube-Plugin">Github</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/01/how-i-got-started-in-coldfusion/">How I Got Started in ColdFusion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-08-01T09:06:00-04:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2011</span></span> <span class='time'>9:06 am</span></time>
+        
+           | <a href="/blog/2011/08/01/how-i-got-started-in-coldfusion/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2011/08/01/how-i-got-started-in-coldfusion/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Steve Bryant <a href="http://www.bryantwebconsulting.com/blog/index.cfm/2011/7/20/August-1-2011-is-How-I-Started-ColdFusion-Day">suggested</a> that Aug 1, 2011 be &ldquo;How I Got Started in ColdFusion&rdquo; day. I think that is a great idea, and would like to share my story.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/08/01/how-i-got-started-in-coldfusion/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/14/farcry-poll-plugin/">FarCry Poll Plugin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-06-14T11:20:00-04:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>11:20 am</span></time>
+        
+           | <a href="/blog/2011/06/14/farcry-poll-plugin/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have released a plugin I have had for a while.  I&rsquo;m not sure why I never got around to releasing it.  Its a very simple FarCry plugin that gives you the ability to create a one question poll and display it on the site.  It uses a couple content types and a rule.
+To install, copy the files to <code>/farcry/plugins/spcPoll</code> and add <code>spcPoll</code> to your <code>this.plugins</code> setting in your FarCry constructor.  Deploy the content types in the COAPI manager and restart the application.  You can now create a question, assign answers to it, and deploy that question using the &ldquo;Poll: Display Poll&rdquo; rule.
+You can grab the code on <a href="http://www.binpress.com/app/farcry-polls-plugin/474">Binpress</a> or <a href="https://github.com/seancoyne/FarCry-Polling-Plugin">Github</a>.  Its also attached to this entry via the download link below.
+Let me know what you think!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/">A FarCry Plugin for Hoth: ColdFusion Exception Tracking</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T14:04:00-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>2:04 pm</span></time>
+        
+           | <a href="/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/#disqus_thread"
+             data-disqus-identifier="http://seancoyne.github.io/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just a quick note to mention that I have released a FarCry plugin for the Hoth exception tracking framework. If you are interested take a look at the code on <a href="https://github.com/seancoyne/farcryhoth">GitHub</a> and let me know what you think.
+I have also included a zip file of the code attached to this entry.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -78,10 +523,68 @@
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
+      <li class="post">
+        <a href="/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/">ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/">Running ColdFusion 10 on OS X Mavericks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/10/farcry-less-plugin/">FarCry LESS Plugin</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/05/farcry-solr-pro/">FarCry Solr Pro</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/12/github-gist-renderer-for-blogcfc/">Github Gist Renderer for BlogCFC</a>
+      </li>
+    
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/seancoyne">@seancoyne</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
 
+        github.showRepos({
+            user: 'seancoyne',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+SeanCoyne?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
 
 
 
@@ -91,16 +594,46 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Your Name -
+  Copyright &copy; 2014 - Sean Coyne -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'n42designs';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 

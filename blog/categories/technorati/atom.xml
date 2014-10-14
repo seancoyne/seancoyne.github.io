@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Technorati | n42 Designs]]></title>
+  <link href="http://seancoyne.github.io/blog/categories/technorati/atom.xml" rel="self"/>
+  <link href="http://seancoyne.github.io/"/>
+  <updated>2014-10-14T10:41:30-04:00</updated>
+  <id>http://seancoyne.github.io/</id>
+  <author>
+    <name><![CDATA[Sean Coyne]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Technorati]]></title>
+    <link href="http://seancoyne.github.io/blog/2007/07/20/technorati/"/>
+    <updated>2007-07-20T23:19:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2007/07/20/technorati</id>
+    <content type="html"><![CDATA[<p>Look for me on <a href="http://technorati.com/claim/nb5epizsnt">Technorati</a>!</p>
+]]></content>
+  </entry>
+  
+</feed>

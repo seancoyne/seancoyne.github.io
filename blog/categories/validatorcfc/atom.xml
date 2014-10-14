@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Validatorcfc | n42 Designs]]></title>
+  <link href="http://seancoyne.github.io/blog/categories/validatorcfc/atom.xml" rel="self"/>
+  <link href="http://seancoyne.github.io/"/>
+  <updated>2014-10-14T10:41:30-04:00</updated>
+  <id>http://seancoyne.github.io/</id>
+  <author>
+    <name><![CDATA[Sean Coyne]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ValidatorCFC Update]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update/"/>
+    <updated>2009-08-03T11:56:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update</id>
+    <content type="html"><![CDATA[<p>Just a quick note, thanks again to <a href="http://www.aarongreenlee.com/">Aaron Greenlee</a> I have some small modifications to <a href="http://validatorcfc.riaforge.org/">ValidatorCFC</a>.</p>
+
+<p>The modifications allow you to return a struct where the key is the name of the field in your object, and the value is true/false indicating if it passed validation.</p>
+
+<p>This is useful if you prefer more control when showing informative messages to the user.</p>
+
+<p>The zip file is attached to this entry as well as at <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Quick Note]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/05/28/quick-note/"/>
+    <updated>2009-05-28T10:35:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/05/28/quick-note</id>
+    <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up. I also attached it to this post. Use the download link below.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Update to ValidatorCFC]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc/"/>
+    <updated>2009-02-28T08:53:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc</id>
+    <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file using the download link on this entry, or from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ValidatorCFC]]></title>
+    <link href="http://seancoyne.github.io/blog/2007/07/20/validatorcfc/"/>
+    <updated>2007-07-20T23:30:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2007/07/20/validatorcfc</id>
+    <content type="html"><![CDATA[<p>This component validates the data in an object according to custom rules you set up.  It is especially created to determine data validity for a data store (DBMS, etc) rather than for business rules, but you can set up your own complex rules.  Some may be out of its scope, however.</p>
+
+<p>I just uploaded version 0.1.000.  It is very much a work in progress and I welcome feedback.</p>
+
+<p>Take a look and let me know what you think.  You can find it at <a href="http://validatorcfc.riaforge.org">http://validatorCFC.riaforge.org</a> or at the download link below.</p>
+
+<p>Here is a rundown of an example usage:</p>
+
+<!-- more -->
+
+
+<p>First, Create an instance of this object.  It should not be in any shared scope as its not thread safe.</p>
+
+<p><div><script src='https://gist.github.com/8810676.js'></script>
+<noscript><pre><code>&lt;cfset validator = createObject(&#39;component&#39;,&#39;com.n42designs.validation.validator&#39;).init() /&gt;</code></pre></noscript></div>
+</p>
+
+<p>Next, take whatever data you want to validate and put it in an object that follows some rules.</p>
+
+<p>You  must use cfproperty tags to define what rules, whether it is required or not, and messages to use.</p>
+
+<p>You must create getters for each property like getFirstName() where FirstName is an example property name.</p>
+
+<p>You can specify any number of rules for each property in a comma separated list.  Each rule should be a CFC in the rules subfolder and should extend the _rule.cfc base object.</p>
+
+<p><div><script src='https://gist.github.com/8810696.js'></script>
+<noscript><pre><code>&lt;cfset testObj = createObject(&#39;component&#39;,&#39;testObj&#39;) /&gt;
+&lt;cfset testObj.setFirstName(&#39;sean&#39;) /&gt;
+&lt;cfset testObj.setLastName(&#39;coyne&#39;) /&gt;
+&lt;cfset testObj.setEmail(&#39;someonesEmail@gmail.com&#39;) /&gt;
+&lt;cfset testObj.setDOB(&#39;12/26/1981&#39;) /&gt;
+&lt;cfset testObj.setGPA(&#39;3.89&#39;) /&gt;</code></pre></noscript></div>
+</p>
+
+<p>where testObj is a component defined as follows: (yes I know that my setGPA function allows for setting an obviously numeric property with a string value, this is for example only)</p>
+
+<p><div><script src='https://gist.github.com/8810752.js'></script>
+<noscript><pre><code>&lt;cfcomponent name=&quot;testObj&quot; output=&quot;false&quot;&gt;
+	&lt;cfproperty name=&quot;firstName&quot; required=&quot;true&quot; type=&quot;string&quot; rules=&quot;noZeroLengthString&quot; invalidMessage=&quot;Please provide your first name&quot; /&gt;
+	&lt;cfproperty name=&quot;lastName&quot; required=&quot;true&quot; type=&quot;string&quot; rules=&quot;noZeroLengthString&quot; invalidMessage=&quot;Please provide your last name&quot; /&gt;
+	&lt;cfproperty name=&quot;email&quot; required=&quot;true&quot; type=&quot;string&quot; rules=&quot;noZeroLengthString,validEmail&quot; invalidMessage=&quot;Please provide a valid email address&quot; /&gt;
+	&lt;cfproperty name=&quot;dob&quot; required=&quot;true&quot; type=&quot;string&quot; rules=&quot;validDate&quot; invalidMessage=&quot;Please provide a valid date of birth&quot; /&gt;			
+	&lt;cfproperty name=&quot;gpa&quot; required=&quot;true&quot; type=&quot;numeric&quot; rules=&quot;validNumber&quot; invalidMessage=&quot;Please provide a valid number for GPA&quot; /&gt;
+	
+	&lt;cfset variables.firstName = &#39;&#39; /&gt;
+	&lt;cfset variables.lastName = &#39;&#39; /&gt;
+	&lt;cfset variables.email = &#39;&#39; /&gt;
+	&lt;cfset variables.dob = &#39;&#39; /&gt;
+	&lt;cfset variables.gpa = &#39;&#39; /&gt;
+
+	&lt;cffunction name=&quot;getFirstName&quot; returntype=&quot;string&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfreturn variables.firstName /&gt;
+	&lt;/cffunction&gt;
+	
+	&lt;cffunction name=&quot;getLastName&quot; returntype=&quot;string&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfreturn variables.lastName /&gt;
+	&lt;/cffunction&gt;
+
+	&lt;cffunction name=&quot;getEmail&quot; returntype=&quot;string&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfreturn variables.email /&gt;
+	&lt;/cffunction&gt;
+	
+	&lt;cffunction name=&quot;getDOB&quot; returntype=&quot;string&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfreturn variables.dob /&gt;
+	&lt;/cffunction&gt;			
+	
+	&lt;cffunction name=&quot;getGPA&quot; returntype=&quot;numeric&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfreturn variables.gpa /&gt;
+	&lt;/cffunction&gt;		
+	
+	&lt;cffunction name=&quot;setFirstName&quot; returntype=&quot;void&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfargument name=&quot;firstName&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;
+		&lt;cfset variables.firstName = arguments.firstName /&gt;
+	&lt;cffunction&gt;
+
+	&lt;cffunction name=&quot;setLastName&quot; returntype=&quot;void&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfargument name=&quot;lastName&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;
+		&lt;cfset variables.lastName = arguments.lastName /&gt;
+	&lt;/cffunction&gt;
+
+	&lt;cffunction name=&quot;setEmail&quot; returntype=&quot;void&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfargument name=&quot;email&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;
+		&lt;cfset variables.email = arguments.email /&gt;
+	&lt;/cffunction&gt;
+
+	&lt;cffunction name=&quot;setDOB&quot; returntype=&quot;void&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfargument name=&quot;DOB&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;
+		&lt;cfset variables.DOB = arguments.DOB /&gt;	
+	&lt;/cffunction&gt;
+
+	&lt;cffunction name=&quot;setGPA&quot; returntype=&quot;void&quot; output=&quot;false&quot; access=&quot;public&quot;&gt;
+		&lt;cfargument name=&quot;gpa&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;	
+		&lt;cfset variables.gpa = arguments.gpa /&gt;
+	&lt;/cffunction&gt;	
+	
+&lt;/cfcomponent&gt;</code></pre></noscript></div>
+</p>
+
+<p>Now, pass this object to the validator component validate function to perform the validation</p>
+
+<p><div><script src='https://gist.github.com/8810764.js'></script>
+<noscript><pre><code>&lt;cfset validator.validate(testObj) /&gt;</code></pre></noscript></div>
+</p>
+
+<p>Use the getValid() and getMessages() functions to work with the data.</p>
+
+<p><div><script src='https://gist.github.com/8810775.js'></script>
+<noscript><pre><code>&lt;cfoutput&gt;#validator.getValid()#&lt;/cfoutput&gt;
+&lt;cfdump var=&quot;#validator.getMessages()#&quot; /&gt;</code></pre></noscript></div>
+</p>
+
+<p>If you want to reuse this instance run init() function. If you are not going to reuse then this is optional.</p>
+
+<p><div><script src='https://gist.github.com/8810788.js'></script>
+<noscript><pre><code>&lt;cfset validator.init() /&gt;</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+</feed>

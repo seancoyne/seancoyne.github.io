@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Farcry | n42 Designs]]></title>
+  <link href="http://seancoyne.github.io/blog/categories/farcry/atom.xml" rel="self"/>
+  <link href="http://seancoyne.github.io/"/>
+  <updated>2014-10-14T10:41:30-04:00</updated>
+  <id>http://seancoyne.github.io/</id>
+  <author>
+    <name><![CDATA[Sean Coyne]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry LESS Plugin]]></title>
+    <link href="http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin/"/>
+    <updated>2012-04-10T11:26:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin</id>
+    <content type="html"><![CDATA[<p>Today I released a <a href="https://github.com/seancoyne/farcryless">plugin for FarCry</a> that will automatically compile your <a href="http://lesscss.org/">LESS</a> files into CSS. No more need to compile on your development machine before you push to production, and no more need to punish your users by compiling on the client side with <a href="https://github.com/cloudhead/less.js">Less.js</a>. While those solutions are perfectly acceptable, this plugin will let you simply code in LESS, then let FarCry do the work of serving compiled, minified CSS to your users.</p>
+
+<p>The plugin uses a similar syntax to FarCry&rsquo;s built in skin:loadCSS tag so it should be instantly familiar.  Be sure to read the installation instructions to avoid a couple of potential &ldquo;gotchas&rdquo;.</p>
+
+<p><a href="https://github.com/seancoyne/farcryless">Check it out on Github</a>, and let me know if its useful for you, or if you would like to see any additional features.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry Solr Pro]]></title>
+    <link href="http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro/"/>
+    <updated>2012-04-05T17:30:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro</id>
+    <content type="html"><![CDATA[<p><a href="http://jeffcoughlin.com/blog">Jeff Coughin</a> and I just launched a new FarCry plugin to enhance the search capabilities of your FarCry website. Check out <a href="http://jeffcoughlin.com/blog/index.cfm/2012/4/5/FarCry-Solr-Pro-Plugin">his announcement</a> or the <a href="http://jeffcoughlin.github.io/farcrysolrpro">plugin website</a> for more information.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry Slider Formtool]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool/"/>
+    <updated>2011-09-20T21:37:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool</id>
+    <content type="html"><![CDATA[<p>I posted this on the <a href="https://groups.google.com/group/farcry-dev">farcry-dev</a> mailing list but thought I would post it here as well to help future googlers in need.</p>
+
+<p>I have created a slider formtool for a client and thought it could be useful to others in the community. You can find the source for it here: <a href="https://gist.github.com/1230366">https://gist.github.com/1230366</a></p>
+
+<!-- more -->
+
+
+<p><div><script src='https://gist.github.com/1230366.js'></script>
+<noscript><pre><code>&lt;cfcomponent extends=&quot;farcry.core.packages.formtools.numeric&quot; name=&quot;slider&quot; displayname=&quot;slider&quot; hint=&quot;Field component to display a slider&quot;&gt;
+
+	&lt;cfproperty name=&quot;ftMin&quot; required=&quot;false&quot; type=&quot;numeric&quot; default=&quot;0&quot; hint=&quot;The minimum value of the slider.&quot; /&gt;
+	&lt;cfproperty name=&quot;ftMax&quot; required=&quot;false&quot; type=&quot;numeric&quot; default=&quot;10&quot; hint=&quot;The maximum value of the slider.&quot; /&gt;
+	&lt;cfproperty name=&quot;ftStep&quot; required=&quot;false&quot; type=&quot;numeric&quot; default=&quot;1&quot; hint=&quot;Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step.&quot; /&gt;
+	&lt;cfproperty name=&quot;ftOrientation&quot; required=&quot;false&quot; type=&quot;string&quot; default=&quot;horizontal&quot; options=&quot;horizontal,vertical&quot; hint=&quot;This option determines whether the slider has the min at the left, the max at the right or the min at the bottom, the max at the top. Possible values: &#39;horizontal&#39;, &#39;vertical&#39;.&quot; /&gt;
+	
+	&lt;cffunction name=&quot;edit&quot; access=&quot;public&quot; output=&quot;true&quot; returntype=&quot;string&quot; hint=&quot;his will return a string of formatted HTML text to enable the user to edit the data&quot;&gt;
+		&lt;cfargument name=&quot;typename&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;The name of the type that this field is part of.&quot;&gt;
+		&lt;cfargument name=&quot;stObject&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;The object of the record that this field is part of.&quot;&gt;
+		&lt;cfargument name=&quot;stMetadata&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;This is the metadata that is either setup as part of the type.cfc or overridden when calling ft:object by using the stMetadata argument.&quot;&gt;
+		&lt;cfargument name=&quot;fieldname&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;This is the name that will be used for the form field. It includes the prefix that will be used by ft:processform.&quot;&gt;
+		
+		&lt;cfset var html = &quot;&quot; /&gt;
+		
+		&lt;cfparam name=&quot;arguments.stMetadata.ftMin&quot; default=&quot;0&quot; /&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftMax&quot; default=&quot;10&quot; /&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftStep&quot; default=&quot;1&quot; /&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftOrientation&quot; default=&quot;horizontal&quot; /&gt;
+		
+		&lt;!--- metadata inherited from numeric formtool ---&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftIncludeDecimal&quot; default=&quot;false&quot;&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftCurrencySymbol&quot; default=&quot;&quot;&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftPrefix&quot; default=&quot;&quot;&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftSuffix&quot; default=&quot;&quot;&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftMask&quot; default=&quot;&quot;&gt;
+		
+		&lt;!--- format the value (same as numeric formtool) ---&gt;
+		&lt;cfif len(arguments.stMetadata.ftMask)&gt;
+			&lt;cfset arguments.stMetadata.value = trim(NumberFormat(arguments.stMetadata.value, arguments.stMetadata.ftMask))&gt;
+		&lt;cfelse&gt;
+			&lt;!--- This is for legacy. You should use just ftPrefix and ftSuffix ---&gt;
+			&lt;cfif len(arguments.stMetadata.ftCurrencySymbol)&gt;
+				&lt;cfset arguments.stMetadata.ftPrefix = arguments.stMetadata.ftCurrencySymbol /&gt;
+			&lt;/cfif&gt;
+
+			&lt;cfif stMetadata.ftIncludeDecimal&gt;
+				&lt;cfset arguments.stMetadata.value = DecimalFormat(arguments.stMetadata.value)&gt;
+			&lt;cfelse&gt;
+				&lt;cfset arguments.stMetadata.value = NumberFormat(arguments.stMetadata.value)&gt;
+			&lt;/cfif&gt;
+		&lt;/cfif&gt;
+		
+		&lt;cfimport taglib=&quot;/farcry/core/tags/webskin&quot; prefix=&quot;skin&quot; /&gt;
+		
+		&lt;skin:loadJs id=&quot;jquery&quot; /&gt;
+		&lt;skin:loadJs id=&quot;jquery-ui&quot; /&gt;
+		&lt;skin:loadCss id=&quot;jquery-ui&quot; /&gt;
+		
+		&lt;skin:onReady&gt;
+			&lt;cfoutput&gt;
+			jQuery(&quot;###arguments.fieldname#-slider&quot;).slider({
+				min: #arguments.stMetadata.ftMin#,
+				max: #arguments.stMetadata.ftMax#,
+				step: #arguments.stMetadata.ftStep#,
+				value: #reReplace(arguments.stMetadata.value, &quot;[^0-9.\-]&quot;, &quot;&quot;, &quot;ALL&quot;)#,
+				orientation: &#39;#arguments.stMetadata.ftOrientation#&#39;,
+				slide: function (event, ui) {
+					jQuery(&quot;###arguments.fieldname#&quot;).val(&#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + ui.value + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;);
+				} 
+			});
+			jQuery(&quot;###arguments.fieldname#&quot;).keyup(function(event){
+				var thisVal = jQuery(this).val().replace(/[^0-9.\-]/g,&#39;&#39;);
+				var thisFormattedVal = &#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + thisVal + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;;
+				var maxFormattedVal = &#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + #arguments.stMetadata.ftMax# + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;;
+				var minFormattedVal = &#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + #arguments.stMetadata.ftMin# + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;;
+				
+				jQuery(this).val(thisFormattedVal);
+				
+				if (thisVal &gt;= #arguments.stMetadata.ftMin# &amp;&amp; thisVal &lt;= #arguments.stMetadata.ftMax#) {
+					
+					// good value, set the slider value
+					jQuery(&quot;###arguments.fieldname#-slider&quot;).slider(&quot;value&quot;, thisVal);
+					
+				} else if (thisVal &gt; #arguments.stMetadata.ftMax#) {
+				
+					// too high, set it to the maximum value
+					jQuery(&quot;###arguments.fieldname#-slider&quot;).slider(&quot;value&quot;, thisVal);
+					jQuery(this).val(maxFormattedVal);
+					
+				} else if (thisVal &lt; #arguments.stMetadata.ftMin#) {
+					
+					// too low, set it to the minimum value
+					jQuery(&quot;###arguments.fieldname#-slider&quot;).slider(&quot;value&quot;, thisVal);
+					jQuery(this).val(minFormattedVal);
+					
+				}
+			});
+			&lt;/cfoutput&gt;
+		&lt;/skin:onReady&gt;
+		
+		&lt;cfsavecontent variable=&quot;html&quot;&gt;
+			&lt;cfoutput&gt;
+				&lt;div class=&quot;multiField&quot;&gt;
+					&lt;div class=&quot;sliderInput&quot; style=&quot;margin-bottom: 10px;&quot;&gt;
+						&lt;div id=&quot;#arguments.fieldname#-slider&quot;&gt;&lt;/div&gt;
+					&lt;/div&gt;
+					#super.edit(argumentCollection = arguments)#
+				&lt;/div&gt;
+			&lt;/cfoutput&gt;
+		&lt;/cfsavecontent&gt;
+		
+		&lt;cfreturn html /&gt;
+	&lt;/cffunction&gt;
+	
+	&lt;cffunction name=&quot;validate&quot; access=&quot;public&quot; output=&quot;true&quot; returntype=&quot;struct&quot; hint=&quot;This will return a struct with bSuccess and stError&quot;&gt;
+		&lt;cfargument name=&quot;objectid&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;The objectid of the object that this field is part of.&quot;&gt;
+		&lt;cfargument name=&quot;typename&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;The name of the type that this field is part of.&quot;&gt;
+		&lt;cfargument name=&quot;stFieldPost&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;The fields that are relevent to this field type.&quot;&gt;
+		&lt;cfargument name=&quot;stMetadata&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;This is the metadata that is either setup as part of the type.cfc or overridden when calling ft:object by using the stMetadata argument.&quot;&gt;
+		
+		&lt;cfset var stResult = super.validate(argumentCollection = arguments) /&gt;
+		
+		&lt;cfparam name=&quot;arguments.stMetadata.ftMin&quot; default=&quot;0&quot; /&gt;
+		&lt;cfparam name=&quot;arguments.stMetadata.ftMax&quot; default=&quot;10&quot; /&gt;
+		
+		&lt;!--- if its required, make sure we have a value ---&gt;
+		
+		&lt;cfif structKeyExists(arguments.stMetadata, &quot;ftValidation&quot;) AND listFindNoCase(arguments.stMetadata.ftValidation, &quot;required&quot;) AND NOT len(trim(stFieldPost.Value))&gt;
+			&lt;cfset stResult = failed(value = stResult.value, message = &quot;This is a required field.&quot;) /&gt;
+		&lt;/cfif&gt;
+		
+		&lt;!--- ensure value is within range ---&gt;
+		
+		&lt;cfif stResult.value lt arguments.stMetadata.ftMin&gt;
+			&lt;cfset stResult = failed(value = stResult.value, message = &quot;Value must be greater than #arguments.stMetadata.ftMin#&quot;) /&gt;
+		&lt;/cfif&gt;
+		
+		&lt;cfif stResult.value gt arguments.stMetadata.ftMax&gt;
+			&lt;cfset stResult = failed(value = stResult.value, message = &quot;Value must be less than #arguments.stMetadata.ftMax#&quot;) /&gt;
+		&lt;/cfif&gt;
+		
+		&lt;cfreturn stResult /&gt;
+		
+	&lt;/cffunction&gt;
+	
+&lt;/cfcomponent&gt; </code></pre></noscript></div>
+</p>
+
+<p>To use, simply download the CFC, and place it in your project&rsquo;s <code>/farcry/projects/projectname/packages/formtools</code> directory. Once there, you specify the metadata in your custom types as you would use any other formtool.</p>
+
+<p><div><script src='https://gist.github.com/8810243.js'></script>
+<noscript><pre><code>&lt;cfproperty ftLabel=&quot;Num. of Apples&quot; name=&quot;numApples&quot; type=&quot;integer&quot; ftType=&quot;slider&quot; ftMin=&quot;1&quot; ftMax=&quot;100&quot; ftStep=&quot;1&quot; ftOrientation=&quot;horiztonal&quot; /&gt;</code></pre></noscript></div>
+</p>
+
+<p>The formtool is an extension of the numeric formtool found in core, so you can use any of the features found from that formtool in the slider (<code>ftPrefix</code>, <code>ftSuffix</code>, etc).</p>
+
+<p>The slider formtool adds 4 new metadata options. <code>ftMin</code>, <code>ftMax</code>, <code>ftStep</code>, and <code>ftOrientation</code>. Min and Max are the lowest and highest values allowed for the field. <code>ftStep</code> is the increment factor the slider will use. If you specify one, each slide of the slider will move the value by 1, if you specify 0.5, it will increment it by 0.5 (1, 1.5, 2, etc). <code>ftOrientation</code> can be either &ldquo;horizontal&rdquo; or &ldquo;vertical&rdquo; and it will orient the slider either horizontally or vertically.</p>
+
+<p>Your users can either type a value into the text box or use the slider to select a value.</p>
+
+<p>This uses the <a href="http://jqueryui.com/demos/slider/">jQuery UI Slider widget</a> so you can use it with FarCry 6+ since core ships with jQuery UI built in.</p>
+
+<p>If you find it useful, missing a feature, broken, etc please let me know. Consider it released under a &ldquo;do whatever you want with it&rdquo; license.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry YouTube Plugin]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin/"/>
+    <updated>2011-08-08T17:22:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin</id>
+    <content type="html"><![CDATA[<p>One of our clients asked for better integration of their YouTube hosted videos on their FarCry website.  They had been linking to the youtube.com URLs directly, leading traffic away from their website.  Obviously, they would have preferred to keep those visitors on their site and engaged.</p>
+
+<p>As some other clients have also expressed a desire to display YouTube videos on their sites, I decided to build the functionality as a FarCry plugin.  This would allow me to move this feature set to any FarCry site.</p>
+
+<p>At its foundation, the plugin works via two custom types and a scheduled task.  The scheduled task runs and uses the YouTube API to grab the playlists and videos on the specified account (configurable via a FarCry config).  If it finds those objects already in FarCry, it updates them with the latest data from YouTube, if its new, it adds it to the FarCry database.  Any items found in FarCry that aren&rsquo;t returned by the API are deleted.  The plugin gives you the ability to reorder the videos on a playlist via the FarCry webtop.  All data is managed on the YouTube side.  I may consider adding the ability to completely manage the videos and playlists on the webtop, but that will greatly increase the complexity of the plugin, and I don&rsquo;t see a great benefit to doing so.  To me, it makes more sense to go straight to the source to upload new videos, manage your videos, etc rather than try to stuff all that functionality into a FarCry form.  No need to reinvent the wheel, in my opinion.</p>
+
+<p>The plugin also includes two rules.  One lists videos based on selected playlists or videos, the other displays an embedded video.</p>
+
+<p>To interact with the YouTube API, I made use of <a href="http://www.coldfusionjedi.com/">Raymond Camden</a>&rsquo;s awesome <a href="http://youtubecfc.riaforge.org/">YouTube CFC</a>.</p>
+
+<p>I am happy to say that I have also posted this code on Github for the entire community to use.  Give it a try!  If you have any ideas for improvement please open a ticket, or better yet, fork the project and send me a pull request.</p>
+
+<p>You can find the project on <a href="http://farcryyoutube.riaforge.org/">RIAForge</a> and <a href="https://github.com/seancoyne/FarCry-YouTube-Plugin">Github</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry Poll Plugin]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin/"/>
+    <updated>2011-06-14T11:20:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin</id>
+    <content type="html"><![CDATA[<p>I have released a plugin I have had for a while.  I&rsquo;m not sure why I never got around to releasing it.  Its a very simple FarCry plugin that gives you the ability to create a one question poll and display it on the site.  It uses a couple content types and a rule.
+To install, copy the files to <code>/farcry/plugins/spcPoll</code> and add <code>spcPoll</code> to your <code>this.plugins</code> setting in your FarCry constructor.  Deploy the content types in the COAPI manager and restart the application.  You can now create a question, assign answers to it, and deploy that question using the &ldquo;Poll: Display Poll&rdquo; rule.
+You can grab the code on <a href="http://www.binpress.com/app/farcry-polls-plugin/474">Binpress</a> or <a href="https://github.com/seancoyne/FarCry-Polling-Plugin">Github</a>.  Its also attached to this entry via the download link below.
+Let me know what you think!</p>
+]]></content>
+  </entry>
+  
+</feed>

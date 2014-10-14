@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Web Development | n42 Designs]]></title>
+  <link href="http://seancoyne.github.io/blog/categories/web-development/atom.xml" rel="self"/>
+  <link href="http://seancoyne.github.io/"/>
+  <updated>2014-10-14T10:41:30-04:00</updated>
+  <id>http://seancoyne.github.io/</id>
+  <author>
+    <name><![CDATA[Sean Coyne]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Filtering a CFGrid]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid/"/>
+    <updated>2009-08-12T09:23:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid</id>
+    <content type="html"><![CDATA[<p>So you want to filter a CFGrid huh? ColdFusion makes this easy! First you need a CFC method that will return the query used to populate the grid. This method should take the cfgrid parameters and the value you want to filter on.</p>
+
+<p><div><script src='https://gist.github.com/8810170.js'></script>
+<noscript><pre><code>&lt;cfcomponent&gt;
+	&lt;cffunction name=&quot;getdata&quot; access=&quot;remote&quot; output=&quot;false&quot;returntype=&quot;Any&quot;&gt;
+		&lt;cfargument name=&quot;page&quot; required=&quot;false&quot; default=&quot;1&quot; type=&quot;Numeric&quot; /&gt;
+		&lt;cfargument name=&quot;pagesize&quot; required=&quot;false&quot; default=&quot;10&quot; type=&quot;Numeric&quot; /&gt;
+		&lt;cfargument name=&quot;sortcolumn&quot; required=&quot;false&quot; default=&quot;&quot; type=&quot;string&quot; /&gt;
+		&lt;cfargument name=&quot;sortdir&quot; required=&quot;false&quot; default=&quot;ASC&quot; type=&quot;string&quot; /&gt;
+		&lt;cfargument name=&quot;filter&quot; required=&quot;false&quot; default=&quot;&quot; type=&quot;String&quot; /&gt;
+		&lt;cfset q = queryNew(&#39;id,name&#39;,&#39;integer,varchar&#39;) /&gt;
+		&lt;cfset queryaddrow(q,1) /&gt;
+		&lt;cfset querysetcell(q,&#39;id&#39;,1) /&gt;
+		&lt;cfset querysetcell(q,&#39;name&#39;,&#39;sean&#39;) /&gt;
+		&lt;cfset queryaddrow(q,1) /&gt;
+		&lt;cfset querysetcell(q,&#39;id&#39;,2) /&gt;
+		&lt;cfset querysetcell(q,&#39;name&#39;,&#39;phillip&#39;) /&gt;
+		&lt;cfset queryaddrow(q,1) /&gt;
+		&lt;cfset querysetcell(q,&#39;id&#39;,3) /&gt;
+		&lt;cfset querysetcell(q,&#39;name&#39;,&#39;steve&#39;) /&gt;
+		&lt;cfquery name=&quot;q&quot; dbtype=&quot;query&quot;&gt;
+			select * from q
+			&lt;cfif len(trim(arguments.filter))&gt;
+			where name like &lt;cfqueryparam cfsqltype=&quot;cf_sql_varchar&quot;value=&quot;%#arguments.filter#%&quot; /&gt;
+			&lt;/cfif&gt;
+			&lt;cfif len(trim(arguments.sortcolumn)) or len(trim(arguments.sortdir))&gt;
+			order by #arguments.sortcolumn# #arguments.sortdir#
+			&lt;/cfif&gt;
+		&lt;/cfquery&gt;
+		&lt;cfreturn queryConvertForGrid(q,arguments.page,arguments.pageSize) /&gt;
+	&lt;/cffunction&gt;
+&lt;/cfcomponent&gt;</code></pre></noscript></div>
+</p>
+
+<p>You can see here that I am just hard coding the query in, you would replace this with your cfquery call to your database or a call to your service layer, etc. Once you have your query results, you want to use the <code>queryConvertForGrid</code> function to format the result to a value that CFGrid can work with.</p>
+
+<p>You then need a cfgrid! The trick here is how to get the grid to refresh as the user types a value in the filter box. ColdFusion Ajax UI tools have bind expressions that let us bind one control to another, and to react to events.</p>
+
+<p><div><script src='https://gist.github.com/8810199.js'></script>
+<noscript><pre><code>&lt;cfform&gt;
+	&lt;p&gt;&lt;label for=&quot;filter&quot;&gt;&lt;cfinput type=&quot;text&quot; name=&quot;filter&quot; id=&quot;filter&quot; /&gt;&lt;/p&gt;
+	&lt;cfgrid format=&quot;html&quot; bind=&quot;cfc:data.getData({cfgridpage},{cfgridpagesize},{cfgridsortcolumn},{cfgridsortdirection},{filter@keyup})&quot; name=&quot;grd&quot; bindonload=&quot;true&quot;&gt;
+		&lt;cfgridcolumn name=&quot;id&quot; /&gt;
+		&lt;cfgridcolumn name=&quot;name&quot; /&gt;
+	&lt;/cfgrid&gt;
+&lt;/cfform&gt;</code></pre></noscript></div>
+</p>
+
+<p>You can see my bind expression in the cf grid. It will call the getData method of my data.cfc and pass in the value from the &ldquo;filter&rdquo; input box whenever the key is released. ColdFusion provides other events you can react to as well, check the docs for details.</p>
+
+<p>So now if you run index.cfm you will see a simple form with a text input and a grid. the grid will load when the page is run (<code>bindonload="true"</code>) and as you type in the text box, the results are filtered.</p>
+
+<p>EDIT: removed the example link as I have moved this blog to <a href="http://www.getrailo.org/">Railo</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webservices Change in CF 8.0.1]]></title>
+    <link href="http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801/"/>
+    <updated>2008-04-17T04:50:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801</id>
+    <content type="html"><![CDATA[<p>It seems with the change to 8.0.1 there is a difference in the
+way CF generates the stubs for a CFC called as a web service.  I had a
+CFC called webservices.cfc and on 8.0 it was working fine calling the
+methods, but with the 8.0.1 it started throwing a &ldquo;duplicate file name&rdquo;
+error.  This seems to be because CF creates its own stub file
+<code>Webservices.java</code> and also a <code>[cfcname].java</code> file.  CF couldn&rsquo;t create
+both so it threw an error.  The solution was to rename my CFC.  The
+stubs can be found in <code>C:\ColdFusion8\stubs\</code> on Windows, and if I
+remember correctly <code>/Applications/ColdFusion8/stubs/</code> on Mac OS X.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Issue W/ Eclipse Resource Bundle Editor Plugin and Leopard]]></title>
+    <link href="http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/"/>
+    <updated>2008-01-17T15:18:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard</id>
+    <content type="html"><![CDATA[<p>There seems to be an issue with the <a href="http://sourceforge.net/projects/eclipse-rbe/">Resource Bundle Editor Plugin for Eclipse</a>.</p>
+
+<p>I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK and was unable to open a resource file.  I would get the following error:</p>
+
+<p><blockquote><p>Can&rsquo;t start the AWT because Java was started on the first thread.  Make sure StartOnFirstThread is not specified in your application&rsquo;s Info.plist or on the command line</p></blockquote></p>
+
+<p>To fix it I edited the <code>eclipse.ini</code> file (<code>/Applications/eclipse/Eclipse.app/Contents/MacOS/eclipse.ini</code> by default) to add the following line:</p>
+
+<p><code>-Djava.awt.headless=true</code></p>
+
+<p>Once I did that it was fine and I was able to edit the resource bundles.</p>
+
+<p>Hope this helps someone searching for the issue!</p>
+]]></content>
+  </entry>
+  
+</feed>

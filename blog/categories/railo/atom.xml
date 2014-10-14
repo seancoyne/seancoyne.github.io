@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Railo | n42 Designs]]></title>
+  <link href="http://seancoyne.github.io/blog/categories/railo/atom.xml" rel="self"/>
+  <link href="http://seancoyne.github.io/"/>
+  <updated>2014-10-14T10:41:30-04:00</updated>
+  <id>http://seancoyne.github.io/</id>
+  <author>
+    <name><![CDATA[Sean Coyne]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SVN, Apache, and Mod_caucho, Oh My]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
+    <updated>2009-11-30T10:01:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
+    <content type="html"><![CDATA[<p>I recently set up a new <a href="http://www.viviotech.net/?rid=n42designs">Viviotech</a> VPS and ran into an issue that was easy to fix once I realized what was happening, but difficult to debug.</p>
+
+<p>I set up Railo running on the Resin server using Apache as a front end with mod_caucho. In my <code>httpd.conf</code> file I had the following lines:</p>
+
+<p><div><script src='https://gist.github.com/8810530.js'></script>
+<noscript><pre><code>LoadModule caucho_module /usr/lib/httpd/modules/mod_caucho.so
+ResinConfigServer localhost 6800
+CauchoConfigCacheDirectory /tmp
+CauchoStatus yes</code></pre></noscript></div>
+</p>
+
+<p>This causes Resin to handle all requests from apache. The resin configuration files tell resin which URLs to handle. I also had an SVN server set up so I had a configuration file in <code>/etc/httpd/conf.d/</code> to set up subversion. All my SVN repositories are under the location <code>/svn</code>. Reading SVN repositories worked fine, but I kept getting &ldquo;path not found&rdquo; errors when committing new files. After debugging this for quite a while using Fiddler, and other means, I finally realized that Resin was actually handling the PUT http request and, finding no file, returned a 404.</p>
+
+<p>So to fix this, and simply have Apache handle any request to <code>/svn/</code> I modifed my <code>httpd.conf</code> file as follows:</p>
+
+<p><div><script src='https://gist.github.com/8810539.js'></script>
+<noscript><pre><code>LoadModule caucho_module /usr/lib/httpd/modules/mod_caucho.so
+&lt;LocationMatch ^((?!/svn/).)*$&gt;
+ResinConfigServer localhost 6800
+CauchoConfigCacheDirectory /tmp
+CauchoStatus yes
+&lt;/LocationMatch&gt;</code></pre></noscript></div>
+</p>
+
+<p>then restarted Apache.  Now apache handles any requests to <code>/svn/*</code> and Resin handles all other requests. Hopefully this helps future Googlers in need.</p>
+]]></content>
+  </entry>
+  
+</feed>

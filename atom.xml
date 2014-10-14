@@ -1,16 +1,733 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[n42 Designs]]></title>
   <link href="http://seancoyne.github.io/atom.xml" rel="self"/>
   <link href="http://seancoyne.github.io/"/>
-  <updated>2014-10-14T08:47:00-04:00</updated>
+  <updated>2014-10-14T10:41:30-04:00</updated>
   <id>http://seancoyne.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Sean Coyne]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4]]></title>
+    <link href="http://seancoyne.github.io/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/"/>
+    <updated>2014-10-13T19:30:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24</id>
+    <content type="html"><![CDATA[<p>OS X Yosemite updates the included Apache HTTP server from 2.2 to 2.4. The ColdFusion 9 connector installs a version of mod_jrun which has been compiled for Apache 2.2. Using <a href="https://research.g0blin.co.uk/mod_jrun-on-apache-2-4-ubuntu-14-04-coldfusion-9/">this article</a> I was able to recompile the connector for Apache 2.4 and get ColdFusion 9 running with Apache 2.4. <a href="https://www.dropbox.com/s/sjq662etey3rruy/mod_jrun24.so.zip?dl=1">Here</a> you will find a zipped version of the compiled connector so you can skip recompiling it yourself. Simply unzip and move the .so file to the desired location on your Mac and update your Apache configuration to point to it.</p>
+
+<p>So:</p>
+
+<p><code>LoadModule jrun_module /Applications/JRun4/lib/wsconfig/1/mod_jrun22.so</code></p>
+
+<p>becomes</p>
+
+<p><code>LoadModule jrun_module /Applications/JRun4/lib/wsconfig/1/mod_jrun24.so</code></p>
+
+<p>You may find you need to update other Apache configuration settings. You can find additional information on upgrading from Apache 2.2 to 2.4 in the <a href="http://httpd.apache.org/docs/2.4/upgrading.html">Apache HTTP Server Documentation</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Running ColdFusion 10 on OS X Mavericks]]></title>
+    <link href="http://seancoyne.github.io/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks/"/>
+    <updated>2013-10-23T12:03:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2013/10/23/running-coldfusion-10-on-os-x-mavericks</id>
+    <content type="html"><![CDATA[<p>Running ColdFusion 10 on OS X Mavericks is possible, but not straightforward.  Unfortunately, it seems the web server connector does not work with Apache 2.2.24 which ships with Mavericks.  A bug has been logged for this here: <a href="https://bugbase.adobe.com/index.cfm?event=bug&amp;amp;id=3653076">https://bugbase.adobe.com/index.cfm?event=bug&amp;id=3653076</a>.  Please vote for it.
+There are a couple of issues I had with Mavericks and ColdFusion 10 (CF 9 works fine for me for what it is worth).
+First, ColdFusion wouldn&rsquo;t start because Mavericks removed Java 6.  I had to update 3 files to fix this:</p>
+
+<p><code>/Applications/ColdFusion10/cfusion/bin/jvm.config</code>
+<code>/Applications/ColdFusion10/cfusion/bin/coldfusion</code>
+<code>/Applications/ColdFusion10/cfusion/runtime/bin/wsconfig_jvm.config</code></p>
+
+<p>In each of these, there was a setting to set the Java home path.  It was set to the old location for Java 6.  I updated these to point to Java 7.  For me this was:</p>
+
+<p><code>/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home</code></p>
+
+<p>This was after installing the <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">latest Updater 45 JDK from Oracle&rsquo;s website</a>.</p>
+
+<p>Once I made these changes ColdFusion started fine.</p>
+
+<p>The next issue is with the Connector.  Adobe created a customized version of mod_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod_jk is not going to work. <del>We&rsquo;ll have to wait for an updated version from Adobe.</del> (<strong>EDIT:</strong> See Mike&rsquo;s comment <a href="#c1BCFBE61-BADC-4171-8532B7B3B8544650">below</a> for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.</p>
+
+<p>I followed the recommendations in this blog post: <a href="http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137">http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137</a> to configure MAMP PRO.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry LESS Plugin]]></title>
+    <link href="http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin/"/>
+    <updated>2012-04-10T11:26:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2012/04/10/farcry-less-plugin</id>
+    <content type="html"><![CDATA[<p>Today I released a <a href="https://github.com/seancoyne/farcryless">plugin for FarCry</a> that will automatically compile your <a href="http://lesscss.org/">LESS</a> files into CSS. No more need to compile on your development machine before you push to production, and no more need to punish your users by compiling on the client side with <a href="https://github.com/cloudhead/less.js">Less.js</a>. While those solutions are perfectly acceptable, this plugin will let you simply code in LESS, then let FarCry do the work of serving compiled, minified CSS to your users.</p>
+
+<p>The plugin uses a similar syntax to FarCry&rsquo;s built in skin:loadCSS tag so it should be instantly familiar.  Be sure to read the installation instructions to avoid a couple of potential &ldquo;gotchas&rdquo;.</p>
+
+<p><a href="https://github.com/seancoyne/farcryless">Check it out on Github</a>, and let me know if its useful for you, or if you would like to see any additional features.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry Solr Pro]]></title>
+    <link href="http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro/"/>
+    <updated>2012-04-05T17:30:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2012/04/05/farcry-solr-pro</id>
+    <content type="html"><![CDATA[<p><a href="http://jeffcoughlin.com/blog">Jeff Coughin</a> and I just launched a new FarCry plugin to enhance the search capabilities of your FarCry website. Check out <a href="http://jeffcoughlin.com/blog/index.cfm/2012/4/5/FarCry-Solr-Pro-Plugin">his announcement</a> or the <a href="http://jeffcoughlin.github.io/farcrysolrpro">plugin website</a> for more information.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Github Gist Renderer for BlogCFC]]></title>
+    <link href="http://seancoyne.github.io/blog/2012/02/12/github-gist-renderer-for-blogcfc/"/>
+    <updated>2012-02-12T13:47:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2012/02/12/github-gist-renderer-for-blogcfc</id>
+    <content type="html"><![CDATA[<p>I created a quick renderer for Github Gists for use within <a href="http://www.blogcfc.com/">BlogCFC</a> entries. You can see it in action right here. If interested just grab the code from the gist below and save it to <code>/org/camden/blog/render/gist.cfc</code>. You can then use</p>
+
+<div><script src='https://gist.github.com/8810495.js'></script>
+<noscript><pre><code>&lt;gist id=&quot;[gist id]&quot;&gt;</code></pre></noscript></div>
+
+
+<p>to include the gist in your entry. If you want to constrain the height you can use CSS like:</p>
+
+<div><script src='https://gist.github.com/8810484.js'></script>
+<noscript><pre><code>.gist .gist-file .gist-data {
+    max-height: 250px;
+}</code></pre></noscript></div>
+
+
+<p>Here is an example of what the output looks like, using the Gist I created to hold the code for the renderer.  Feel free to grab it for your own BlogCFC install.</p>
+
+<div><script src='https://gist.github.com/1810183.js'></script>
+<noscript><pre><code>&lt;!---
+
+Save this file as /org/camden/blog/render/gist.cfc
+
+In your entries you can then include a Github gist using the following syntax:
+
+&lt;gist id=&quot;[gist id]&quot;&gt;
+
+Example: &lt;gist id=&quot;1810183&quot;&gt; would embed this gist into a blog entry.
+
+If you want to limit the height of large Gists you can use the following CSS to set a max height:
+
+.gist .gist-file .gist-data {
+  max-height: 250px;
+}
+
+---&gt;
+&lt;cfcomponent extends=&quot;render&quot; output=&quot;false&quot;&gt;
+    
+    &lt;cffunction name=&quot;display&quot; output=&quot;false&quot; returntype=&quot;string&quot; access=&quot;public&quot;&gt;
+        &lt;cfargument name=&quot;id&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;
+        &lt;cfset var html = &quot;&quot; /&gt;
+        
+        &lt;cfsavecontent variable=&quot;html&quot;&gt;
+        &lt;cfoutput&gt;
+        &lt;script src=&quot;https://gist.github.com/#arguments.id#.js&quot;&gt;&lt;/script&gt;
+        &lt;/cfoutput&gt;
+        &lt;/cfsavecontent&gt;
+        
+        &lt;cfreturn trim(html) /&gt;
+        
+    &lt;/cffunction&gt;
+    
+&lt;/cfcomponent&gt;</code></pre></noscript></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry Slider Formtool]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool/"/>
+    <updated>2011-09-20T21:37:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/09/20/farcry-slider-formtool</id>
+    <content type="html"><![CDATA[<p>I posted this on the <a href="https://groups.google.com/group/farcry-dev">farcry-dev</a> mailing list but thought I would post it here as well to help future googlers in need.</p>
+
+<p>I have created a slider formtool for a client and thought it could be useful to others in the community. You can find the source for it here: <a href="https://gist.github.com/1230366">https://gist.github.com/1230366</a></p>
+
+<!-- more -->
+
+
+
+
+<div><script src='https://gist.github.com/1230366.js'></script>
+<noscript><pre><code>&lt;cfcomponent extends=&quot;farcry.core.packages.formtools.numeric&quot; name=&quot;slider&quot; displayname=&quot;slider&quot; hint=&quot;Field component to display a slider&quot;&gt;
+
+    &lt;cfproperty name=&quot;ftMin&quot; required=&quot;false&quot; type=&quot;numeric&quot; default=&quot;0&quot; hint=&quot;The minimum value of the slider.&quot; /&gt;
+    &lt;cfproperty name=&quot;ftMax&quot; required=&quot;false&quot; type=&quot;numeric&quot; default=&quot;10&quot; hint=&quot;The maximum value of the slider.&quot; /&gt;
+    &lt;cfproperty name=&quot;ftStep&quot; required=&quot;false&quot; type=&quot;numeric&quot; default=&quot;1&quot; hint=&quot;Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step.&quot; /&gt;
+    &lt;cfproperty name=&quot;ftOrientation&quot; required=&quot;false&quot; type=&quot;string&quot; default=&quot;horizontal&quot; options=&quot;horizontal,vertical&quot; hint=&quot;This option determines whether the slider has the min at the left, the max at the right or the min at the bottom, the max at the top. Possible values: &#39;horizontal&#39;, &#39;vertical&#39;.&quot; /&gt;
+    
+    &lt;cffunction name=&quot;edit&quot; access=&quot;public&quot; output=&quot;true&quot; returntype=&quot;string&quot; hint=&quot;his will return a string of formatted HTML text to enable the user to edit the data&quot;&gt;
+        &lt;cfargument name=&quot;typename&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;The name of the type that this field is part of.&quot;&gt;
+        &lt;cfargument name=&quot;stObject&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;The object of the record that this field is part of.&quot;&gt;
+        &lt;cfargument name=&quot;stMetadata&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;This is the metadata that is either setup as part of the type.cfc or overridden when calling ft:object by using the stMetadata argument.&quot;&gt;
+        &lt;cfargument name=&quot;fieldname&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;This is the name that will be used for the form field. It includes the prefix that will be used by ft:processform.&quot;&gt;
+        
+        &lt;cfset var html = &quot;&quot; /&gt;
+        
+        &lt;cfparam name=&quot;arguments.stMetadata.ftMin&quot; default=&quot;0&quot; /&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftMax&quot; default=&quot;10&quot; /&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftStep&quot; default=&quot;1&quot; /&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftOrientation&quot; default=&quot;horizontal&quot; /&gt;
+        
+        &lt;!--- metadata inherited from numeric formtool ---&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftIncludeDecimal&quot; default=&quot;false&quot;&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftCurrencySymbol&quot; default=&quot;&quot;&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftPrefix&quot; default=&quot;&quot;&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftSuffix&quot; default=&quot;&quot;&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftMask&quot; default=&quot;&quot;&gt;
+        
+        &lt;!--- format the value (same as numeric formtool) ---&gt;
+        &lt;cfif len(arguments.stMetadata.ftMask)&gt;
+            &lt;cfset arguments.stMetadata.value = trim(NumberFormat(arguments.stMetadata.value, arguments.stMetadata.ftMask))&gt;
+        &lt;cfelse&gt;
+            &lt;!--- This is for legacy. You should use just ftPrefix and ftSuffix ---&gt;
+            &lt;cfif len(arguments.stMetadata.ftCurrencySymbol)&gt;
+                &lt;cfset arguments.stMetadata.ftPrefix = arguments.stMetadata.ftCurrencySymbol /&gt;
+            &lt;/cfif&gt;
+
+            &lt;cfif stMetadata.ftIncludeDecimal&gt;
+                &lt;cfset arguments.stMetadata.value = DecimalFormat(arguments.stMetadata.value)&gt;
+            &lt;cfelse&gt;
+                &lt;cfset arguments.stMetadata.value = NumberFormat(arguments.stMetadata.value)&gt;
+            &lt;/cfif&gt;
+        &lt;/cfif&gt;
+        
+        &lt;cfimport taglib=&quot;/farcry/core/tags/webskin&quot; prefix=&quot;skin&quot; /&gt;
+        
+        &lt;skin:loadJs id=&quot;jquery&quot; /&gt;
+        &lt;skin:loadJs id=&quot;jquery-ui&quot; /&gt;
+        &lt;skin:loadCss id=&quot;jquery-ui&quot; /&gt;
+        
+        &lt;skin:onReady&gt;
+            &lt;cfoutput&gt;
+            jQuery(&quot;###arguments.fieldname#-slider&quot;).slider({
+                min: #arguments.stMetadata.ftMin#,
+                max: #arguments.stMetadata.ftMax#,
+                step: #arguments.stMetadata.ftStep#,
+                value: #reReplace(arguments.stMetadata.value, &quot;[^0-9.\-]&quot;, &quot;&quot;, &quot;ALL&quot;)#,
+                orientation: &#39;#arguments.stMetadata.ftOrientation#&#39;,
+                slide: function (event, ui) {
+                    jQuery(&quot;###arguments.fieldname#&quot;).val(&#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + ui.value + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;);
+                } 
+            });
+            jQuery(&quot;###arguments.fieldname#&quot;).keyup(function(event){
+                var thisVal = jQuery(this).val().replace(/[^0-9.\-]/g,&#39;&#39;);
+                var thisFormattedVal = &#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + thisVal + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;;
+                var maxFormattedVal = &#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + #arguments.stMetadata.ftMax# + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;;
+                var minFormattedVal = &#39;#jsStringFormat(arguments.stMetadata.ftPrefix)#&#39; + #arguments.stMetadata.ftMin# + &#39;#jsStringFormat(arguments.stMetadata.ftSuffix)#&#39;;
+                
+                jQuery(this).val(thisFormattedVal);
+                
+                if (thisVal &gt;= #arguments.stMetadata.ftMin# &amp;&amp; thisVal &lt;= #arguments.stMetadata.ftMax#) {
+                    
+                    // good value, set the slider value
+                    jQuery(&quot;###arguments.fieldname#-slider&quot;).slider(&quot;value&quot;, thisVal);
+                    
+                } else if (thisVal &gt; #arguments.stMetadata.ftMax#) {
+                
+                    // too high, set it to the maximum value
+                    jQuery(&quot;###arguments.fieldname#-slider&quot;).slider(&quot;value&quot;, thisVal);
+                    jQuery(this).val(maxFormattedVal);
+                    
+                } else if (thisVal &lt; #arguments.stMetadata.ftMin#) {
+                    
+                    // too low, set it to the minimum value
+                    jQuery(&quot;###arguments.fieldname#-slider&quot;).slider(&quot;value&quot;, thisVal);
+                    jQuery(this).val(minFormattedVal);
+                    
+                }
+            });
+            &lt;/cfoutput&gt;
+        &lt;/skin:onReady&gt;
+        
+        &lt;cfsavecontent variable=&quot;html&quot;&gt;
+            &lt;cfoutput&gt;
+                &lt;div class=&quot;multiField&quot;&gt;
+                    &lt;div class=&quot;sliderInput&quot; style=&quot;margin-bottom: 10px;&quot;&gt;
+                        &lt;div id=&quot;#arguments.fieldname#-slider&quot;&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    #super.edit(argumentCollection = arguments)#
+                &lt;/div&gt;
+            &lt;/cfoutput&gt;
+        &lt;/cfsavecontent&gt;
+        
+        &lt;cfreturn html /&gt;
+    &lt;/cffunction&gt;
+    
+    &lt;cffunction name=&quot;validate&quot; access=&quot;public&quot; output=&quot;true&quot; returntype=&quot;struct&quot; hint=&quot;This will return a struct with bSuccess and stError&quot;&gt;
+        &lt;cfargument name=&quot;objectid&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;The objectid of the object that this field is part of.&quot;&gt;
+        &lt;cfargument name=&quot;typename&quot; required=&quot;true&quot; type=&quot;string&quot; hint=&quot;The name of the type that this field is part of.&quot;&gt;
+        &lt;cfargument name=&quot;stFieldPost&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;The fields that are relevent to this field type.&quot;&gt;
+        &lt;cfargument name=&quot;stMetadata&quot; required=&quot;true&quot; type=&quot;struct&quot; hint=&quot;This is the metadata that is either setup as part of the type.cfc or overridden when calling ft:object by using the stMetadata argument.&quot;&gt;
+        
+        &lt;cfset var stResult = super.validate(argumentCollection = arguments) /&gt;
+        
+        &lt;cfparam name=&quot;arguments.stMetadata.ftMin&quot; default=&quot;0&quot; /&gt;
+        &lt;cfparam name=&quot;arguments.stMetadata.ftMax&quot; default=&quot;10&quot; /&gt;
+        
+        &lt;!--- if its required, make sure we have a value ---&gt;
+        
+        &lt;cfif structKeyExists(arguments.stMetadata, &quot;ftValidation&quot;) AND listFindNoCase(arguments.stMetadata.ftValidation, &quot;required&quot;) AND NOT len(trim(stFieldPost.Value))&gt;
+            &lt;cfset stResult = failed(value = stResult.value, message = &quot;This is a required field.&quot;) /&gt;
+        &lt;/cfif&gt;
+        
+        &lt;!--- ensure value is within range ---&gt;
+        
+        &lt;cfif stResult.value lt arguments.stMetadata.ftMin&gt;
+            &lt;cfset stResult = failed(value = stResult.value, message = &quot;Value must be greater than #arguments.stMetadata.ftMin#&quot;) /&gt;
+        &lt;/cfif&gt;
+        
+        &lt;cfif stResult.value gt arguments.stMetadata.ftMax&gt;
+            &lt;cfset stResult = failed(value = stResult.value, message = &quot;Value must be less than #arguments.stMetadata.ftMax#&quot;) /&gt;
+        &lt;/cfif&gt;
+        
+        &lt;cfreturn stResult /&gt;
+        
+    &lt;/cffunction&gt;
+    
+&lt;/cfcomponent&gt; </code></pre></noscript></div>
+
+
+<p>To use, simply download the CFC, and place it in your project&rsquo;s <code>/farcry/projects/projectname/packages/formtools</code> directory. Once there, you specify the metadata in your custom types as you would use any other formtool.</p>
+
+<div><script src='https://gist.github.com/8810243.js'></script>
+<noscript><pre><code>&lt;cfproperty ftLabel=&quot;Num. of Apples&quot; name=&quot;numApples&quot; type=&quot;integer&quot; ftType=&quot;slider&quot; ftMin=&quot;1&quot; ftMax=&quot;100&quot; ftStep=&quot;1&quot; ftOrientation=&quot;horiztonal&quot; /&gt;</code></pre></noscript></div>
+
+
+<p>The formtool is an extension of the numeric formtool found in core, so you can use any of the features found from that formtool in the slider (<code>ftPrefix</code>, <code>ftSuffix</code>, etc).</p>
+
+<p>The slider formtool adds 4 new metadata options. <code>ftMin</code>, <code>ftMax</code>, <code>ftStep</code>, and <code>ftOrientation</code>. Min and Max are the lowest and highest values allowed for the field. <code>ftStep</code> is the increment factor the slider will use. If you specify one, each slide of the slider will move the value by 1, if you specify 0.5, it will increment it by 0.5 (1, 1.5, 2, etc). <code>ftOrientation</code> can be either &ldquo;horizontal&rdquo; or &ldquo;vertical&rdquo; and it will orient the slider either horizontally or vertically.</p>
+
+<p>Your users can either type a value into the text box or use the slider to select a value.</p>
+
+<p>This uses the <a href="http://jqueryui.com/demos/slider/">jQuery UI Slider widget</a> so you can use it with FarCry 6+ since core ships with jQuery UI built in.</p>
+
+<p>If you find it useful, missing a feature, broken, etc please let me know. Consider it released under a &ldquo;do whatever you want with it&rdquo; license.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry YouTube Plugin]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin/"/>
+    <updated>2011-08-08T17:22:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/08/08/farcry-youtube-plugin</id>
+    <content type="html"><![CDATA[<p>One of our clients asked for better integration of their YouTube hosted videos on their FarCry website.  They had been linking to the youtube.com URLs directly, leading traffic away from their website.  Obviously, they would have preferred to keep those visitors on their site and engaged.</p>
+
+<p>As some other clients have also expressed a desire to display YouTube videos on their sites, I decided to build the functionality as a FarCry plugin.  This would allow me to move this feature set to any FarCry site.</p>
+
+<p>At its foundation, the plugin works via two custom types and a scheduled task.  The scheduled task runs and uses the YouTube API to grab the playlists and videos on the specified account (configurable via a FarCry config).  If it finds those objects already in FarCry, it updates them with the latest data from YouTube, if its new, it adds it to the FarCry database.  Any items found in FarCry that aren&rsquo;t returned by the API are deleted.  The plugin gives you the ability to reorder the videos on a playlist via the FarCry webtop.  All data is managed on the YouTube side.  I may consider adding the ability to completely manage the videos and playlists on the webtop, but that will greatly increase the complexity of the plugin, and I don&rsquo;t see a great benefit to doing so.  To me, it makes more sense to go straight to the source to upload new videos, manage your videos, etc rather than try to stuff all that functionality into a FarCry form.  No need to reinvent the wheel, in my opinion.</p>
+
+<p>The plugin also includes two rules.  One lists videos based on selected playlists or videos, the other displays an embedded video.</p>
+
+<p>To interact with the YouTube API, I made use of <a href="http://www.coldfusionjedi.com/">Raymond Camden</a>&rsquo;s awesome <a href="http://youtubecfc.riaforge.org/">YouTube CFC</a>.</p>
+
+<p>I am happy to say that I have also posted this code on Github for the entire community to use.  Give it a try!  If you have any ideas for improvement please open a ticket, or better yet, fork the project and send me a pull request.</p>
+
+<p>You can find the project on <a href="http://farcryyoutube.riaforge.org/">RIAForge</a> and <a href="https://github.com/seancoyne/FarCry-YouTube-Plugin">Github</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How I Got Started in ColdFusion]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/08/01/how-i-got-started-in-coldfusion/"/>
+    <updated>2011-08-01T09:06:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/08/01/how-i-got-started-in-coldfusion</id>
+    <content type="html"><![CDATA[<p>Steve Bryant <a href="http://www.bryantwebconsulting.com/blog/index.cfm/2011/7/20/August-1-2011-is-How-I-Started-ColdFusion-Day">suggested</a> that Aug 1, 2011 be &ldquo;How I Got Started in ColdFusion&rdquo; day. I think that is a great idea, and would like to share my story.</p>
+
+<!-- more -->
+
+
+<p>I always had a love for gadgets and machines, which naturally led to a love for computers.  I wrote my first program, Tic Tac Toe, in Basic on my family&rsquo;s <a href="http://en.wikipedia.org/wiki/IBM_PCjr">IBM PC Jr</a> when I was in 7th grade or so.</p>
+
+<p>When I went off to college, I decided early on that Computer Science would be my major.  At this point, I had already been building websites for a few years while in high school.  First, I would toy around with HTML on sites like Geocities and Angelfire, creating webpages for myself and family members.  I used all the sweet tags like <code>&lt;blink /&gt;</code> and <code>&lt;marquee /&gt;</code>, they were awesome! :)</p>
+
+<p>Around 1998 or so, a volunteer at my church gave me an opportunity to assist him with maintaining the church&rsquo;s website.  It was mostly static HTML, with some bits of, GASP, PHP mixed in.  This was my first taste of server side web development.  That said, most of what I helped out with, was the weekly posting of newsletters and schedules to their respective pages.  Rather than simply manually convert the text from the newsletters and schedules into HTML each week, which would take a while given all the formatting that needed to be done, we had a Perl script that would parse the text and add the required HTML formatting such as lists, paragraphs, headings, etc.  It was a really neat script, and my first look at regular expressions.  I developed a healthy respect for the power of Perl and its string manipulation libraries.</p>
+
+<p>I continued to work on the church&rsquo;s website, eventually on my own as the current &ldquo;webmaster&rdquo; moved on to some other projects.  I continued learning, mostly PHP, and applied those self taught skills to the site, expanding it in small ways.  This continued until about 2002 when I was mid-way through college.</p>
+
+<p>At that point, I was well along with my college studies, having taken courses in basic programming, c/c++, visual basic, database development, networking, etc; the standard CS curriculum.  I spent two summers interning at ING in Hartford, CT, first in the DBA group, and next in the project and process management group.  I created a PHP application that allowed the DBAs to view current status information for all of the production databases, and another application to manage the metadata for those databases for the project managers to use.  This gave me some great experience and real world use.</p>
+
+<p>When I returned to school, I then took a course called &ldquo;Web Development II&rdquo;, a follow up to a basic introductory course on HTML and the structure of web pages.  This course was to introduce server side, and dynamic web development.  I didn&rsquo;t think much of it at the time, figuring I would be a C++ or Java programmer, or maybe a DBA when I graduated.  I loved web development, but never really considered it would be my career.  I didn&rsquo;t think I would be that lucky.</p>
+
+<p>So by now you are probably wondering, but how the heck did you start using ColdFusion??!  You&rsquo;re right!  All this rambling and I haven&rsquo;t even reached that yet!  Fear not, here it comes :)</p>
+
+<p>When we started &ldquo;Web Development II&rdquo;, my professor gave us an option.  We could scrap the &ldquo;scheduled&rdquo;, boring lesson plans for the course which would give us a slight introduction to dynamic web development, but not give us any in depth experience, or we could explore the technology that he used, ColdFusion, and build our own full applications in the short time the course would run.</p>
+
+<p>My first reaction to this was, OH NO!  I had heard of ColdFusion, but only the bad things.  You know the ones.  &ldquo;Its Dead!&rdquo; &ldquo;Its Old!&rdquo; &ldquo;It doesn&rsquo;t scale!&rdquo; &ldquo;Its not a real programming language!&rdquo;  I was leaning toward sticking with the course&rsquo;s scheduled curriculum, but I didn&rsquo;t want to rock the boat.  I figured that I had been doing this already for a while, and I didn&rsquo;t need in depth anyways, I just wanted the credits. :)</p>
+
+<p>The class decided to try ColdFusion, and get the most out of the course they could.  I am glad that decision was made!  From the start, I fell in love with ColdFusion.  It made all the hardest things so easy!  In PHP I would have to manually connect to the database, setting up that connection with each page, then pass the SQL in as a string, run 2 or 3 methods just to execute the query and return each row as iterated.  I thought this was OK.  Then CF introduced me to the magical <code>&lt;cfquery /&gt;</code> tag! I thought to myself, &ldquo;I have been doing it this way all this time, when THIS is available!??&rdquo;</p>
+
+<p>My professor could tell right away that I was into it.  Since I had been doing web development for a while, I would pick up the easier things faster, and had more time on my hands in class.  Toward the end of the class, for our final project, we would break up into teams and build a functional application from scratch.  It would be a basic CRUD app to manage a database.</p>
+
+<p>Now, I had never been a great fan of &ldquo;teams&rdquo; in school.  Mostly because I would end up doing all of the work.  It always seemed to me, that no one took the work seriously, and I would have to make up the slack.  I didn&rsquo;t want to do the team project, fearing that would again happen, and someone else would get to slide by while I did the heavy lifting.</p>
+
+<p>My professor sensed this, and came to me after class and told me that he had a different final project in mind for me.  He wanted me to work on a project of his, that he was working on for a client.  This was great!  A real world project!  This would be a great learning experience.  So we talked about what I would build, how it would work, etc and I set to work building it.  Once it was complete, he reviewed it, and we had some back and forth tweaking some things.  It was a really great experience for me to have, and really prepared me for my future endeavors.</p>
+
+<p>After this experience, I decided I wanted to do web development professionally.  I got a job in the Academic Services Center at my school, building their intranet website, including an application that allowed students to look up a professor&rsquo;s schedule, and find out where they would be at a given time.  This was a classic ASP application.  Trust me, I wished for the sweet relief of ColdFusion each day I worked there!  It was a great experience though.</p>
+
+<p>As graduation approached, I started looking for web development jobs.  I didn&rsquo;t specifically look for ColdFusion, after all, I needed a job and wasn&rsquo;t going to be picky!  I interviewed at a few different places, even got an offer for a web development job.  I wasn&rsquo;t exactly thrilled with the work I would be doing though, so I kept looking.</p>
+
+<p>Eventually I stumbled upon a web development position, close to my parents home (central CT), and, would you believe it, they used ColdFusion!  I was excited.  It sounded great, it was exactly what I wanted to do.  It was an association management firm that provided services for a variety of clients so I wouldn&rsquo;t be stuck working on the same things over and over again.</p>
+
+<p>I interviewed and got the job and right after graduation I started working full time.  Eventually I worked my way up the ladder to Senior Web Developer, and I was the lead developer and system architect for all our web projects in a team of three.  I learned more and more about ColdFusion, and development in general, over the years there, and it really prepared me for where I am today.</p>
+
+<p>Today, I have my own development company, n42 Designs, and I work full time for a consulting firm here in CT, that provides IT services, primarily for clients in the healthcare industry.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FarCry Poll Plugin]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin/"/>
+    <updated>2011-06-14T11:20:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/06/14/farcry-poll-plugin</id>
+    <content type="html"><![CDATA[<p>I have released a plugin I have had for a while.  I&rsquo;m not sure why I never got around to releasing it.  Its a very simple FarCry plugin that gives you the ability to create a one question poll and display it on the site.  It uses a couple content types and a rule.
+To install, copy the files to <code>/farcry/plugins/spcPoll</code> and add <code>spcPoll</code> to your <code>this.plugins</code> setting in your FarCry constructor.  Deploy the content types in the COAPI manager and restart the application.  You can now create a question, assign answers to it, and deploy that question using the &ldquo;Poll: Display Poll&rdquo; rule.
+You can grab the code on <a href="http://www.binpress.com/app/farcry-polls-plugin/474">Binpress</a> or <a href="https://github.com/seancoyne/FarCry-Polling-Plugin">Github</a>.  Its also attached to this entry via the download link below.
+Let me know what you think!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A FarCry Plugin for Hoth: ColdFusion Exception Tracking]]></title>
+    <link href="http://seancoyne.github.io/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking/"/>
+    <updated>2011-02-17T14:04:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2011/02/17/a-farcry-plugin-for-hoth-coldfusion-exception-tracking</id>
+    <content type="html"><![CDATA[<p>Just a quick note to mention that I have released a FarCry plugin for the Hoth exception tracking framework. If you are interested take a look at the code on <a href="https://github.com/seancoyne/farcryhoth">GitHub</a> and let me know what you think.
+I have also included a zip file of the code attached to this entry.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SVN, Apache, and Mod_caucho, Oh My]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my/"/>
+    <updated>2009-11-30T10:01:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/11/30/svn-apache-and-modcaucho-oh-my</id>
+    <content type="html"><![CDATA[<p>I recently set up a new <a href="http://www.viviotech.net/?rid=n42designs">Viviotech</a> VPS and ran into an issue that was easy to fix once I realized what was happening, but difficult to debug.</p>
+
+<p>I set up Railo running on the Resin server using Apache as a front end with mod_caucho. In my <code>httpd.conf</code> file I had the following lines:</p>
+
+<div><script src='https://gist.github.com/8810530.js'></script>
+<noscript><pre><code>LoadModule caucho_module /usr/lib/httpd/modules/mod_caucho.so
+ResinConfigServer localhost 6800
+CauchoConfigCacheDirectory /tmp
+CauchoStatus yes</code></pre></noscript></div>
+
+
+<p>This causes Resin to handle all requests from apache. The resin configuration files tell resin which URLs to handle. I also had an SVN server set up so I had a configuration file in <code>/etc/httpd/conf.d/</code> to set up subversion. All my SVN repositories are under the location <code>/svn</code>. Reading SVN repositories worked fine, but I kept getting &ldquo;path not found&rdquo; errors when committing new files. After debugging this for quite a while using Fiddler, and other means, I finally realized that Resin was actually handling the PUT http request and, finding no file, returned a 404.</p>
+
+<p>So to fix this, and simply have Apache handle any request to <code>/svn/</code> I modifed my <code>httpd.conf</code> file as follows:</p>
+
+<div><script src='https://gist.github.com/8810539.js'></script>
+<noscript><pre><code>LoadModule caucho_module /usr/lib/httpd/modules/mod_caucho.so
+&lt;LocationMatch ^((?!/svn/).)*$&gt;
+ResinConfigServer localhost 6800
+CauchoConfigCacheDirectory /tmp
+CauchoStatus yes
+&lt;/LocationMatch&gt;</code></pre></noscript></div>
+
+
+<p>then restarted Apache.  Now apache handles any requests to <code>/svn/*</code> and Resin handles all other requests. Hopefully this helps future Googlers in need.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Filtering a CFGrid]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid/"/>
+    <updated>2009-08-12T09:23:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/08/12/filtering-a-cfgrid</id>
+    <content type="html"><![CDATA[<p>So you want to filter a CFGrid huh? ColdFusion makes this easy! First you need a CFC method that will return the query used to populate the grid. This method should take the cfgrid parameters and the value you want to filter on.</p>
+
+<div><script src='https://gist.github.com/8810170.js'></script>
+<noscript><pre><code>&lt;cfcomponent&gt;
+    &lt;cffunction name=&quot;getdata&quot; access=&quot;remote&quot; output=&quot;false&quot;returntype=&quot;Any&quot;&gt;
+        &lt;cfargument name=&quot;page&quot; required=&quot;false&quot; default=&quot;1&quot; type=&quot;Numeric&quot; /&gt;
+        &lt;cfargument name=&quot;pagesize&quot; required=&quot;false&quot; default=&quot;10&quot; type=&quot;Numeric&quot; /&gt;
+        &lt;cfargument name=&quot;sortcolumn&quot; required=&quot;false&quot; default=&quot;&quot; type=&quot;string&quot; /&gt;
+        &lt;cfargument name=&quot;sortdir&quot; required=&quot;false&quot; default=&quot;ASC&quot; type=&quot;string&quot; /&gt;
+        &lt;cfargument name=&quot;filter&quot; required=&quot;false&quot; default=&quot;&quot; type=&quot;String&quot; /&gt;
+        &lt;cfset q = queryNew(&#39;id,name&#39;,&#39;integer,varchar&#39;) /&gt;
+        &lt;cfset queryaddrow(q,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;id&#39;,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;name&#39;,&#39;sean&#39;) /&gt;
+        &lt;cfset queryaddrow(q,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;id&#39;,2) /&gt;
+        &lt;cfset querysetcell(q,&#39;name&#39;,&#39;phillip&#39;) /&gt;
+        &lt;cfset queryaddrow(q,1) /&gt;
+        &lt;cfset querysetcell(q,&#39;id&#39;,3) /&gt;
+        &lt;cfset querysetcell(q,&#39;name&#39;,&#39;steve&#39;) /&gt;
+        &lt;cfquery name=&quot;q&quot; dbtype=&quot;query&quot;&gt;
+            select * from q
+            &lt;cfif len(trim(arguments.filter))&gt;
+            where name like &lt;cfqueryparam cfsqltype=&quot;cf_sql_varchar&quot;value=&quot;%#arguments.filter#%&quot; /&gt;
+            &lt;/cfif&gt;
+            &lt;cfif len(trim(arguments.sortcolumn)) or len(trim(arguments.sortdir))&gt;
+            order by #arguments.sortcolumn# #arguments.sortdir#
+            &lt;/cfif&gt;
+        &lt;/cfquery&gt;
+        &lt;cfreturn queryConvertForGrid(q,arguments.page,arguments.pageSize) /&gt;
+    &lt;/cffunction&gt;
+&lt;/cfcomponent&gt;</code></pre></noscript></div>
+
+
+<p>You can see here that I am just hard coding the query in, you would replace this with your cfquery call to your database or a call to your service layer, etc. Once you have your query results, you want to use the <code>queryConvertForGrid</code> function to format the result to a value that CFGrid can work with.</p>
+
+<p>You then need a cfgrid! The trick here is how to get the grid to refresh as the user types a value in the filter box. ColdFusion Ajax UI tools have bind expressions that let us bind one control to another, and to react to events.</p>
+
+<div><script src='https://gist.github.com/8810199.js'></script>
+<noscript><pre><code>&lt;cfform&gt;
+    &lt;p&gt;&lt;label for=&quot;filter&quot;&gt;&lt;cfinput type=&quot;text&quot; name=&quot;filter&quot; id=&quot;filter&quot; /&gt;&lt;/p&gt;
+    &lt;cfgrid format=&quot;html&quot; bind=&quot;cfc:data.getData({cfgridpage},{cfgridpagesize},{cfgridsortcolumn},{cfgridsortdirection},{filter@keyup})&quot; name=&quot;grd&quot; bindonload=&quot;true&quot;&gt;
+        &lt;cfgridcolumn name=&quot;id&quot; /&gt;
+        &lt;cfgridcolumn name=&quot;name&quot; /&gt;
+    &lt;/cfgrid&gt;
+&lt;/cfform&gt;</code></pre></noscript></div>
+
+
+<p>You can see my bind expression in the cf grid. It will call the getData method of my data.cfc and pass in the value from the &ldquo;filter&rdquo; input box whenever the key is released. ColdFusion provides other events you can react to as well, check the docs for details.</p>
+
+<p>So now if you run index.cfm you will see a simple form with a text input and a grid. the grid will load when the page is run (<code>bindonload="true"</code>) and as you type in the text box, the results are filtered.</p>
+
+<p>EDIT: removed the example link as I have moved this blog to <a href="http://www.getrailo.org/">Railo</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ValidatorCFC Update]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update/"/>
+    <updated>2009-08-03T11:56:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/08/03/validatorcfc-update</id>
+    <content type="html"><![CDATA[<p>Just a quick note, thanks again to <a href="http://www.aarongreenlee.com/">Aaron Greenlee</a> I have some small modifications to <a href="http://validatorcfc.riaforge.org/">ValidatorCFC</a>.</p>
+
+<p>The modifications allow you to return a struct where the key is the name of the field in your object, and the value is true/false indicating if it passed validation.</p>
+
+<p>This is useful if you prefer more control when showing informative messages to the user.</p>
+
+<p>The zip file is attached to this entry as well as at <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Adobe Releases Hotfix for FCKEditor Issue]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue/"/>
+    <updated>2009-07-08T15:02:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/07/08/adobe-releases-hotfix-for-fckeditor-issue</id>
+    <content type="html"><![CDATA[<p>Adobe has released a hotfix for the FCKeditor issue.  You can find it <a href="http://www.adobe.com/support/security/bulletins/apsb09-09.html">here</a>.  Take notice that it says to first stop the CF service and then access the CF administrator.  This is impossible.  Simple open the administrator first and apply the hot fix on the system info screen. Also, Mac (linux too??) users should know that if you unzip the cfide.zip file to the cfide folder it will replace the folder not merge the files like on windows. You will be left without a working CFIDE folder. You should manually merge the files.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Quick Note]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/05/28/quick-note/"/>
+    <updated>2009-05-28T10:35:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/05/28/quick-note</id>
+    <content type="html"><![CDATA[<p>Just a quick note to say that the zip file on RiaForge for ValidatorCFC (<a href="http://validatorcfc.riaforge.org/">http://validatorcfc.riaforge.org/</a>) was incorrect.  Thanks to Bill D (<a href="http://brainbox.tv/">http://brainbox.tv</a>) for the head&rsquo;s up. I also attached it to this post. Use the download link below.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Follow Me on Twitter]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/04/22/follow-me-on-twitter/"/>
+    <updated>2009-04-22T14:48:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/04/22/follow-me-on-twitter</id>
+    <content type="html"><![CDATA[<p><a href="http://twitter.com/nickel4242">http://twitter.com/nickel4242</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Update to ValidatorCFC]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc/"/>
+    <updated>2009-02-28T08:53:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/02/28/update-to-validatorcfc</id>
+    <content type="html"><![CDATA[<p>I released a new version of ValidatorCFC.  Aaron Greenlee (<a href="http://www.aarongreenlee.com">http://www.aarongreenlee.com</a>) sent me some changes.  With his changes, you can now specify which properties you want validated.  So even if in your object you say that last name and first name are required, if you pass in only the last name property, only that field will be validated.  There is more info within the CFC itself, and in the test files in the zip.  You can download the zip file using the download link on this entry, or from <a href="http://validatorcfc.riaforge.org/">RIAForge</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Transfer Error When Using Ntext or Text and a ManyToMany Relationship]]></title>
+    <link href="http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship/"/>
+    <updated>2009-02-17T07:43:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2009/02/17/transfer-error-when-using-ntext-or-text-and-a-manytomany-relationship</id>
+    <content type="html"><![CDATA[<p>When you set Transfer to use a table that has an ntext or text column on SQL Server 2000 (and perhaps later versions) and also a many to many relationship you may receive the following error when you attempt to retreive the collection for the many to many:</p>
+
+<div><script src='https://gist.github.com/8810319.js'></script>
+<noscript><pre><code>[Macromedia][SQLServer JDBC Driver][SQLServer]Only 
+text pointers are
+allowed in work tables, never text, ntext, or image 
+columns. The query
+processor produced a query plan that required a 
+text, ntext, or image
+column in a work table.</code></pre></noscript></div>
+
+
+<p>For example I have the following tables set up</p>
+
+<div><script src='https://gist.github.com/8810330.js'></script>
+<noscript><pre><code>Table Name: 
+Table1
+id            char(35)  primary key
+title         varchar(255)  
+description ntext
+
+Table Name: Table2
+id            char(35)  primary key
+description varchar(255)
+
+Table Name: Table1_Table2
+table1_id     char(35)  composite key
+table2_id     char(35)  composite key</code></pre></noscript></div>
+
+
+<p>And the following transfer configuration:</p>
+
+<div><script src='https://gist.github.com/8810367.js'></script>
+<noscript><pre><code>&lt;transfer&gt;
+    &lt;objectDefinitions&gt;
+        &lt;object name=&quot;Table1&quot; table=&quot;table1&quot;&gt;
+            &lt;id name=&quot;id&quot; type=&quot;UUID&quot; generate=&quot;true&quot; /&gt;
+            &lt;property name=&quot;title&quot; type=&quot;string&quot; nullable=&quot;false&quot; /&gt;
+            &lt;property name=&quot;description&quot; type=&quot;string&quot; nullable=&quot;true&quot; /&gt;
+            &lt;manytomany name=&quot;Relation&quot; table=&quot;Table1_Table2&quot; lazy=&quot;true&quot;&gt;
+                &lt;link to=&quot;Table1&quot; column=&quot;table1_id&quot; /&gt;
+                &lt;link to=&quot;Table2&quot; column=&quot;table2_id&quot; /&gt;
+                &lt;collection type=&quot;array&quot;&gt;
+                    &lt;order property=&quot;description&quot; order=&quot;asc&quot; /&gt;
+                &lt;/collection&gt;
+            &lt;/manytomany&gt;
+        &lt;/object&gt;
+        &lt;object name=&quot;Table2&quot; table=&quot;Table2&quot;&gt;
+            &lt;id name=&quot;id&quot; type=&quot;UUID&quot; generate=&quot;true&quot; /&gt;
+            &lt;property name=&quot;description&quot; type=&quot;string&quot; nullable=&quot;false&quot; /&gt;
+        &lt;/object&gt;
+    &lt;/objectDefinitions&gt;
+&lt;/transfer&gt;</code></pre></noscript></div>
+
+
+<p>So when you call <code>getRelationArray()</code> on a Table1 object.  You will receive the error.  To correct this I took the following steps:</p>
+
+<p>Create a for table 1 with the ntext column casted to varchar:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="k">cast</span><span class="p">(</span><span class="n">description</span> <span class="k">as</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">8000</span><span class="p">))</span> <span class="k">as</span> <span class="n">description</span> <span class="k">from</span> <span class="n">table1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Save this as <code>vwTable1</code>.</p>
+
+<p>Change your transfer config to point to the view instead of table one so</p>
+
+<div><script src='https://gist.github.com/8810384.js'></script>
+<noscript><pre><code>&lt;object name=&quot;Table1&quot; table=&quot;table1&quot;&gt;</code></pre></noscript></div>
+
+
+<p>becomes</p>
+
+<div><script src='https://gist.github.com/8810393.js'></script>
+<noscript><pre><code>&lt;object name=&quot;Table1&quot; table=&quot;vwTable1&quot;&gt;</code></pre></noscript></div>
+
+
+<p>Now, you wont be able to run it yet because the view is not updatable since you used the casted field.  To overcome this we are going to use an <code>INSTEAD OF</code> trigger.</p>
+
+<p>You need to create 2 triggers.  One will be called whenever <code>UPDATE</code> is called on the <code>vwTable1</code> and the other will be called when <code>INSERT INTO</code> is called on <code>vwTable1</code></p>
+
+<p>You can create the triggers as follows, obviously change it to suit your table&rsquo;s needs:</p>
+
+<div><script src='https://gist.github.com/8810433.js'></script>
+<noscript><pre><code>CREATE trigger io_trigger_insert_vwTable1 on vwTable1
+instead of insert as 
+begin
+    set nocount on
+    if (not exists (select t.[id] from table1 t, inserted i where t.[id] = i.[id]))
+        insert into table1 
+        select
+            [id],
+            [title],
+            [description]
+        from
+            inserted
+end;
+
+create trigger io_trigger_update_vwAd on vwAd
+instead of update as 
+begin
+    set nocount on
+    if (exists (select t.[id] from table1 t, inserted i where t.[id] = i.[id]))
+    update 
+        table1 
+    set
+        title = i.title,
+        [description] = i.[description]
+    from 
+        table1 t, inserted i
+    where 
+        t.[id] = i.[id]
+end</code></pre></noscript></div>
+
+
+<p>Once you have created these triggers you should be able to use Transfer as you normally would.  Using the casted column in the view will allow you to call the <code>getRelationArray()</code>.  The SQL that Transfer creates will no longer be invalid.</p>
+
+<p>You may run into a couple of other items though.  First, your ntext field is now
+limited to 8000 characters since you are casting it to varchar.  You may
+be able to increase this, but I haven&rsquo;t tried.  Your mileage may vary,
+but be sure before the value is passed to transfer that it is validated
+as less than 8000 characters (perhaps in your decorator).  Next, if you
+have any non-null, defaulted columns in your base table (a created date
+perhaps) you HAVE to provide a value when you call insert into <code>vwTable1</code>.
+Since Transfer is creating this SQL you have to ensure that Transfer
+includes that column.  This means that you cannot use the
+<code>ignore-insert="true"</code> option in the transfer configuration.  SQL Server
+will still respect your default value, as long as you provide that
+column in the sql statement pointed at the view.</p>
+
+<p>You can find more information about <a href="http://msdn.microsoft.com/en-us/library/aa214478(SQL.80).aspx">INSTEAD OF INSERT</a> and <a href="http://msdn.microsoft.com/en-us/library/aa214430(SQL.80).aspx">INSTEAD OF UPDATE</a> triggers on the MSDN site.</p>
+
+<p>I have only used this in a simple application with two base tables and one relationship table, so if your setup is more complex it may not work out for you.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Webservices Change in CF 8.0.1]]></title>
+    <link href="http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801/"/>
+    <updated>2008-04-17T04:50:00-04:00</updated>
+    <id>http://seancoyne.github.io/blog/2008/04/17/webservices-change-in-cf-801</id>
+    <content type="html"><![CDATA[<p>It seems with the change to 8.0.1 there is a difference in the
+way CF generates the stubs for a CFC called as a web service.  I had a
+CFC called webservices.cfc and on 8.0 it was working fine calling the
+methods, but with the 8.0.1 it started throwing a &ldquo;duplicate file name&rdquo;
+error.  This seems to be because CF creates its own stub file
+<code>Webservices.java</code> and also a <code>[cfcname].java</code> file.  CF couldn&rsquo;t create
+both so it threw an error.  The solution was to rename my CFC.  The
+stubs can be found in <code>C:\ColdFusion8\stubs\</code> on Windows, and if I
+remember correctly <code>/Applications/ColdFusion8/stubs/</code> on Mac OS X.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Issue W/ Eclipse Resource Bundle Editor Plugin and Leopard]]></title>
+    <link href="http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/"/>
+    <updated>2008-01-17T15:18:00-05:00</updated>
+    <id>http://seancoyne.github.io/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard</id>
+    <content type="html"><![CDATA[<p>There seems to be an issue with the <a href="http://sourceforge.net/projects/eclipse-rbe/">Resource Bundle Editor Plugin for Eclipse</a>.</p>
+
+<p>I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK and was unable to open a resource file.  I would get the following error:</p>
+
+<blockquote><p>Can&#8217;t start the AWT because Java was started on the first thread.  Make sure StartOnFirstThread is not specified in your application&#8217;s Info.plist or on the command line</p></blockquote>
+
+
+<p>To fix it I edited the <code>eclipse.ini</code> file (<code>/Applications/eclipse/Eclipse.app/Contents/MacOS/eclipse.ini</code> by default) to add the following line:</p>
+
+<p><code>-Djava.awt.headless=true</code></p>
+
+<p>Once I did that it was fine and I was able to edit the resource bundles.</p>
+
+<p>Hope this helps someone searching for the issue!</p>
+]]></content>
+  </entry>
   
 </feed>
