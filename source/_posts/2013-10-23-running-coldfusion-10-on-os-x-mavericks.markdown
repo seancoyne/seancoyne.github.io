@@ -23,6 +23,6 @@ This was after installing the [latest Updater 45 JDK from Oracle's website](http
 
 Once I made these changes ColdFusion started fine.
 
-The next issue is with the Connector.  Adobe created a customized version of mod\_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod\_jk is not going to work. ~~We'll have to wait for an updated version from Adobe.~~ (**EDIT:** See Mike's comment [below](#c1BCFBE61-BADC-4171-8532B7B3B8544650) for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.
+The next issue is with the Connector.  Adobe created a customized version of mod\_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod\_jk is not going to work. ~~We'll have to wait for an updated version from Adobe.~~ (**EDIT:** See Mike's comment [below](#comment-1635209099) for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.
 
 I followed the recommendations in this blog post: [http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137](http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137) to configure MAMP PRO.
