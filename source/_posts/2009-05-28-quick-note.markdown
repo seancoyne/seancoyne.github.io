@@ -7,6 +7,4 @@ published: true
 categories: [ColdFusion, ValidatorCFC]
 ---
 
-Just a quick note to say that the zip file on RiaForge for ValidatorCFC ([http://validatorcfc.riaforge.org/](http://validatorcfc.riaforge.org/)) 
-was incorrect.  Thanks to Bill D ([http://brainbox.tv](http://brainbox.tv/)) for the head's up.  
-I also attached it to this post. Use the download link below.
+Just a quick note to say that the zip file on RiaForge for ValidatorCFC ([http://validatorcfc.riaforge.org/](http://validatorcfc.riaforge.org/)) was incorrect.  Thanks to Bill D ([http://brainbox.tv](http://brainbox.tv/)) for the head's up. I also attached it to this post. Use the download link below.

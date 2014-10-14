@@ -69,8 +69,7 @@ maintain all this manually.  I wish we had a mapping tool to handle
 persistance from BO to DB without requiring that the DB reflect the BO 
 or vice versa.
 
-Java has <a href="http://www.hibernate.org/" target="_blank">Hibernate</a> to handle this issue.  With CF8 [we 
-can now use Hibernate](http://www.firemoss.com/blog/index.cfm?mode=entry&amp;entry=E3BB2C56-3048-55C9-439841683FDAA4D3) with a Java model, but what if we want to 
+Java has [Hibernate](http://www.hibernate.org/) to handle this issue.  With CF8 [we can now use Hibernate](http://www.firemoss.com/blog/index.cfm?mode=entry&amp;entry=E3BB2C56-3048-55C9-439841683FDAA4D3) with a Java model, but what if we want to 
 model using CFCs?  [cfHibernate](http://www.mattwoodward.com/blog/index.cfm?event=showEntry&amp;entryID=0192EC2E-A75D-7689-3A0C5ABFB71258AC) 
 attempted to do this and seems to have run into some issues.  Can we use 
 Hibernate to map CF objects to the DB?  I am going to attempt to find an 

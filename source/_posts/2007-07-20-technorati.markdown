@@ -7,4 +7,4 @@ published: true
 categories: [Technorati]
 ---
 
-Look for me on Technorati! <a href="http://technorati.com/claim/nb5epizsnt" rel="me">My Technorati Profile</a>
+Look for me on [Technorati](http://technorati.com/claim/nb5epizsnt)!

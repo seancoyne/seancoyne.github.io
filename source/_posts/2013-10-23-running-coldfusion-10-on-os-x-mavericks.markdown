@@ -11,13 +11,18 @@ Running ColdFusion 10 on OS X Mavericks is possible, but not straightforward.  U
 There are a couple of issues I had with Mavericks and ColdFusion 10 (CF 9 works fine for me for what it is worth).
 First, ColdFusion wouldn't start because Mavericks removed Java 6.  I had to update 3 files to fix this:
 
-* /Applications/ColdFusion10/cfusion/bin/jvm.config
-* /Applications/ColdFusion10/cfusion/bin/coldfusion
-* /Applications/ColdFusion10/cfusion/runtime/bin/wsconfig_jvm.config
+`/Applications/ColdFusion10/cfusion/bin/jvm.config`
+`/Applications/ColdFusion10/cfusion/bin/coldfusion`
+`/Applications/ColdFusion10/cfusion/runtime/bin/wsconfig_jvm.config`
  
 In each of these, there was a setting to set the Java home path.  It was set to the old location for Java 6.  I updated these to point to Java 7.  For me this was:
-/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
+
+`/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home`
+
 This was after installing the [latest Updater 45 JDK from Oracle's website](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+
 Once I made these changes ColdFusion started fine.
-The next issue is with the Connector.  Adobe created a customized version of mod_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod_jk is not going to work. <s>We'll have to wait for an updated version from Adobe.</s> (<strong>EDIT:</strong> See Mike's comment [below](#c1BCFBE61-BADC-4171-8532B7B3B8544650) for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.
+
+The next issue is with the Connector.  Adobe created a customized version of mod\_jk to go along with their customized version of Tomcat.  Because of this, recompiling mod\_jk is not going to work. ~~We'll have to wait for an updated version from Adobe.~~ (**EDIT:** See Mike's comment [below](#c1BCFBE61-BADC-4171-8532B7B3B8544650) for a solution!) Until then you can either use the built in web server or install MAMP PRO which ships with Apache 2.2.22 (same as Mountain Lion) and then configure using the web server connector.
+
 I followed the recommendations in this blog post: [http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137](http://www.brilang.com/2012/06/installing-coldfusion-10-under-mamp-pro-2-on-os-x-lion/1137) to configure MAMP PRO.

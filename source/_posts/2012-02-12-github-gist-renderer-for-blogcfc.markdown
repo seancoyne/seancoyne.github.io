@@ -7,7 +7,7 @@ published: true
 categories: [ColdFusion]
 ---
 
-I created a quick renderer for Github Gists for use within <a href="http://www.blogcfc.com/" target="_blank">BlogCFC</a> entries. You can see it in action right here. If interested just grab the code from the gist below and save it to /org/camden/blog/render/gist.cfc. You can then use
+I created a quick renderer for Github Gists for use within [BlogCFC](http://www.blogcfc.com/) entries. You can see it in action right here. If interested just grab the code from the gist below and save it to `/org/camden/blog/render/gist.cfc`. You can then use
 
 {% gist 8810495 %}
 
