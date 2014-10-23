@@ -9,9 +9,7 @@
   <meta name="author" content="Sean Coyne">
 
   
-  <meta name="description" content="Since I have transitioned from a world of
-spaghetti code through the land of the uber-cfc, and finally onto some
-OO concepts, I have tried to figure &hellip;">
+  <meta name="description" content="There seems to be an issue with the Resource Bundle Editor Plugin for Eclipse. I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +79,51 @@ OO concepts, I have tried to figure &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/">Issue W/ Eclipse Resource Bundle Editor Plugin and Leopard</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-01-17T15:18:00-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>3:18 pm</span></time>
+        
+           | <a href="/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/#disqus_thread"
+             data-disqus-identifier="http://blog.n42designs.com/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There seems to be an issue with the <a href="http://sourceforge.net/projects/eclipse-rbe/">Resource Bundle Editor Plugin for Eclipse</a>.</p>
+
+<p>I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK and was unable to open a resource file.  I would get the following error:</p>
+
+<blockquote><p>Can&#8217;t start the AWT because Java was started on the first thread.  Make sure StartOnFirstThread is not specified in your application&#8217;s Info.plist or on the command line</p></blockquote>
+
+
+<p>To fix it I edited the <code>eclipse.ini</code> file (<code>/Applications/eclipse/Eclipse.app/Contents/MacOS/eclipse.ini</code> by default) to add the following line:</p>
+
+<p><code>-Djava.awt.headless=true</code></p>
+
+<p>Once I did that it was fine and I was able to edit the resource bundles.</p>
+
+<p>Hope this helps someone searching for the issue!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -426,6 +469,10 @@ I can find a solution.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/">Compiling Mod_perl for Apache 2.4 on OS X 10.10 Yosemite</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/">ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4</a>
       </li>
     
@@ -439,10 +486,6 @@ I can find a solution.</p>
     
       <li class="post">
         <a href="/blog/2012/04/05/farcry-solr-pro/">FarCry Solr Pro</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/02/12/github-gist-renderer-for-blogcfc/">Github Gist Renderer for BlogCFC</a>
       </li>
     
   </ul>

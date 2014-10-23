@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/</loc>
+    
+    <lastmod>2014-10-23T11:10:37-04:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.n42designs.com/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/</loc>
     
     <lastmod>2014-10-13T19:30:00-04:00</lastmod>
@@ -205,35 +213,35 @@
   
   <url>
     <loc>http://blog.n42designs.com/blog/archives/</loc>
-    <lastmod>2014-10-15T09:25:30-04:00</lastmod>
+    <lastmod>2014-10-23T11:51:18-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.n42designs.com/</loc>
-    <lastmod>2014-10-15T09:25:30-04:00</lastmod>
+    <lastmod>2014-10-23T11:51:18-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://blog.n42designs.com/search/</loc>
-    <lastmod>2014-10-15T09:25:30-04:00</lastmod>
+    <lastmod>2014-10-23T11:51:18-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.n42designs.com/about/</loc>
-    <lastmod>2014-10-15T09:25:30-04:00</lastmod>
+    <lastmod>2014-10-23T11:51:18-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.n42designs.com/contact/</loc>
-    <lastmod>2014-10-15T09:25:30-04:00</lastmod>
+    <lastmod>2014-10-23T11:51:18-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

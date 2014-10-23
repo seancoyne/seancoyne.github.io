@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Github Gist Renderer for BlogCFC - n42 Designs</title>
+  <title>Compiling Mod_perl for Apache 2.4 on OS X 10.10 Yosemite - n42 Designs</title>
   <meta name="author" content="Sean Coyne">
 
   
-  <meta name="description" content="I created a quick renderer for Github Gists for use within BlogCFC entries. You can see it in action right here. If interested just grab the code &hellip;">
+  <meta name="description" content="TL;DR: For your convenience, if you would like a pre-compiled binary you can download one here. This is the module I compiled. I haven&rsquo;t tested &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.n42designs.com/blog/2012/02/12/github-gist-renderer-for-blogcfc">
+  <link rel="canonical" href="http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="n42 Designs" type="application/atom+xml">
@@ -82,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Github Gist Renderer for BlogCFC</h1>
+      <h1 class="entry-title">Compiling Mod_perl for Apache 2.4 on OS X 10.10 Yosemite</h1>
     
     
       <p class="meta">
@@ -91,7 +91,7 @@
 
 
 
-<time class='entry-date' datetime='2012-02-12T13:47:00-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>1:47 pm</span></time>
+<time class='entry-date' datetime='2014-10-23T11:10:37-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>11:10 am</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.n42designs.com">Comments</a>
@@ -101,58 +101,61 @@
   </header>
 
 
-<div class="entry-content"><p>I created a quick renderer for Github Gists for use within <a href="http://www.blogcfc.com/">BlogCFC</a> entries. You can see it in action right here. If interested just grab the code from the gist below and save it to <code>/org/camden/blog/render/gist.cfc</code>. You can then use</p>
+<div class="entry-content"><p>TL;DR: For your convenience, if you would like a pre-compiled binary you can download one <a href="https://www.dropbox.com/s/euqfc0ivu1vx2vp/mod_perl.so.zip?dl=1">here</a>.  This is the module I compiled.  I haven&rsquo;t tested it on any other systems than the one I compiled it with. YMMV.</p>
 
-<div><script src='https://gist.github.com/8810495.js'></script>
-<noscript><pre><code>&lt;gist id=&quot;[gist id]&quot;&gt;</code></pre></noscript></div>
+<hr />
+
+<p>OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4.  In general, this is a good thing, but if you were using mod_perl, perhaps for <a href="http://www.modcfml.org">mod_cfml</a> with Railo for example, then mod_perl will no longer work.</p>
+
+<p>Recently, there have been several <a href="https://github.com/apache/mod_perl/commit/6e33d7c9e89afbdb47da0cb0fa9498d8a843df8e">commits</a> so mod_perl will now support Apache 2.4.  Since there are no binary releases yet, we will have to compile it ourselves.</p>
+
+<p>I have managed to do this with help from <a href="http://stackoverflow.com/a/26497435/151136">this StackOverflow post</a>.</p>
+
+<p>First you need the latest source from the Apache SVN repositories.  They mirror it on git, but its missing some dependencies, so I found it easier to use SVN.</p>
+
+<p><code>svn checkout https://svn.apache.org/repos/asf/perl/modperl/trunk/ mod_perl-2.0</code></p>
+
+<p>Then switch into the new directory:</p>
+
+<p><code>cd mod_perl-2.0</code></p>
+
+<p>Next, we need to be sure we have <a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12">XCode 6.1</a> installed and the command line tools installed as well:</p>
+
+<p><code>xcode-select --install</code></p>
+
+<p>Once, we have that, we need to tell the compiler where to find a few dependencies.  You can find the reasoning behind this in the StackOverflow post mentioned above, but in general you run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/apr-1-config --includedir /usr/include/apr-1
+</span><span class='line'>sudo ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/apache2 /usr/include/apache2
+</span><span class='line'>sudo ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/apr-1 /usr/include/apr-1
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>to include the gist in your entry. If you want to constrain the height you can use CSS like:</p>
+<p>This will create a couple simlinks and tell the compiler where some Apache headers are located.</p>
 
-<div><script src='https://gist.github.com/8810484.js'></script>
-<noscript><pre><code>.gist .gist-file .gist-data {
-    max-height: 250px;
-}</code></pre></noscript></div>
+<p>Almost done.  Next, we compile it.  We need to set a compiler option to tell it to build using the gnu89 standard, instead of clang&rsquo;s default C99. (Thanks to <a href="http://blogs.perl.org/users/jason_a_crome/2012/04/compiling-mod-perl-2-on-os-x-lion.html">this blog post</a> for that little nugget!)</p>
+
+<p><code>perl Makefile.PL MP_CCOPTS=-std=gnu89 ; make ; sudo make install</code></p>
+
+<p>This will install mod_perl.so to <code>/usr/libexec/mod_perl.so</code></p>
+
+<p>Lastly, we need to tell Apache to load the newly compiled module and restart apache.  Add this line to your <code>/etc/apache2/httpd.conf</code> file:</p>
+
+<p><code>LoadModule perl_module libexec/apache2/mod_perl.so</code></p>
+
+<p>Then restart apache:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apachectl configtest
+</span><span class='line'>sudo apachectl restart
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Here is an example of what the output looks like, using the Gist I created to hold the code for the renderer.  Feel free to grab it for your own BlogCFC install.</p>
-
-<div><script src='https://gist.github.com/1810183.js'></script>
-<noscript><pre><code>&lt;!---
-
-Save this file as /org/camden/blog/render/gist.cfc
-
-In your entries you can then include a Github gist using the following syntax:
-
-&lt;gist id=&quot;[gist id]&quot;&gt;
-
-Example: &lt;gist id=&quot;1810183&quot;&gt; would embed this gist into a blog entry.
-
-If you want to limit the height of large Gists you can use the following CSS to set a max height:
-
-.gist .gist-file .gist-data {
-  max-height: 250px;
-}
-
----&gt;
-&lt;cfcomponent extends=&quot;render&quot; output=&quot;false&quot;&gt;
-    
-    &lt;cffunction name=&quot;display&quot; output=&quot;false&quot; returntype=&quot;string&quot; access=&quot;public&quot;&gt;
-        &lt;cfargument name=&quot;id&quot; required=&quot;true&quot; type=&quot;string&quot; /&gt;
-        &lt;cfset var html = &quot;&quot; /&gt;
-        
-        &lt;cfsavecontent variable=&quot;html&quot;&gt;
-        &lt;cfoutput&gt;
-        &lt;script src=&quot;https://gist.github.com/#arguments.id#.js&quot;&gt;&lt;/script&gt;
-        &lt;/cfoutput&gt;
-        &lt;/cfsavecontent&gt;
-        
-        &lt;cfreturn trim(html) /&gt;
-        
-    &lt;/cffunction&gt;
-    
-&lt;/cfcomponent&gt;</code></pre></noscript></div>
-
+<p>If all is well, you should have a working mod_perl module inside Apache 2.4.</p>
 </div>
 
 
@@ -168,12 +171,12 @@ If you want to limit the height of large Gists you can use the following CSS to 
 
 
 
-<time class='entry-date' datetime='2012-02-12T13:47:00-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>1:47 pm</span></time>
+<time class='entry-date' datetime='2014-10-23T11:10:37-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>11:10 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/coldfusion/'>coldfusion</a>
+    <a class='category' href='/blog/categories/apache/'>apache</a>
   
 </span>
 
@@ -182,7 +185,7 @@ If you want to limit the height of large Gists you can use the following CSS to 
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.n42designs.com/blog/2012/02/12/github-gist-renderer-for-blogcfc/" data-via="nickel4242" data-counturl="http://blog.n42designs.com/blog/2012/02/12/github-gist-renderer-for-blogcfc/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/" data-via="nickel4242" data-counturl="http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -195,10 +198,8 @@ If you want to limit the height of large Gists you can use the following CSS to 
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/09/20/farcry-slider-formtool/" title="Previous Post: FarCry Slider Formtool">&laquo; FarCry Slider Formtool</a>
+        <a class="basic-alignment left" href="/blog/2014/10/13/coldfusion-9-and-modjrun-on-mac-os-x-yosemite-with-apache-24/" title="Previous Post: ColdFusion 9 and mod_jrun on Mac OS X Yosemite with Apache 2.4">&laquo; ColdFusion 9 and mod_jrun on Mac OS X Yosemite with Apache 2.4</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/04/05/farcry-solr-pro/" title="Next Post: FarCry Solr Pro">FarCry Solr Pro &raquo;</a>
       
     </p>
   </footer>
@@ -301,8 +302,8 @@ If you want to limit the height of large Gists you can use the following CSS to 
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.n42designs.com/blog/2012/02/12/github-gist-renderer-for-blogcfc/';
-        var disqus_url = 'http://blog.n42designs.com/blog/2012/02/12/github-gist-renderer-for-blogcfc/';
+        var disqus_identifier = 'http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/';
+        var disqus_url = 'http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/';
         var disqus_script = 'embed.js';
       
     (function () {

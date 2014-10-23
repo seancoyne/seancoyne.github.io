@@ -4,7 +4,7 @@
   <title><![CDATA[n42 Designs]]></title>
   <link href="http://blog.n42designs.com/atom.xml" rel="self"/>
   <link href="http://blog.n42designs.com/"/>
-  <updated>2014-10-15T09:25:30-04:00</updated>
+  <updated>2014-10-23T11:51:18-04:00</updated>
   <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Compiling Mod_perl for Apache 2.4 on OS X 10.10 Yosemite]]></title>
+    <link href="http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/"/>
+    <updated>2014-10-23T11:10:37-04:00</updated>
+    <id>http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite</id>
+    <content type="html"><![CDATA[<p>TL;DR: For your convenience, if you would like a pre-compiled binary you can download one <a href="https://www.dropbox.com/s/euqfc0ivu1vx2vp/mod_perl.so.zip?dl=1">here</a>.  This is the module I compiled.  I haven&rsquo;t tested it on any other systems than the one I compiled it with. YMMV.</p>
+
+<hr />
+
+<p>OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4.  In general, this is a good thing, but if you were using mod_perl, perhaps for <a href="http://www.modcfml.org">mod_cfml</a> with Railo for example, then mod_perl will no longer work.</p>
+
+<p>Recently, there have been several <a href="https://github.com/apache/mod_perl/commit/6e33d7c9e89afbdb47da0cb0fa9498d8a843df8e">commits</a> so mod_perl will now support Apache 2.4.  Since there are no binary releases yet, we will have to compile it ourselves.</p>
+
+<p>I have managed to do this with help from <a href="http://stackoverflow.com/a/26497435/151136">this StackOverflow post</a>.</p>
+
+<p>First you need the latest source from the Apache SVN repositories.  They mirror it on git, but its missing some dependencies, so I found it easier to use SVN.</p>
+
+<p><code>svn checkout https://svn.apache.org/repos/asf/perl/modperl/trunk/ mod_perl-2.0</code></p>
+
+<p>Then switch into the new directory:</p>
+
+<p><code>cd mod_perl-2.0</code></p>
+
+<p>Next, we need to be sure we have <a href="https://itunes.apple.com/us/app/xcode/id497799835?mt=12">XCode 6.1</a> installed and the command line tools installed as well:</p>
+
+<p><code>xcode-select --install</code></p>
+
+<p>Once, we have that, we need to tell the compiler where to find a few dependencies.  You can find the reasoning behind this in the StackOverflow post mentioned above, but in general you run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/apr-1-config --includedir /usr/include/apr-1
+</span><span class='line'>sudo ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/apache2 /usr/include/apache2
+</span><span class='line'>sudo ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/apr-1 /usr/include/apr-1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will create a couple simlinks and tell the compiler where some Apache headers are located.</p>
+
+<p>Almost done.  Next, we compile it.  We need to set a compiler option to tell it to build using the gnu89 standard, instead of clang&rsquo;s default C99. (Thanks to <a href="http://blogs.perl.org/users/jason_a_crome/2012/04/compiling-mod-perl-2-on-os-x-lion.html">this blog post</a> for that little nugget!)</p>
+
+<p><code>perl Makefile.PL MP_CCOPTS=-std=gnu89 ; make ; sudo make install</code></p>
+
+<p>This will install mod_perl.so to <code>/usr/libexec/mod_perl.so</code></p>
+
+<p>Lastly, we need to tell Apache to load the newly compiled module and restart apache.  Add this line to your <code>/etc/apache2/httpd.conf</code> file:</p>
+
+<p><code>LoadModule perl_module libexec/apache2/mod_perl.so</code></p>
+
+<p>Then restart apache:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apachectl configtest
+</span><span class='line'>sudo apachectl restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If all is well, you should have a working mod_perl module inside Apache 2.4.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ColdFusion 9 and Mod_jrun on Mac OS X Yosemite With Apache 2.4]]></title>
@@ -707,28 +770,6 @@ error.  This seems to be because CF creates its own stub file
 both so it threw an error.  The solution was to rename my CFC.  The
 stubs can be found in <code>C:\ColdFusion8\stubs\</code> on Windows, and if I
 remember correctly <code>/Applications/ColdFusion8/stubs/</code> on Mac OS X.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Issue W/ Eclipse Resource Bundle Editor Plugin and Leopard]]></title>
-    <link href="http://blog.n42designs.com/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard/"/>
-    <updated>2008-01-17T15:18:00-05:00</updated>
-    <id>http://blog.n42designs.com/blog/2008/01/17/resource-bundle-editor-plugin-and-leopard</id>
-    <content type="html"><![CDATA[<p>There seems to be an issue with the <a href="http://sourceforge.net/projects/eclipse-rbe/">Resource Bundle Editor Plugin for Eclipse</a>.</p>
-
-<p>I installed version 0.7.7 into a fresh install of the Eclipse 3.3 SDK and was unable to open a resource file.  I would get the following error:</p>
-
-<blockquote><p>Can&#8217;t start the AWT because Java was started on the first thread.  Make sure StartOnFirstThread is not specified in your application&#8217;s Info.plist or on the command line</p></blockquote>
-
-
-<p>To fix it I edited the <code>eclipse.ini</code> file (<code>/Applications/eclipse/Eclipse.app/Contents/MacOS/eclipse.ini</code> by default) to add the following line:</p>
-
-<p><code>-Djava.awt.headless=true</code></p>
-
-<p>Once I did that it was fine and I was able to edit the resource bundles.</p>
-
-<p>Hope this helps someone searching for the issue!</p>
 ]]></content>
   </entry>
   
