@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
-rake generate
-rake deploy
+rake gen_deploy
