@@ -6,9 +6,9 @@ comments: true
 categories: [Apache]
 ---
 
-TL;DR: For your convenience, if you would like a pre-compiled binary you can download one [here](https://www.dropbox.com/s/euqfc0ivu1vx2vp/mod_perl.so.zip?dl=1).  This is the module I compiled.  I haven't tested it on any other systems than the one I compiled it with. YMMV.
+TL;DR: You can run [this handy script](https://gist.github.com/seancoyne/442fe1ab7067c3b5ff35) to compile mod\_perl for your system.
 
-* * *
+* * * 
 
 OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4.  In general, this is a good thing, but if you were using mod\_perl, perhaps for [mod_cfml](http://www.modcfml.org) with Railo for example, then mod\_perl will no longer work.
 
