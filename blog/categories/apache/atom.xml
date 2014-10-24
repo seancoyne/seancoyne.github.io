@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Apache | n42 Designs]]></title>
   <link href="http://blog.n42designs.com/blog/categories/apache/atom.xml" rel="self"/>
   <link href="http://blog.n42designs.com/"/>
-  <updated>2014-10-24T13:49:10-04:00</updated>
+  <updated>2014-10-24T14:02:07-04:00</updated>
   <id>http://blog.n42designs.com/</id>
   <author>
     <name><![CDATA[Sean Coyne]]></name>
@@ -18,7 +18,11 @@
     <link href="http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite/"/>
     <updated>2014-10-23T11:10:37-04:00</updated>
     <id>http://blog.n42designs.com/blog/2014/10/23/compiling-mod-perl-for-apache-2-dot-4-on-os-x-10-dot-10-yosemite</id>
-    <content type="html"><![CDATA[<p>OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4.  In general, this is a good thing, but if you were using mod_perl, perhaps for <a href="http://www.modcfml.org">mod_cfml</a> with Railo for example, then mod_perl will no longer work.</p>
+    <content type="html"><![CDATA[<p>TL;DR: You can run <a href="https://gist.github.com/seancoyne/442fe1ab7067c3b5ff35">this handy script</a> to compile mod_perl for your system.</p>
+
+<hr />
+
+<p>OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4.  In general, this is a good thing, but if you were using mod_perl, perhaps for <a href="http://www.modcfml.org">mod_cfml</a> with Railo for example, then mod_perl will no longer work.</p>
 
 <p>Recently, there have been several <a href="https://github.com/apache/mod_perl/commit/6e33d7c9e89afbdb47da0cb0fa9498d8a843df8e">commits</a> so mod_perl will now support Apache 2.4.  Since there are no binary releases yet, we will have to compile it ourselves.</p>
 

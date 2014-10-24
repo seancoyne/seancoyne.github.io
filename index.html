@@ -9,7 +9,7 @@
   <meta name="author" content="Sean Coyne">
 
   
-  <meta name="description" content="OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4. In general, this is a good thing, but if you were using &hellip;">
+  <meta name="description" content="TL;DR: You can run this handy script to compile mod_perl for your system. OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,7 +104,11 @@
   </header>
 
 
-  <div class="entry-content"><p>OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4.  In general, this is a good thing, but if you were using mod_perl, perhaps for <a href="http://www.modcfml.org">mod_cfml</a> with Railo for example, then mod_perl will no longer work.</p>
+  <div class="entry-content"><p>TL;DR: You can run <a href="https://gist.github.com/seancoyne/442fe1ab7067c3b5ff35">this handy script</a> to compile mod_perl for your system.</p>
+
+<hr />
+
+<p>OS X 10.10 Yosemite upgrades the default Apache install from 2.2 in Mavericks to 2.4.  In general, this is a good thing, but if you were using mod_perl, perhaps for <a href="http://www.modcfml.org">mod_cfml</a> with Railo for example, then mod_perl will no longer work.</p>
 
 <p>Recently, there have been several <a href="https://github.com/apache/mod_perl/commit/6e33d7c9e89afbdb47da0cb0fa9498d8a843df8e">commits</a> so mod_perl will now support Apache 2.4.  Since there are no binary releases yet, we will have to compile it ourselves.</p>
 
