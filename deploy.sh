@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-rake gen_deploy
+bundle exec rake gen_deploy
