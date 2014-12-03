@@ -7,7 +7,7 @@ title: n42 Designs
 subtitle: Custom Web Development
 author: Sean Coyne
 # simple_search: https://www.google.com/search
-simple_search: /search
+simple_search:
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -97,7 +97,7 @@ disqus_short_name: "n42designs"
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id: "UA-298339-1"
+google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: true
