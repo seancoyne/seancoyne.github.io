@@ -1,7 +1,12 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
-.highlight, html .gist .gist-file .gist-syntax .gist-highlight {
-  table td.line0-data { width: 100%; }
+.gist {
+  table { 
+  	tr {
+  		background-color: #002b36;
+  	}
+  	td.line-data { width: 100%; }
+  }
 }
 
 html .gist .gist-file {
